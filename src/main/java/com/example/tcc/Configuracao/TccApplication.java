@@ -1,4 +1,4 @@
-package com.example.tcc;
+package com.example.tcc.Configuracao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
