@@ -14,14 +14,16 @@ display: inline-block;
     padding: 10px 20px 5px 5px;
 }
 #wrap_login{
+    width: 1080px;
     margin: auto;
     background-image: linear-gradient(45deg,green,cyan);
 
 }
 #robo{
     background-image: url(../../../img/robo.png)  ;
+    top: 1080px;
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: contain ;
     background-position: center center;
 }
 #tela_login{
