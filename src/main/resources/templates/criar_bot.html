@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar_Bot</title>
+    <style type="text/css">
+        #intervalo{ display: inline-block }
+    </style>
 </head>
 <body>
     <div id="wrap">
@@ -30,11 +33,8 @@
                         <label>Odd maxima: <input type="number" name="oddmax"/></label>
                     </div>
 
-                    <div>
-                        <label>Tempo de jogo: <input type="number" name="tempoinicial"/></label>
-                    </div>
-
-                    <div>
+                    <div id="intervalo">
+                        <label>Tempo de jogo de: <input type="number" name="tempoinicial"/></label>
                         <label>á: <input type="number" name="tempofinal"/></label>
                     </div>
 
@@ -42,23 +42,17 @@
                         <label>Times: <input type="text" name="time"/></label>
                     </div>
 
-                    <div>
+                    <div id="intervalo">
                         <label>Finalizações de: <input type="number" name="finalizacoesmin"/></label>
-                    </div>
-
-                    <div>
                         <label>á: <input type="number" name="finalizacoesmax"/></label>
                     </div>
 
-                    <div>
+                    <div id="intervalo">
                         <label>posse de bola de: <input type="number" name="possemin"/></label>
-                    </div>
-
-                    <div>
                         <label>á: <input type="number" name="possemax"/></label>
                     </div>
 
-                    <div><input type="submit" value="Sing in"></div>
+                    <div><input type="submit" value="criar"></div>
 
                 </form>
             </section>
