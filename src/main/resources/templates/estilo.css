@@ -1,0 +1,11 @@
+#menus{
+display: inline-block;
+padding-left: 10px;
+margin-right: 10px;
+}
+#dados{
+display: inline-block;
+}
+#intervalo{
+display: inline-block;
+}
