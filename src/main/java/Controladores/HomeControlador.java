@@ -14,7 +14,7 @@ public class HomeControlador {
     public String index(){
         return index();
     }
-    @RequestMapping("/criando_bot")
+    @RequestMapping("/criar_bot")
     public String criar_bot(){
         return criar_bot();
     }

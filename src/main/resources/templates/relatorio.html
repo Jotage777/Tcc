@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Relatorio</title>
+    <style type="text/css">
+        #intervalo{ display: inline-block }
+    </style>
 </head>
 <body>
+    <div id="wrap">
+        <header>
+            <div id="Titulo">
+                <h1> <a>Relatorio</a></h1>
+            </div>
+        </header>
+        <nav>
+            <section>
+                <form th:action="@{/relatorio}" method="post">
+                    <p>Filtros</p>
+                    <div>
+                        <label>Bot: <input type="text" name="nomebot"/></label>
+                    </div>
 
+                    <div id="intervalo">
+                        <label>de: <input type="date" name="datainicial"/></label>
+                        <label>á: <input type="date" name="datafinal"/></label>
+                    </div>
+
+                    <div><input type="submit" value="buscar"></div>
+
+                    <p>Resumo</p>
+
+                    <div id="intervalo">
+                        <p>Quantidade de Apostas: </p>
+                        <p>Valor total apostado: </p>
+                    </div>
+
+                    <div id="intervalo">
+                        <p>Green's: </p>
+                        <p>Red's: </p>
+                    </div>
+
+                    <div id="intervalo">
+                        <p>Retorno Total: </p>
+                        <p>Saldo: </p>
+                    </div>
+
+                    <p>Historico</p>
+
+                    <div><input type="submit" value="voltar"></div>
+
+                </form>
+            </section>
+        </nav>
+    </div>
 </body>
 </html>
