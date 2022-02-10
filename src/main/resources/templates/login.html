@@ -1,25 +1,46 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-   <div class="logo">
-      <img src="./img/robo.png">
-   </div>
+<!doctype html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <title>Greenzord - Login </title>
+        <meta charset="UTF-8">
+        <meta name="description" content="O robô para automatizar suas apostas esportivas"/>
+        <meta name="keywords" content="apostas, trade, esportivas, robô"/>
+        <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
+        <style type="text/css">
+            a{
+                color: green;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="D:\Área de Trabalho\Projeto tcc\Tcc\img/robo.png" alt="Logo html" width="10" />
+            </div>
+            <h1> <a>Greenzord</a></h1>
+            <p><strong><a>O robô para automatizar suas apostas esportivas</a></strong></p>
+        </header>
 
-<h1>Greenzord</h1>
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>Login: <input type="text" name="username"/></label>
-    </div>
+       <nav>
+           <section>
+               <h1>Login do Greenzord</h1>
+               <p>Informe seu usuario e senha</p>
+               <form th:action="@{/login}" method="post">
+                   <div>
+                       <label>Usuario: <input type="text" name="username"/></label>
+                   </div>
 
-    <div>
-        <label>Senha: <input type="password" name="password"/></label>
-    </div>
+                   <div>
+                       <label>Senha: <input type="password" name="password"/></label>
+                   </div>
 
-    <div><input type="submit" value="Sing in"></div>
-</form>
-</body>
+                   <div><input type="submit" value="Sing in"></div>
+
+               </form>
+           </section>
+
+       </nav>
+    <footer> <em>Projeto de Tcc</em> </footer>
+    </body>
 </html>
