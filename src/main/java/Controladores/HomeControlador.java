@@ -14,4 +14,12 @@ public class HomeControlador {
     public String index(){
         return index();
     }
+    @RequestMapping("/criando_bot")
+    public String criar_bot(){
+        return criar_bot();
+    }
+    @RequestMapping("/relatorio")
+    public String relatorio(){
+        return relatorio();
+    }
 }
