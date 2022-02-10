@@ -8,18 +8,18 @@ public class HomeControlador {
 
     @RequestMapping("/login")
     public String login(){
-        return login() ;
+        return "login" ;
     }
     @RequestMapping("/")
     public String index(){
-        return index();
+        return "index";
     }
     @RequestMapping("/criar_bot")
     public String criar_bot(){
-        return criar_bot();
+        return "criar_bot";
     }
     @RequestMapping("/relatorio")
     public String relatorio(){
-        return relatorio();
+        return "relatorio";
     }
 }
