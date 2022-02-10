@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Criar_Bot</title>
 </head>
 <body>
+    <div id="wrap">
+        <header>
+            <div id="Titulo">
+                <h1> <a>Criar Bot</a></h1>
+            </div>
+        </header>
+        <nav>
+            <section>
+                <form th:action="@{/login}" method="post">
+                    <div>
+                        <label>Nome do Bot: <input type="text" name="nomebot"/></label>
+                    </div>
 
+                    <div>
+                        <label>Responsabilidade: <input type="number" name="responsabilidade"/></label>
+                    </div>
+
+                    <div>
+                        <label>Odd minima: <input type="number" name="oddmin"/></label>
+                    </div>
+
+                    <div>
+                        <label>Odd maxima: <input type="number" name="oddmax"/></label>
+                    </div>
+
+                    <div>
+                        <label>Tempo de jogo: <input type="number" name="tempoinicial"/></label>
+                    </div>
+
+                    <div>
+                        <label>á: <input type="number" name="tempofinal"/></label>
+                    </div>
+
+                    <div>
+                        <label>Times: <input type="text" name="time"/></label>
+                    </div>
+
+                    <div>
+                        <label>Finalizações de: <input type="number" name="finalizacoesmin"/></label>
+                    </div>
+
+                    <div>
+                        <label>á: <input type="number" name="finalizacoesmax"/></label>
+                    </div>
+
+                    <div>
+                        <label>posse de bola de: <input type="number" name="possemin"/></label>
+                    </div>
+
+                    <div>
+                        <label>á: <input type="number" name="possemax"/></label>
+                    </div>
+
+                    <div><input type="submit" value="Sing in"></div>
+
+                </form>
+            </section>
+        </nav>
+    </div>
 </body>
 </html>
