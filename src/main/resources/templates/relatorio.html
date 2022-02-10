@@ -19,11 +19,15 @@
                 <form th:action="@{/relatorio}" method="post">
                     <p>Filtros</p>
                     <div>
-                        <label>Bot: <input type="text" name="nomebot"/></label>
+                        <td>bot: </td>
+                        <select name="botselecionado">
+                            <option value="bot1"> Bot 1 </option>
+                            <option value="bot2"> Bot 2 </option>
+                        </select>
                     </div>
 
                     <div id="intervalo">
-                        <label>de: <input type="date" name="datainicial"/></label>
+                        <label>De: <input type="date" name="datainicial"/></label>
                         <label>á: <input type="date" name="datafinal"/></label>
                     </div>
 
