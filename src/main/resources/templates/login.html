@@ -22,9 +22,20 @@
             header p{
                 padding:  0px 0px 10px 10px ;
             }
-            nav section{
-                padding: 10px 10px 380px 380px
+            #tela_login{
+                padding-left: 380px;
+                padding-right: 380px;
+                margin: auto;
+                background: dimgray;
+                overflow: hidden;
+
             }
+            footer{
+                clear: both ;
+            }
+
+
+
 
         </style>
     </head>
@@ -40,20 +51,23 @@
 
             <nav>
                 <section>
-                    <h1>Login do Greenzord</h1>
-                    <p>Informe seu usuario e senha</p>
-                    <form th:action="@{/login}" method="post">
-                        <div>
-                            <label>Usuario: <input type="text" name="username"/></label>
-                        </div>
+                    <div id="tela_login">
+                        <h1>Login do Greenzord</h1>
+                        <p>Informe seu usuario e senha</p>
+                        <form th:action="@{/login}" method="post">
+                            <div>
+                                <label>Usuario: <input type="text" name="username" /></label>
+                            </div>
 
-                        <div>
-                            <label>Senha: <input type="password" name="password"/></label>
-                        </div>
+                            <div>
+                                <label>Senha: <input type="password" name="password"/></label>
+                            </div>
 
-                        <div><input type="submit" value="Sing in"></div>
+                            <div><input type="submit" value="Entrar"></div>
 
-                    </form>
+                        </form>
+                    </div>
+
                 </section>
 
             </nav>
