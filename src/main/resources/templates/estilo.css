@@ -1,13 +1,24 @@
 #menus{
-display: inline-block;
-padding-left: 10px;
-margin-right: 10px;
+    list-style: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+#Titulo{
+    padding: 10px 20px 5px 5px;
+    color: white;
+}
+#Jogos h2{
+    color: white;
+}
+#Bots h2{
+    color: white;
 }
 #dados{
-display: inline-block;
+    display: inline-block;
+    padding-left: 350px;
 }
 #intervalo{
-display: inline-block;
+    display: inline-block;
 }
 #logo{
     display: inline-block;
@@ -18,6 +29,9 @@ display: inline-block;
     margin: auto;
     background-image: linear-gradient(45deg,green,cyan);
 
+}
+#wrap{
+    background-image: linear-gradient(45deg,green,cyan);
 }
 #robo{
     background-image: url(../../../img/robo.png)  ;
