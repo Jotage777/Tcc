@@ -33,6 +33,7 @@ class Greenzord(Resource):
         elif tipo == 6:
         elif tipo == 7:
 
+
 api.add_resource(HelloWord,"/helloword")
 api.add_resource(Greenzord,"/greenzord/<int:tipo>/<int:id>")
 if __name__=="__main__":
