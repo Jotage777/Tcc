@@ -19,7 +19,6 @@ def validar_nome(nome):
     else:
         return False
 
-
 def validar_email(email):
        validar = '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]'
        if (re.search(validar, email)):
@@ -31,7 +30,6 @@ def validar_inteiros(numero):
     validar = '^[0-9]*$'
     if(re.search(validar,numero)):
         return True
-
     else:
         return False
 
