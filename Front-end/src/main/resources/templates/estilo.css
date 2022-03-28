@@ -2,97 +2,30 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
-input{
-    padding: 5px;
-    border: none;
-    outline: none;
-}
-
-/* exclusivo login */
-#wrap_login{
-    width: 1080px;
-    margin: auto;
-    background-image: linear-gradient(45deg,green,cyan);
-    padding: 15px;
-    border-radius: 15px ;
-}
-#robo{
-    background-image: url(../../../img/robo.png)  ;
-    top: 1080px;
-    background-repeat: no-repeat;
-    background-size: contain ;
-    background-position: center center;
-}
-#logo{
-    display: inline-block;
+#Titulo{
     padding: 10px 20px 5px 5px;
-}
-#tela_login{
-    display: block;
-    background-color: rgba( 0,0,0,0.95);
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    padding: 75px;
-    border-radius: 15px ;
     color: white;
 }
-.inputSubmit{
-    position: absolute;
-    text-decoration: none;
-    color: black;
-    border: 2px solid white;
-    background-color: rgba(255, 255, 255, 1);
-    padding: 5px;
-    border-radius: 5px;
+#intervalo{
+    display: inline-block;
 }
-.inputSubmit:hover{
-    cursor: pointer;
+footer{
+    clear: both;
 }
 
-
-
-
-
-
-
-
+/* exclusivo index */
 #menus{
     list-style: none;
     display: inline-block;
     margin-right: 10px;
 }
-#Titulo{
-    padding: 10px 20px 5px 5px;
-    color: white;
+#dados{
+    display: inline-block;
+    padding-left: 350px;
 }
 #Jogos h2{
     color: white;
 }
 #Bots h2{
     color: white;
-}
-#dados{
-    display: inline-block;
-    padding-left: 350px;
-}
-#intervalo{
-    display: inline-block;
-}
-#wrap{
-    background-image: linear-gradient(45deg,green,cyan);
-}
-
-footer{
-    clear: both ;
-}
-a{
-    position: absolute;
-    text-decoration: none;
-    color: black;
-    border: 2px solid white;
-    background-color: rgba(255, 255, 255, 1);
-    padding: 5px;
-    border-radius: 5px;
 }

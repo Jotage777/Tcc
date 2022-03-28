@@ -1,88 +1,73 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="https//www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Greenzord</title>
     <link rel="stylesheet" type="text/css" href="estilo.css" />
     <style type="text/css">
-       section ul{
-           list-style: none;
-       }
-       section ul li{
-           display: inline-block;
-           margin-right: 10px;
-       }
-       section ul li a{
-           text-decoration: none;
-       }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg,green,cyan);
+        }
+        section ul{
+            list-style: none;
+        }
+        section ul li{
+            display: inline-block;
+            margin-right: 10px;
+        }
+        section ul li a{
+            text-decoration: none;
+        }
+        footer{
+            clear: both;
+            top: 98%;
+            transform: translate(0%, 0%);
+            position: absolute;
+        }
 
     </style>
 </head>
 <body>
-    <div id="wrap">
-        <header>
-            <div id="Titulo">
-                <img src="../../../img/robo.png" alt="Logo html" width="50" />
-                <h1> <b>Greenzord</b></h1>
-            </div>
-        </header>
-        <div>
-            <section>
-                <div id="menus">
-                    <ul>
-                        <li> <a href="relatorio.html"> Relatorio </a></li>
-                        <li> <a href="criar_bot.html"> Adicionar bot </a></li>
-
-                    </ul>
-
-                </div>
-                <div id="dados">
-                    <td> Usuario</td>
-                    <td> Saldo</td>
-                    <a href="login.html">Sair</a>
-                </div>
-                <div id="Jogos">
-                    <h2>Jogos ao vivo</h2>
-                    <ul>
-                        <li> <b href=""> Campeonato Brasileiro </b></li>
-                        <li> <b href=""> Premier League </b></li>
-                        <li> <b href=""> Serie A </b></li>
-                        <li> <b href=""> Budesliga </b></li>
-                        <li> <b href=""> Ligue 1 </b></li>
-                        <li> <b href=""> La liga </b></li>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-
-                    </ul>
-                </div>
-                <div id="Bots">
-                    <h2>Bots criados</h2>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                </div>
-
-            </section>
-            <footer>
-                Projeto de Tcc de João Gabriel e João Messias
-            </footer>
-        </div>
+    <div id="Titulo">
+        <h1>
+            <b>Greenzord</b>
+        </h1>
     </div>
-
+    <img src="../../../img/robo.png" alt="Logo html" width="50" />
+    <div>
+        <section>
+            <div id="menus">
+                <ul>
+                    <li> <a href="relatorio.html"> Relatorio </a></li>
+                    <li> <a href="criar_bot.html"> Adicionar bot </a></li>
+                </ul>
+            </div>
+            <div id="dados">
+                <td> Usuario</td>
+                <td> Saldo</td>
+                <a href="login.html">Sair</a>
+            </div>
+            <div id="Jogos">
+                <h2>Jogos ao vivo</h2>
+                <ul>
+                    <li> <b href=""> Campeonato Brasileiro </b></li>
+                    <li> <b href=""> Premier League </b></li>
+                    <li> <b href=""> Serie A </b></li>
+                    <li> <b href=""> Budesliga </b></li>
+                    <li> <b href=""> Ligue 1 </b></li>
+                    <li> <b href=""> La liga </b></li>
+                    <br><br><br><br><br><br><br><br><br><br>
+                </ul>
+            </div>
+            <div id="Bots">
+                <h2>Bots criados</h2>
+                <br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </section>
+        <footer>
+            Projeto de Tcc de João Gabriel e João Messias
+        </footer>
+    </div>
 </body>
 </html>

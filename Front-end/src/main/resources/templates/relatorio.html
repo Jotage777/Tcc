@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Relatorio</title>
     <link rel="stylesheet" type="text/css" href="estilo.css" />
+    <style type="text/css">
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg,green,cyan);
+        }
+        .box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba( 0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            width: 20%;
+        }
+        .voltar{
+            left: 99%;
+            transform: translate(-100%, 0%);
+            position: absolute;
+        }
+        footer{
+            clear: both;
+            top: 98%;
+            transform: translate(0%, 0%);
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
+    <div class="voltar">
+        <a href="index.html">Voltar</a>
+    </div>
     <div id="wrap">
         <header>
             <div id="Titulo">
@@ -15,7 +46,7 @@
         </header>
         <nav>
             <section>
-                <form th:action="@{/relatorio}" method="post">
+                <form action="relatorio.html" method="post">
                     <p>Filtros</p>
                     <div>
                         <td>bot: </td>
@@ -49,8 +80,6 @@
                     </div>
 
                     <p>Historico</p>
-
-                    <div><a href="index.html">Voltar</a></div>
 
                 </form>
             </section>

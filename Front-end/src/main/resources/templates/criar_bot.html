@@ -1,86 +1,151 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Criar_Bot</title>
+    <title>Adicionar Bot</title>
     <link rel="stylesheet" type="text/css" href="estilo.css" />
     <style type="text/css">
-       nav section{
-           display: block;
-       }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg,green,cyan);
+        }
+        .box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba( 0,0,0,0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            width: 20%;
+        }
+        .voltar{
+            left: 99%;
+            transform: translate(-100%, 0%);
+            position: absolute;
+        }
+        footer{
+            clear: both;
+            top: 98%;
+            transform: translate(0%, 0%);
+            position: absolute;
+        }
+        fieldset{
+            border: 3px solid #fff;
+        }
+        legend{
+            border: 1px solid #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .inputBox{
+            position: relative;
+        }
+        .inputBot{
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            color: white;
+            font-size: 12px;
+            width: 100%;
+        }
+        .inputBotInter{
+            background: none;
+            border: none;
+            border-bottom: 1px solid white;
+            outline: none;
+            color: white;
+            font-size: 12px;
+        }
+        .labelInput{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            pointer-events: none;
+            transition: .5s;
+        }
+        .inputBot:focus ~ .labelInput,
+        .inputBot:valid ~ .labelInput{
+            top: -20px;
+            font-size: 12px;
+        }
+        #submit{
+            background-image: linear-gradient(45deg,green,cyan);
+            width: 100%;
+            border: none;
+            padding: 12px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <div id="wrap">
-        <header>
-            <div id="Titulo">
-                <img src="../../../img/robo.png" alt="Logo html" width="50" />
-                <h1> <b>Criar Bot</b></h1>
-            </div>
-        </header>
-        <nav>
-            <section>
-                <form th:action="@{/criar_bot}" method="get">
-                    <div>
-                        <label>Nome do Bot: <input type="text" name="nomebot"/></label>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Responsabilidade: <input type="number" name="responsabilidade"/></label>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Odd minima: <input type="number" name="oddmin"/></label>
-                    </div>
-                    <br>
-                    <div>
-                        <label>Odd maxima: <input type="number" name="oddmax"/></label>
-                    </div>
-                    <br>
-                    <div id="intervalo">
-                        <label>Tempo de jogo : <input type="number" name="tempoinicial"/></label>
-                        <label>á: <input type="number" name="tempofinal"/></label>
-                        <br>
-
-                    </div>
-                    <br>
-                    <div>
-                        <label>Times: <input type="text" name="time"/></label>
-                    </div>
-                    <br>
-                    <div id="intervalo">
-                        <label>Finalizações de: <input type="number" name="finalizacoesmin"/></label>
-                        <label>á: <input type="number" name="finalizacoesmax"/></label>
-                        <br>
-                    </div>
-                    <br>
-                    <div id="intervalo">
-                        <label>posse de bola de: <input type="number" name="possemin"/></label>
-                        <label>á: <input type="number" name="possemax"/></label>
-                        <br>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <input type="submit" value="Criar">
-                    <a href="index.html">Voltar</a>
-
-                </form>
-            </section>
-        </nav>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <footer> Projeto de Tcc de João Gabriel e João Messias</footer>
+    <div class="voltar">
+        <a href="index.html">Voltar</a>
     </div>
+    <img src="../../../img/robo.png" alt="Logo html" width="50" />
+    <br><br><br>
+    <div class="box">
+        <form action="" method="GET">
+            <fieldset>
+                <legend><b>Adicionar Bot</b></legend>
+                <br>
+                <!-- Entrada nome do bot -->
+                <div class="inputBox">
+                    <input type="text" name="nome" id="nome" class="inputBot" required>
+                    <label for="nome" class="labelInput">Nome do Bot</label>
+                </div>
+                <br><br>
+                <!-- Entrada responsabilidade da aposta do bot -->
+                <div class="inputBox">
+                    <input type="number" name="responsa" id="responsa" class="inputBot" required>
+                    <label for="responsa" class="labelInput">Responsabilidade</label>
+                </div>
+                <!-- Entrada da odd aceita pelo bot -->
+                <p>Odds:</p>
+                <div class="inputBox">
+                    <label for="oddmin">de:</label>
+                    <input type="number" name="oddmin" id="oddmin" class="inputBotInter" required>
+                    <label for="oddmax">á:</label>
+                    <input type="number" name="oddmax" id="oddmax" class="inputBotInter" required>
+                </div>
+                <!-- Times a serem analisados e apostados -->
+                <p>Times:</p>
+                <input type="radio" id="casa" name="times" value="casa" required>
+                <label for="casa">Casa</label>
+                <br>
+                <input type="radio" id="fora" name="times" value="fora" required>
+                <label for="fora">Fora</label>
+                <br>
+                <input type="radio" id="ambos" name="times" value="ambos" required>
+                <label for="ambos">Ambos</label>
+                <br>
+                <!-- Tempo de jogo a ser apostado -->
+                <p>Tempo de Jogo(0 a 90):</p>
+                <div class="inputBox">
+                    <label for="tempomin">de:</label>
+                    <input type="number" name="tempomin" id="tempomin" class="inputBotInter" required>
+                    <label for="tempomin">á:</label>
+                    <input type="number" name="tempomax" id="tempomax" class="inputBotInter" required>
+                </div>
+                <!-- Finalizações do time ou ambos no jogo todo -->
+                <p>Finalizações:</p>
+                <div class="inputBox">
+                    <label for="finamin">de:</label>
+                    <input type="number" name="finamin" id="finamin" class="inputBotInter" required>
+                    <label for="finamax">á:</label>
+                    <input type="number" name="finamax" id="finamax" class="inputBotInter" required>
+                </div>
+                <br>
+                <input type="submit" name="submit" id="submit" value="Adicionar">
+            </fieldset>
+        </form>
+    </div>
+    <footer> Projeto de Tcc de João Gabriel e João Messias</footer>
 </body>
 </html>

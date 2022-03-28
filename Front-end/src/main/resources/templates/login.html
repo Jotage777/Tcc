@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
 <head>
     <title>Greenzord - Login </title>
     <meta charset="UTF-8">
@@ -8,6 +8,9 @@
     <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
     <link rel="stylesheet" type="text/css" href="estilo.css" />
     <style type="text/css">
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
         header h1{
             padding: 10px 20px 5px 5px;
             color: white;
@@ -15,6 +18,61 @@
         header p{
             padding:  0px 0px 10px 10px ;
             color: white;
+        }
+        input{
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+        a{
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        #wrap_login{
+            width: 1080px;
+            margin: auto;
+            background-image: linear-gradient(45deg,green,cyan);
+            padding: 15px;
+            border-radius: 15px ;
+        }
+        #robo{
+            background-image: url(../../../img/robo.png)  ;
+            top: 1080px;
+            background-repeat: no-repeat;
+            background-size: contain ;
+            background-position: center center;
+        }
+        #logo{
+            display: inline-block;
+            padding: 10px 20px 5px 5px;
+        }
+        #tela_login{
+            display: block;
+            background-color: rgba( 0,0,0,0.95);
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 75px;
+            border-radius: 15px;
+            color: white;
+        }
+        .inputSubmit{
+            position: absolute;
+            text-decoration: none;
+            color: black;
+            border: 2px solid white;
+            background-color: rgba(255, 255, 255, 1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .inputSubmit:hover{
+            cursor: pointer;
         }
     </style>
 </head>
@@ -39,7 +97,7 @@
                     <div id="tela_login">
                         <h1>Login do Greenzord</h1>
                         <p>Informe seu usuario e senha</p>
-                        <form th:action="testLogin.php" method="POST">
+                        <form action="testLogin.php" method="POST">
                             <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
                             <br><br>
                             <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
