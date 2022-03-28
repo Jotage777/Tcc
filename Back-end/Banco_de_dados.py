@@ -266,3 +266,16 @@ def consultas(tabela: str):
                            (tabela,))
             tudo = cursor.fetchall()
             return tudo
+            conn.commit()
+def deletar(acao):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            try:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute(acao)
+                conn.commit()
+
+            except:
+                print("erro")
+            finally:
+                print("Registro excluido")

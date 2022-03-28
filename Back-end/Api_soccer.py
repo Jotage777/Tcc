@@ -1,8 +1,10 @@
 from flask import Flask, request
 from flask_restful import Resource,Api, abort, reqparse
 import Banco_de_dados
+from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Greenzord.db'
 
 class Greenzord(Resource):
     def get(self, tipo, id):
@@ -57,7 +59,6 @@ class Greenzord(Resource):
             return {"Opcao invalida"}
     def post(self, tipo, id):
         if tipo == 1:
-
         elif tipo == 2:
         elif tipo == 3:
         elif tipo == 4:
@@ -68,12 +69,40 @@ class Greenzord(Resource):
             return {"Opcao invalida"}
     def delete(self, tipo, id):
         if tipo == 1:
+            convercao = str(id)
+            acao = "DELETE FROM Campeonato WHERE id_campeonato ="+convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 2:
+            convercao = str(id)
+            acao = "DELETE FROM Times WHERE id_time =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 3:
+            convercao = str(id)
+            acao = "DELETE FROM Jogos WHERE id_jogo =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 4:
+            convercao = str(id)
+            acao = "DELETE FROM Usuario WHERE id_usuario =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 5:
+            convercao = str(id)
+            acao = "DELETE FROM Bots WHERE id_bot =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 6:
+            convercao = str(id)
+            acao = "DELETE FROM Apostas WHERE id_apostas =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         elif tipo == 7:
+            convercao = str(id)
+            acao = "DELETE FROM Relatorio WHERE id_relatorio =" +convercao
+            Banco_de_dados.deletar(acao)
+            return {200}
         else:
             return {"Opcao invalida"}
 
