@@ -1,61 +1,56 @@
 <!doctype html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org" >
-    <head>
-        <title>Greenzord - Login </title>
-        <meta charset="UTF-8">
-        <meta name="description" content="O robô para automatizar suas apostas esportivas"/>
-        <meta name="keywords" content="apostas, trade, esportivas, robô"/>
-        <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
-        <link rel="stylesheet" type="text/css" href="estilo.css" />
-        <style type="text/css">
-            b{
-                color: white;
-                text-decoration: none;
-            }
-            header h1{
-                padding: 10px 20px 5px 5px;
-            }
-            header p{
-                padding:  0px 0px 10px 10px ;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="wrap_login">
-            <div id="robo">
-                <header>
-                    <div id="logo">
-                        <img src="../../../img/robo.png" alt="Logo html" width="50" />
-                        <h1> <b>Greenzord</b></h1>
+<head>
+    <title>Greenzord - Login </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="O robô para automatizar suas apostas esportivas"/>
+    <meta name="keywords" content="apostas, trade, esportivas, robô"/>
+    <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
+    <link rel="stylesheet" type="text/css" href="estilo.css" />
+    <style type="text/css">
+        header h1{
+            padding: 10px 20px 5px 5px;
+            color: white;
+        }
+        header p{
+            padding:  0px 0px 10px 10px ;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+
+    <div id="wrap_login">
+        <div id="robo">
+            <header>
+                <div id="logo">
+                    <img src="../../../img/robo.png" alt="Logo html" width="50" />
+                    <h1>Greenzord</h1>
+                </div>
+                <p><strong>O robô para automatizar suas apostas esportivas</strong></p>
+            </header>
+
+            <!-- Centro -->
+
+            <nav>
+                <section>
+                    <div id="tela_login">
+                        <h1>Login do Greenzord</h1>
+                        <p>Informe seu usuario e senha</p>
+                        <form th:action="testLogin.php" method="POST">
+                            <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
+                            <br><br>
+                            <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
+                            <br><br>
+                            <input class="inputSubmit" type="submit" name="submit" value="Login">
+                        </form>
                     </div>
-
-                    <p><strong><b>O robô para automatizar suas apostas esportivas</b></strong></p>
-                </header>
-
-                <nav>
-                    <section>
-                        <div id="tela_login">
-                            <h1>Login do Greenzord</h1>
-                            <p>Informe seu usuario e senha</p>
-                            <form th:action="@{/login}" method="post">
-                                <div>
-                                    <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
-                                    <br><br>
-                                    <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
-                                    <br><br>
-                                    <a href="index.html">Login</a>
-                                </div>
-
-                            </form>
-                        </div>
-
-                    </section>
-
-                </nav>
-                <footer> <em> Projeto de Tcc de João Gabriel e João Messias</em> </footer>
-            </div>
-
+                </section>
+            </nav>
+            <footer> <em> Projeto de Tcc de João Gabriel e João Messias</em> </footer>
         </div>
-
-    </body>
+    </div>
+</body>
 </html>
