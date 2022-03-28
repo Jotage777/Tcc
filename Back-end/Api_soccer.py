@@ -59,6 +59,7 @@ class Greenzord(Resource):
             return {"Opcao invalida"}
     def post(self, tipo, id):
         if tipo == 1:
+
         elif tipo == 2:
         elif tipo == 3:
         elif tipo == 4:
