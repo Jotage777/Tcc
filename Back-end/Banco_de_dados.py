@@ -258,3 +258,11 @@ def add_relatorio(greens: int,reds: int, lucro: float,total_apostas: int,id_bot:
             VALUES(?,?,?,?,?,?)''', (
             greens,reds,lucro,total_apostas,fk_id_bot,fk_id_apostas))
             conn.commit()
+def consultas(tabela: str):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM tabela = ?''',
+                           (tabela,))
+            tudo = cursor.fetchall()
+            return tudo
