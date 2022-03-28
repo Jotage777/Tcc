@@ -8,18 +8,16 @@
         <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
         <link rel="stylesheet" type="text/css" href="estilo.css" />
         <style type="text/css">
-            a{
+            b{
                 color: white;
                 text-decoration: none;
             }
-
             header h1{
                 padding: 10px 20px 5px 5px;
             }
             header p{
                 padding:  0px 0px 10px 10px ;
             }
-
         </style>
     </head>
     <body>
@@ -28,10 +26,10 @@
                 <header>
                     <div id="logo">
                         <img src="../../../img/robo.png" alt="Logo html" width="50" />
-                        <h1> <a>Greenzord</a></h1>
+                        <h1> <b>Greenzord</b></h1>
                     </div>
 
-                    <p><strong><a>O robô para automatizar suas apostas esportivas</a></strong></p>
+                    <p><strong><b>O robô para automatizar suas apostas esportivas</b></strong></p>
                 </header>
 
                 <nav>
@@ -41,18 +39,12 @@
                             <p>Informe seu usuario e senha</p>
                             <form th:action="@{/login}" method="post">
                                 <div>
-                                    <label>Usuario:
-                                    <br>
                                     <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
-                                    <br>
-                                    <label>Senha:
-                                    <br>
+                                    <br><br>
                                     <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
-                                    <br>
-                                    <input type="submit" value="Entrar">
+                                    <br><br>
+                                    <a href="index.html">Login</a>
                                 </div>
-
-
 
                             </form>
                         </div>
