@@ -164,34 +164,34 @@ class Greenzord(Resource):
             return {"Opcao invalida"}
 class Greenzord_campeonato(Resource):
     def post(campeonato: campeonato_modelo):
-        Banco_de_dados.add_campeonato(campeonato['nome'] )
-        return {"Campeonato:"+campeonato['nome'] +"Cadastrado com sucesso"}
+        Banco_de_dados.add_campeonato(campeonato.nome )
+        return {"Campeonato:"+campeonato.nome +"Cadastrado com sucesso"}
 
 class Greenzord_times(Resource):
     def post(time:times_modelo):
-        Banco_de_dados.add_times(time['nome'])
-        return {"Time:"+time['nome'] + "Cadastrado com sucesso"}
+        Banco_de_dados.add_times(time.nome)
+        return {"Time:"+time.nome + "Cadastrado com sucesso"}
 
 class Greenzord_jogos(Resource):
     def post(jogos: jogos_modelo):
-        Banco_de_dados.add_jogos(jogos['campeonato'],jogos['id'],jogos['time_casa'],jogos['resultado_casa'],jogos['resultado_fora'],jogos['data'],jogos['odd_casa'],jogos['odd_fora'],jogos['odd_empate'])
-        return {"Jogo:"+jogos['id'] + "Cadastrado com sucesso"}
+        Banco_de_dados.add_jogos(jogos.campeonato,jogos.id,jogos.time_casa,jogos.resultado_casa,jogos.time_fora,jogos.resultado_fora,jogos.date,jogos.odd_casa,jogos.odd_fora,jogos.odd_empate)
+        return {"Jogo:"+jogos.id + "Cadastrado com sucesso"}
 class Greenzord_usuario(Resource):
     def post(usuario: usuario_modelo):
-        Banco_de_dados.add_usuario(usuario['username'],usuario['nome'],usuario['email'],usuario['data_nascimento'],usuario['saldo'])
-        return {"Usuario:"+usuario['nome'+"cadastrado com sucesso"]}
+        Banco_de_dados.add_usuario(usuario.username,usuario.nome,usuario.email,usuario.data_nascimento,usuario.saldo)
+        return {"Usuario:"+usuario.nome+"cadastrado com sucesso"}
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
-        Banco_de_dados.add_bots(bots['nome'],bots['responsabilidade'],bots['odd_minima'],bots['odd_maxima'],bots['tempo_jogo_min'],bots['tempo_jogo_max'],bots['finalizacao_casa'],bots['finalizacao_fora'],bots['posse_bola_casa'],
-                                bots['posse_bola_fora'],bots['ativado'],bots['casa_ou_fora'],bots['username'])
-        return {"Bot:"+bots['nome']+"cadastrado com sucesso"}
+        Banco_de_dados.add_bots(bots.nome,bots.responsabilidade,bots.odd_minima,bots.odd_maxima,bots.tempo_jogo_min,bots.tempo_jogo_max,bots.finalizacao_casa,bots.finalizacao_fora,bots.posse_bola_casa,
+                                bots.posse_bola_fora,bots.ativado,bots.casa_ou_fora,bots.username)
+        return {"Bot:"+bots.nome+"cadastrado com sucesso"}
 class Greenzord_apostas(Resource):
     def post(aposta: apostas_modelo):
-        Banco_de_dados.add_apostas(aposta['mercado'],aposta['valor_apostado'],aposta['odd_aposta'],aposta['id_bot'],aposta['id_jogo'])
+        Banco_de_dados.add_apostas(aposta.mercado,aposta.valor_apostado,aposta.odd_aposta,aposta.id_bot,aposta.id_jogo)
         return {"Aposta realizada com sucesso!"}
 class Greenzord_relatorio(Resource):
     def post(relatorio: relatorio_modelo):
-        Banco_de_dados.add_relatorio(relatorio['greens'],relatorio['lucro'],relatorio['total_apostas'],relatorio['id_bot'])
+        Banco_de_dados.add_relatorio(relatorio.greens,relatorio.reds,relatorio.lucro,relatorio.total_apostas,relatorio.id_bot)
         return {"Relatorio cadastrado com sucesso"}
 api.add_resource(Greenzord,"/greenzord/<int:tipo>/<int:id>")
 api.add_resource(Greenzord_campeonato,"/greenzord/campeonato")
