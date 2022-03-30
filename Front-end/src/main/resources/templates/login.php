@@ -6,8 +6,7 @@
     <meta name="description" content="O robô para automatizar suas apostas esportivas"/>
     <meta name="keywords" content="apostas, trade, esportivas, robô"/>
     <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
-    <link rel="stylesheet" type="text/css" href="estilo.css" />
-    <style type="text/css">
+    <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -74,6 +73,9 @@
         .inputSubmit:hover{
             cursor: pointer;
         }
+        footer{
+            clear: both;
+        }
     </style>
 </head>
 <body>
@@ -84,7 +86,7 @@
         <div id="robo">
             <header>
                 <div id="logo">
-                    <img src="../../../img/robo.png" alt="Logo html" width="50" />
+                    <img src="robo.png" alt="Logo Greenzord" width="50" />
                     <h1>Greenzord</h1>
                 </div>
                 <p><strong>O robô para automatizar suas apostas esportivas</strong></p>
@@ -107,6 +109,9 @@
                     </div>
                 </section>
             </nav>
+
+            <!-- Programadores -->
+
             <footer> <em> Projeto de Tcc de João Gabriel e João Messias</em> </footer>
         </div>
     </div>

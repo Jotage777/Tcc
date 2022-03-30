@@ -1,10 +1,19 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['username']) == true && (!isset($_SESSION['password']) == true)){
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Adicionar Bot</title>
-    <link rel="stylesheet" type="text/css" href="estilo.css" />
-    <style type="text/css">
+    <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(45deg,green,cyan);
@@ -52,7 +61,7 @@
             font-size: 12px;
             width: 100%;
         }
-        .inputBotInter{
+        .inputBotIntervalo{
             background: none;
             border: none;
             border-bottom: 1px solid white;
@@ -86,9 +95,9 @@
 </head>
 <body>
     <div class="voltar">
-        <a href="index.html">Voltar</a>
+        <a href="index.php">Voltar</a>
     </div>
-    <img src="../../../img/robo.png" alt="Logo html" width="50" />
+    <img src="robo.png" alt="Logo Greenzord" width="50" />
     <br><br><br>
     <div class="box">
         <form action="" method="GET">
@@ -146,6 +155,9 @@
             </fieldset>
         </form>
     </div>
+
+    <!-- Programadores -->
+
     <footer> Projeto de Tcc de João Gabriel e João Messias</footer>
 </body>
 </html>

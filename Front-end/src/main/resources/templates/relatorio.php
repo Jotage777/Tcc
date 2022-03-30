@@ -1,10 +1,19 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['username']) == true && (!isset($_SESSION['password']) == true)){
+        unset($_SESSION['username']);
+        unset($_SESSION['password']);
+        header('Location: login.php');
+    }
+    $logado = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Relatorio</title>
-    <link rel="stylesheet" type="text/css" href="estilo.css" />
-    <style type="text/css">
+    <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
             background-image: linear-gradient(45deg,green,cyan);
@@ -31,22 +40,26 @@
             transform: translate(0%, 0%);
             position: absolute;
         }
+        #Titulo{
+            padding: 10px 20px 5px 5px;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="voltar">
-        <a href="index.html">Voltar</a>
+        <a href="index.php">Voltar</a>
     </div>
     <div id="wrap">
         <header>
             <div id="Titulo">
-                <img src="../../../img/robo.png" alt="Logo html" width="50" />
+                <img src="robo.png" alt="Logo Greenzord" width="50" />
                 <h1> <b>Relatorio</b></h1>
             </div>
         </header>
         <nav>
             <section>
-                <form action="relatorio.html" method="post">
+                <form action="relatorio.php" method="post">
                     <p>Filtros</p>
                     <div>
                         <td>bot: </td>
