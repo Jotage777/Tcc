@@ -8,91 +8,86 @@
     $logado = $_SESSION['username'];
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Greenzord</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Index</title>
     <style>
+        :root{
+            --color-white: #fff;
+            --color-green: #2E8B57;
+            --color-green2: #32CD32;
+            --color-gradient: linear-gradient(45deg,green,cyan);
+        }
         body{
             font-family: Arial, Helvetica, sans-serif;
-            background-image: linear-gradient(45deg,green,cyan);
-            color: white;
+            background-image: var(--color-gradient);
+            color: var(--color-white);
         }
-        section ul{
-            list-style: none;
+        *{
+            margin: 0;
+            padding: 0;
         }
-        section ul li{
-            display: inline-block;
-            margin-right: 10px;
+        .img_logo_header{
+            width: 45px;
         }
-        section ul li a{
+        .header,
+        .navigation_header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .header{
+            background-color: var(--color-green);
+            box-shadow: 1px 1px 4px var(--color-green2);
+            height: 56px;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        .navigation_header{
+            gap: 48px;
+        }
+        .navigation_header a{
             text-decoration: none;
+            color: var(--color-white);
+            font-weight: bold;
         }
-        footer{
-            clear: both;
-            top: 98%;
-            transform: translate(0%, 0%);
-            position: absolute;
+        .active{
+            background-color: var(--color-green2);
+            padding: 10px;
+            border-radius: 10px;
         }
-        a:link{
-            text-decoration:none;
-            color:white;
-        }
-        a:link {color:#FFFFFF;}
-        d-flex{
-
+        .content{
+            text-align: center;
+            padding-top: 16px;
+            height: 100vh;
         }
     </style>
 </head>
-<body>
-
-    <!-- NavBar -->
-
-    <nav class="navbar navbar-expand-lg" style="background-color: rgba( 0,0,0,0.15);">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="robo.png" alt="Logo Greenzord" width="30" height="24" class="d-inline-block align-text-top">
-                Greenzord
-            </a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="relatorio.php">Relatorio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="criar_bot.php">Adicionar bot</a>
-                    </li>
-                    <?php
-                        echo "<a>$logado</a>"
-                    ?>
-                    <a>Saldo</a>
-                    <div class="d-lg-flex">
-                        <a class="btn btn-danger me-5" href='sair.php'>Sair</a>
-                    </div>
-                </ul>
-            </div>
-
+<body id="body">
+    <div class="header" id="header">
+        <div class="logo_header">
+            <img scr="robo.png" class="img_logo_header" alt="Logo Greenzord">
         </div>
-    </nav>
-
-    <!-- Detalhes -->
-
-        <section>
-            <div>
-                <h1>Jogos ao vivo</h1>
-            </div>
-            <div>
-                <h1>Bots criados</h1>
-            </div>
-        </section>
-
-    <!-- Programadores -->
-
-        <footer>
-            Projeto de Tcc de João Gabriel e João Messias
-        </footer>
+        <div class="navigation_header" id="navigation_header">
+            <a href="#" class="active">Home</a>
+            <a href="relatorio.php">Relatorio</a>
+            <a href="lista_bots.php">Bots</a>
+        </div>
+        <div class="navigation_header" id="navigation_header">
+            <?php
+                echo "<a>$logado</a>"
+            ?>
+            <?php
+                echo "<a>Saldo</a>"
+            ?>
+            <a href="sair.php">Sair</a>
+        </div>
+    </div>
+    <div class="content" id="content">
+        <h1>Jogos e Apostas...</h1>
     </div>
 </body>
 </html>

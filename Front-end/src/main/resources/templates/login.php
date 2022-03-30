@@ -1,119 +1,94 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Greenzord - Login </title>
     <meta charset="UTF-8">
-    <meta name="description" content="O robô para automatizar suas apostas esportivas"/>
-    <meta name="keywords" content="apostas, trade, esportivas, robô"/>
-    <meta name="author" content="João Gabriel de Oliveira Ponciano e João Messias da Silva Medeiros"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Login</title>
     <style>
+        :root{
+            --color-white: #fff;
+            --color-green: #2E8B57;
+            --color-green2: #32CD32;
+            --color-gradient: linear-gradient(45deg,green,cyan);
+        }
         body{
             font-family: Arial, Helvetica, sans-serif;
+            background-image: var(--color-gradient);
+            color: var(--color-white);
         }
-        header h1{
-            padding: 10px 20px 5px 5px;
-            color: white;
+        *{
+            margin: 0;
+            padding: 0;
         }
-        header p{
-            padding:  0px 0px 10px 10px ;
-            color: white;
+        .img_logo_header{
+            width: 45px;
         }
-        input{
-            padding: 5px;
-            border: none;
-            outline: none;
+        .header,
+        .navigation_header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
-        a{
-            position: absolute;
+        .header{
+            background-color: var(--color-green);
+            box-shadow: 1px 1px 4px var(--color-green2);
+            height: 56px;
+            justify-content: space-between;
+            padding: 0 5%;
+        }
+        .navigation_header a{
             text-decoration: none;
-            color: black;
-            border: 2px solid white;
-            background-color: rgba(255, 255, 255, 1);
-            padding: 5px;
-            border-radius: 5px;
+            color: var(--color-white);
+            font-weight: bold;
         }
-        #wrap_login{
-            width: 1080px;
-            margin: auto;
-            background-image: linear-gradient(45deg,green,cyan);
-            padding: 15px;
-            border-radius: 15px ;
-        }
-        #robo{
-            background-image: url(../../../img/robo.png)  ;
-            top: 1080px;
-            background-repeat: no-repeat;
-            background-size: contain ;
-            background-position: center center;
-        }
-        #logo{
-            display: inline-block;
-            padding: 10px 20px 5px 5px;
-        }
-        #tela_login{
+        .content{
             display: block;
-            background-color: rgba( 0,0,0,0.95);
+            background-color: rgba( 0,0,0,0.5);
             position: absolute;
-            top: 60%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
+            text-align: center;
             padding: 75px;
             border-radius: 15px;
-            color: white;
         }
         .inputSubmit{
             position: absolute;
             text-decoration: none;
-            color: black;
-            border: 2px solid white;
-            background-color: rgba(255, 255, 255, 1);
+            color: white;
+            border: 1px solid white;
+            background-image: var(--color-gradient);
             padding: 5px;
             border-radius: 5px;
+            transform: translate(-50%,-50%);
+            width: 35%;
         }
         .inputSubmit:hover{
             cursor: pointer;
         }
-        footer{
-            clear: both;
-        }
     </style>
 </head>
-<body>
-
-    <!-- Cabeçalho -->
-
-    <div id="wrap_login">
-        <div id="robo">
-            <header>
-                <div id="logo">
-                    <img src="robo.png" alt="Logo Greenzord" width="50" />
-                    <h1>Greenzord</h1>
-                </div>
-                <p><strong>O robô para automatizar suas apostas esportivas</strong></p>
-            </header>
-
-            <!-- Centro -->
-
-            <nav>
-                <section>
-                    <div id="tela_login">
-                        <h1>Login do Greenzord</h1>
-                        <p>Informe seu usuario e senha</p>
-                        <form action="testLogin.php" method="POST">
-                            <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
-                            <br><br>
-                            <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
-                            <br><br>
-                            <input class="inputSubmit" type="submit" name="submit" value="Login">
-                        </form>
-                    </div>
-                </section>
-            </nav>
-
-            <!-- Programadores -->
-
-            <footer> <em> Projeto de Tcc de João Gabriel e João Messias</em> </footer>
+<body id="body">
+    <div class="header" id="header">
+        <div class="logo_header">
+            <img scr="robo.png" class="img_logo_header" alt="Logo Greenzord">
         </div>
+        <div class="navigation_header" id="navigation_header">
+            <a>O robô para automatizar suas apostas esportivas</a>
+        </div>
+    </div>
+    <div class="content" id="content">
+        <h1>Login do Greenzord</h1>
+        <br>
+        <p>Informe seu usuario e senha</p>
+        <br>
+        <form action="testLogin.php" method="POST">
+            <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
+            <br><br>
+            <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
+            <br><br><br>
+            <input class="inputSubmit" type="submit" name="submit" value="Login">
+        </form>
     </div>
 </body>
 </html>
