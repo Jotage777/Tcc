@@ -29,6 +29,7 @@ def criar_BD() -> None:
                                           date VARCHAR(10) NOT NULL,
                                           odd_casa FLOAT NOT NUll,
                                           odd_fora FLOAT NOT NUll,
+                                          odd_empate FLOAT NOT NULL,
                                           FOREIGN KEY(fk_id_casa) REFERENCES Times (id_time),
                                           FOREIGN KEY(fk_id_fora) REFERENCES Times (id_time),
                                           FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato))'''
@@ -59,9 +60,7 @@ def criar_BD() -> None:
                            ativado BIT NOT NULL,
                            casa_fora VARCHAR (10) NOT NULL ,
                            fk_id_usuario INTEGER NOT NULL,
-                           fk_id_campeonato INTEGER NOT NULL ,
                            FOREIGN KEY(fk_id_usuario) REFERENCES Usuario (id_usuario),
-                           FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato),
                            )'''
                            )
             cursor.execute('''
@@ -85,9 +84,8 @@ def criar_BD() -> None:
                           lucro FLOAT NOT NULL,
                           total_apostas INTEGER NOT NULL,
                           fk_id_bot INTEGER NOT NULL,
-                          fk_id_apostas INTEGER NOT NULL ,
                           FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot),
-                          FOREIGN KEY(fk_id_apostas) REFERENCES Apostas (id_apostas),
+                          
                           )'''
                            )
 
@@ -150,7 +148,7 @@ def consultar_jogos(id:str)-> int:
             else:
                 conn.commit()
 
-def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int, data: str,odd_casa: float, odd_fora: float) -> int:
+def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int, data: str,odd_casa: float, odd_fora: float,odd_empate: float) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -162,9 +160,9 @@ def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: st
                 fk_id_casa = add_times(casa)
                 fk_id_fora = add_times(fora)
 
-                cursor.execute('''INSERT INTO Jogos (id_jogo , fk_id_casa , resultado_casa , fk_id_fora , resultado_fora , date,fk_id_campeonato,odd_casa,odd_fora)
-                VALUES(?,?,?,?,?,?,?,?,?)''', (
-                id, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora, data, fk_id_campeonato,odd_casa,odd_fora))
+                cursor.execute('''INSERT INTO Jogos (id_jogo , fk_id_casa , resultado_casa , fk_id_fora , resultado_fora , date,fk_id_campeonato,odd_casa,odd_fora,odd_empate)
+                VALUES(?,?,?,?,?,?,?,?,?,?)''', (
+                id, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora, data, fk_id_campeonato,odd_casa,odd_fora,odd_empate))
                 conn.commit()
             else:
                 conn.commit()
@@ -208,7 +206,7 @@ def consultar_bots(id_bot)->int:
             else:
                 conn.commit()
 def add_bots(nome: str,responsabilidade: float, odd_minima: float, odd_maxima: float,tempo_jogo_minimo: int,tempo_de_jogo_maximo: int,finalizacao_casa: int, finalizacao_fora: int,
-             posse_bola_casa: int, posse_de_bola_fora:int,ativado: bool, casa_ou_fora:str, username:str,campeonato:str) -> int:
+             posse_bola_casa: int, posse_de_bola_fora:int,ativado: bool, casa_ou_fora:str, username:str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -216,13 +214,13 @@ def add_bots(nome: str,responsabilidade: float, odd_minima: float, odd_maxima: f
                            (nome,))
             result = cursor.fetchone()
             if result == None:
-                fk_id_campeonato = add_campeonato(campeonato)
+
                 fk_id_usuario = consultar_usuario(username)
                 cursor.execute('''INSERT INTO Bots (nome , responsabilidade, odd_minima,odd_maxima, tempo_jogo_minimo,tempo_jogo_maxima,finalizacao_minima,
-                 finalizacao_maxima,posse_bola_minima,posse_bola_maxima,ativado,casa_ou_fora,fk_id_usuario,fk_id_campeonato)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
+                 finalizacao_maxima,posse_bola_minima,posse_bola_maxima,ativado,casa_ou_fora,fk_id_usuario)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)''', (
                 nome,responsabilidade,odd_minima,odd_maxima,tempo_jogo_minimo,tempo_de_jogo_maximo,finalizacao_casa,finalizacao_fora,
-                posse_bola_casa,posse_de_bola_fora,ativado,casa_ou_fora,fk_id_usuario,fk_id_campeonato))
+                posse_bola_casa,posse_de_bola_fora,ativado,casa_ou_fora,fk_id_usuario))
                 conn.commit()
             else:
                 conn.commit()
@@ -248,15 +246,15 @@ def add_apostas(mercado: str,valor_apostado: float, odd_aposta: float, id_bot:st
             VALUES(?,?,?,?,?)''', (
             mercado, valor_apostado,odd_aposta, fk_id_bot,fk_id_jogos))
             conn.commit()
-def add_relatorio(greens: int,reds: int, lucro: float,total_apostas: int,id_bot: str,id_apostas:str) -> int:
+def add_relatorio(greens: int,reds: int, lucro: float,total_apostas: int,id_bot: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
             fk_id_bot = consultar_bots(id_bot)
-            fk_id_apostas = consultar_aposta(id_apostas)
-            cursor.execute('''INSERT INTO Relatorio (greens , reds, lucro,total_apostas,fk_id_bot,fk_id_apostas)
-            VALUES(?,?,?,?,?,?)''', (
-            greens,reds,lucro,total_apostas,fk_id_bot,fk_id_apostas))
+
+            cursor.execute('''INSERT INTO Relatorio (greens , reds, lucro,total_apostas,fk_id_bot)
+            VALUES(?,?,?,?,?)''', (
+            greens,reds,lucro,total_apostas,fk_id_bot))
             conn.commit()
 def consultas(tabela: str):
     with sqlite3.connect('Greenzord.db') as conn:
