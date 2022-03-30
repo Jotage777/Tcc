@@ -63,6 +63,26 @@
             padding-top: 16px;
             height: 100vh;
         }
+        .header_busca,
+        .navigation_header_busca{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .header_busca{
+            background-color: var(--color-green);
+            box-shadow: 1px 1px 4px var(--color-green2);
+            height: 56px;
+            padding: 0 5%;
+        }
+        .navigation_header_busca{
+            gap: 48px;
+        }
+        .navigation_header_busca a{
+            text-decoration: none;
+            color: var(--color-white);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body id="body">
@@ -86,7 +106,37 @@
         </div>
     </div>
     <div class="content" id="content">
-        <h1>Relatorio...</h1>
+        <h1>Relatório</h1>
+        <div class="header_busca" id="header_busca">
+            <div class="navigation_header_busca" id="navigation_header_busca">
+                <form>
+                    <a>Escolher Bot ou todos</a>
+                    <a>Escolher Data ou todas</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Mercado</th>
+                <th scope="col">Responsabilidade</th>
+                <th scope="col">Odd</th>
+                <th scope="col">Bot</th>
+                <th scope="col">Campeonato</th>
+                <th scope="col">Casa</th>
+                <th scope="col">1</th>
+                <th scope="col">X</th>
+                <th scope="col">2</th>
+                <th scope="col">Fora</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
