@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 from flask_restful import Resource,Api, abort, reqparse
 import Banco_de_dados
@@ -201,5 +203,9 @@ api.add_resource(Greenzord_usuario,"/greenzord/usuario")
 api.add_resource(Greenzord_bots,"/greenzord/bots")
 api.add_resource(Greenzord_apostas,"/greenzord/apostas")
 api.add_resource(Greenzord_relatorio,"/greenzord/relatorio")
+
+create_db = not os.path.isfile('Greenzord.db')
+if create_db:
+  Banco_de_dados.criar_BD()
 if __name__=="__main__":
     app.run(debug= True)

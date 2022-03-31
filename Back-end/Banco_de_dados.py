@@ -35,15 +35,16 @@ def criar_BD() -> None:
                                           FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato))'''
                            )
             cursor.execute('''
-                        CREATE TABLE Usuario(
-                            id_usuario INTEGER primary key AUTOINCREMENT ,
-                            username VARCHAR(45) NOT NULL,
-                            nome VARCHAR (45) NOT NULL ,
-                            email VARCHAR (45) NOT NULL ,
-                            data_Nascimento DATE NOT NULL,
-                            saldo FLOAT NOT NULL ,
-                            )'''
+                       CREATE TABLE Usuario( id_usuario INTEGER primary key AUTOINCREMENT ,
+                                            username VARCHAR(45) NOT NULL,
+                                            nome VARCHAR (45) NOT NULL ,
+                                             email VARCHAR (45) NOT NULL ,
+                                            data_Nascimento DATE NOT NULL,
+                                            saldo FLOAT NOT NULL
+                                                        )
+                                                        '''
                            )
+
             cursor.execute('''
                        CREATE TABLE Bots(
                            id_bot INTEGER primary key AUTOINCREMENT ,
@@ -60,7 +61,7 @@ def criar_BD() -> None:
                            ativado BIT NOT NULL,
                            casa_fora VARCHAR (10) NOT NULL ,
                            fk_id_usuario INTEGER NOT NULL,
-                           FOREIGN KEY(fk_id_usuario) REFERENCES Usuario (id_usuario),
+                           FOREIGN KEY(fk_id_usuario) REFERENCES Usuario (id_usuario)
                            )'''
                            )
             cursor.execute('''
@@ -72,7 +73,7 @@ def criar_BD() -> None:
                           fk_id_bot INTEGER NOT NULL,
                           fk_id_jogos INTEGER NOT NULL ,
                           FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot),
-                          FOREIGN KEY(fk_id_jogos) REFERENCES Jogos(id_jogo),
+                          FOREIGN KEY(fk_id_jogos) REFERENCES Jogos(id_jogo)
                           
                           )'''
                            )
@@ -84,7 +85,7 @@ def criar_BD() -> None:
                           lucro FLOAT NOT NULL,
                           total_apostas INTEGER NOT NULL,
                           fk_id_bot INTEGER NOT NULL,
-                          FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot),
+                          FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot)
                           
                           )'''
                            )
