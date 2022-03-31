@@ -1,7 +1,7 @@
 import os
 
-from flask import Flask, request
-from flask_restful import Resource,Api, abort, reqparse
+from flask import Flask
+from flask_restful import Resource, Api, abort, reqparse
 import Banco_de_dados
 from pydantic import BaseModel
 app = Flask(__name__)
@@ -17,7 +17,7 @@ class times_modelo(BaseModel):
 class jogos_modelo(BaseModel):
     campeonato: str
     id: str
-    time_casa:str
+    time_casa: str
     resultado_casa: int
     time_fora: str
     resultado_fora: int

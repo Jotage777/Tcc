@@ -6,6 +6,70 @@
         header('Location: login.php');
     }
     $logado = $_SESSION['username'];
+//    if(isset($_POST['submit'])){
+//        print_r('Nome: ' . $_POST['nome']);
+//        print_r('<br>');
+//        print_r('Responsabilidade: ' . $_POST['responsa']);
+//        print_r('<br>');
+//        print_r('Oddmin: ' . $_POST['oddmin']);
+//        print_r('<br>');
+//        print_r('Oddmax: ' . $_POST['oddmax']);
+//        print_r('<br>');
+//        print_r('favapo: ' . $_POST['favapo']);
+//        print_r('<br>');
+//        print_r('zebraapo: ' . $_POST['zebraapo']);
+//        print_r('<br>');
+//        print_r('casaapo: ' . $_POST['casaapo']);
+//        print_r('<br>');
+//        print_r('foraapo: ' . $_POST['foraapo']);
+//        print_r('<br>');
+//        print_r('favesta: ' . $_POST['favesta']);
+//        print_r('<br>');
+//        print_r('zebraesta: ' . $_POST['zebraesta']);
+//        print_r('<br>');
+//        print_r('casaesta: ' . $_POST['casaesta']);
+//        print_r('<br>');
+//        print_r('foraesta: ' . $_POST['foraesta']);
+//        print_r('<br>');
+//        print_r('tempomin: ' . $_POST['tempomin']);
+//        print_r('<br>');
+//        print_r('tempomax: ' . $_POST['tempomax']);
+//        print_r('<br>');
+//        print_r('finamin: ' . $_POST['finamin']);
+//        print_r('<br>');
+//        print_r('finamax: ' . $_POST['finamax']);
+//        print_r('<br>');
+//    }
+
+    $dados = [
+            "nome" => $_POST['nome'],
+            "responsabilidade" => $_POST['responsa'],
+            "odd_minima" => $_POST['oddmin'],
+            "odd_maxima" => $_POST['oddmax'],
+            "tempo_jogo_minimo" => $_POST['tempomin'],
+            "tempo_jogo_maximo" => $_POST['tempomax'],
+            "finalizacao_min" => $_POST['finamin'],
+            "finalizacao_max" => $_POST['finamax'],
+            "posse_bola_min" => $_POST[55],
+            "posse_bola_max" => $_POST[75],
+            "apostar" => $_POST['timeapo'],
+            "analisar" => $_POST['timesta'],
+    ];
+    $json = json_decode($dados);
+    $headers = [
+            'Content-type: application/json',
+            'Content-length:'.strlen($json),
+    ];
+    $context = stream_context_create([
+            'http' => [
+                    'method' => 'POST',
+                    'header' => $headers,
+                    'content' => $json
+            ],
+    ]);
+    $url = "http://127.0.0.1:5000/greenzord/bots";
+    file_get_contents($url, false, $context);
+    fopen($url, 'r', false, $context);
 ?>
 
 <!doctype html>
@@ -167,28 +231,31 @@
                 <br>
                 <!-- Times a serem apostados -->
                 <p>Times (Para Apostar):</p>
-                <input type="radio" id="fav" name="timapo" value="fav" required>
+                <input type="radio" id="favapo" name="timapo" value="favapo" required>
                 <label for="casa">Favorito</label>
                 <br>
-                <input type="radio" id="zebra" name="timapo" value="zebra" required>
+                <input type="radio" id="zebraapo" name="timapo" value="zebraapo" required>
                 <label for="fora">Zebra</label>
                 <br>
-                <input type="radio" id="casa" name="timapo" value="casa" required>
+                <input type="radio" id="casaapo" name="timapo" value="casaapo" required>
                 <label for="ambos">Casa</label>
                 <br>
-                <input type="radio" id="fora" name="timapo" value="fora" required>
+                <input type="radio" id="foraapo" name="timapo" value="foraapo" required>
                 <label for="ambos">Fora</label>
                 <br>
                 <!-- Times a serem analisados -->
                 <p>Times (Para Estatísticas):</p>
-                <input type="radio" id="casa" name="timesta" value="casa" required>
+                <input type="radio" id="favesta" name="timesta" value="favesta" required>
+                <label for="casa">Favorito</label>
+                <br>
+                <input type="radio" id="zebraesta" name="timesta" value="zebraesta" required>
+                <label for="fora">Zebra</label>
+                <br>
+                <input type="radio" id="casaesta" name="timesta" value="casaesta" required>
                 <label for="casa">Casa</label>
                 <br>
-                <input type="radio" id="fora" name="timesta" value="fora" required>
+                <input type="radio" id="foraesta" name="timesta" value="foraesta" required>
                 <label for="fora">Fora</label>
-                <br>
-                <input type="radio" id="ambos" name="timesta" value="ambos" required>
-                <label for="ambos">Ambos</label>
                 <br>
                 <!-- Tempo de jogo a ser apostado -->
                 <p>Tempo de Jogo(0 a 90):</p>
@@ -208,6 +275,7 @@
                     <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" required>
                 </div>
                 <br>
+                <!-- Adicionar posse de bola minima e maxima -->
                 <input type="submit" name="submit" id="submit" value="Adicionar">
             </fieldset>
         </form>
