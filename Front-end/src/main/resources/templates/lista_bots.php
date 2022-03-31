@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Relatorio</title>
+    <title>ListaBot</title>
     <style>
         :root{
             --color-white: #fff;
@@ -60,11 +60,6 @@
             padding: 10px;
             border-radius: 10px;
         }
-        .navigation_header_busca a{
-            text-decoration: none;
-            color: var(--color-white);
-            font-weight: bold;
-        }
         .table-bg{
             background: rgba(0, 0, 0, 0.3);
             border-radius: 15px 15px 0 0;
@@ -83,8 +78,9 @@
         </div>
         <div class="navigation_header" id="navigation_header">
             <a href="index.php">Home</a>
-            <a href="#" class="active">Relatorio</a>
-            <a href="lista_bots.php">Bots</a>
+            <a href="relatorio.php">Relatorio</a>
+            <a href="#" class="active">Bots</a>
+            <a href="criar_bot.php">Adicionar Bot</a>
         </div>
         <div class="navigation_header" id="navigation_header">
             <?php
@@ -96,7 +92,7 @@
             <a href="sair.php">Sair</a>
         </div>
     </div>
-    <h1>Relatório</h1>
+    <h1>Lista de Bots</h1>
     <div class="box-search">
         <input type="search" class="form-control w-25" placeholder="Pesquisar" id="pesquisar">
         <button onclick="searchData()" class="btn btn-success">
@@ -108,47 +104,41 @@
     <div class="m-5">
         <table class="table table-bg text-white">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mercado</th>
-                    <th scope="col">Responsabilidade</th>
-                    <th scope="col">Odd</th>
-                    <th scope="col">Bot</th>
-                    <th scope="col">Campeonato</th>
-                    <th scope="col">Casa</th>
-                    <th scope="col">1</th>
-                    <th scope="col">X</th>
-                    <th scope="col">2</th>
-                    <th scope="col">Fora</th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Responsabilidade</th>
+                <th scope="col">Intervalo Odd</th>
+                <th scope="col">Time para Apostar</th>
+                <th scope="col">Time para Analisar</th>
+                <th scope="col">Intervalo de Jogo</th>
+                <th scope="col">Finalizações</th>
+                <th scope="col">...</th>
+            </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Vitoria Mandante</td>
-                    <td>R$5,00</td>
-                    <td>2.00</td>
-                    <td>Mais Finalizações</td>
-                    <td>Carioca</td>
-                    <td>Flamengo</td>
-                    <td>2</td>
-                    <td>x</td>
-                    <td>0</td>
-                    <td>Fluminense</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Vitoria Visitante</td>
-                    <td>R$5,00</td>
-                    <td>2.50</td>
-                    <td>Mais Finalizações</td>
-                    <td>Paulista</td>
-                    <td>São Paulo</td>
-                    <td>1</td>
-                    <td>x</td>
-                    <td>2</td>
-                    <td>Palmeiras</td>
-                </tr>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mais Finalizações</td>
+                <td>R$5,00</td>
+                <td>1.5 ~ 2.5</td>
+                <td>Favorito</td>
+                <td>Ambos</td>
+                <td>0' ~ 35'</td>
+                <td>5</td>
+                <td>
+                    <a class="btn btn-success btn-sm" href="editbot.php?id=1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                        </svg>
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="deletebot.php?id=1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>
+                    </a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -163,7 +153,7 @@
     });
 
     function searchData(){
-        window.location = 'relatorio.php?search='+search.value;
+        window.location = 'lista_bots.php?search='+search.value;
     }
 </script>
 </html>
