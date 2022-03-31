@@ -40,8 +40,8 @@
 //        print_r('finamax: ' . $_POST['finamax']);
 //        print_r('<br>');
 //    }
-
-    $dados = [
+    if(isset($_POST['submit'])) {
+        $dados = [
             "nome" => $_POST['nome'],
             "responsabilidade" => $_POST['responsa'],
             "odd_minima" => $_POST['oddmin'],
@@ -54,22 +54,23 @@
             "posse_bola_max" => $_POST[75],
             "apostar" => $_POST['timeapo'],
             "analisar" => $_POST['timesta'],
-    ];
-    $json = json_decode($dados);
-    $headers = [
+        ];
+        $json = json_decode($dados);
+        $headers = [
             'Content-type: application/json',
-            'Content-length:'.strlen($json),
-    ];
-    $context = stream_context_create([
+            'Content-length:' . strlen($json),
+        ];
+        $context = stream_context_create([
             'http' => [
-                    'method' => 'POST',
-                    'header' => $headers,
-                    'content' => $json
+                'method' => 'POST',
+                'header' => $headers,
+                'content' => $json
             ],
-    ]);
-    $url = "http://127.0.0.1:5000/greenzord/bots";
-    file_get_contents($url, false, $context);
-    fopen($url, 'r', false, $context);
+        ]);
+        $url = "http://127.0.0.1:5000/greenzord/bots";
+        file_get_contents($url, false, $context);
+        fopen($url, 'r', false, $context);
+    };
 ?>
 
 <!doctype html>
