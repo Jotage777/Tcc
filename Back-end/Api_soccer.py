@@ -18,33 +18,33 @@ class jogos_modelo(BaseModel):
     campeonato: str
     id: str
     time_casa:str
-    resultado_casa: int
+    resultado_casa: str
     time_fora: str
-    resultado_fora: int
+    resultado_fora: str
     date: str
-    odd_casa: float
-    odd_fora: float
-    odd_empate: float
+    odd_casa: str
+    odd_fora: str
+    odd_empate: str
 
 class usuario_modelo(BaseModel):
     username: str
     nome: str
     email: str
     data_nascimento: str
-    saldo: float
+    saldo: str
 
 class bots_modelo(BaseModel):
     nome: str
-    responsabilidade: float
-    odd_minima: float
-    odd_maxima: float
-    tempo_jogo_max: int
-    tempo_jogo_min: int
-    finalizacao_min: int
-    finalizacao_max: int
-    posse_bola_min: int
-    posse_bola_max: int
-    ativado: bool
+    responsabilidade: str
+    odd_minima: str
+    odd_maxima: str
+    tempo_jogo_max: str
+    tempo_jogo_min: str
+    finalizacao_min: str
+    finalizacao_max: str
+    posse_bola_min: str
+    posse_bola_max: str
+    ativado: str
     apostar: str
     analisar: str
     username: str
@@ -52,16 +52,16 @@ class bots_modelo(BaseModel):
 
 class apostas_modelo(BaseModel):
     mercado:str
-    valor_apostado: float
-    odd_aposta: float
+    valor_apostado: str
+    odd_aposta: str
     id_bot:str
     id_jogo: str
 
 class relatorio_modelo(BaseModel):
-    greens: int
-    reds: int
-    lucro: int
-    total_apostas: int
+    greens: str
+    reds: str
+    lucro: str
+    total_apostas: str
     id_bot: str
 
 
@@ -185,8 +185,8 @@ class Greenzord_usuario(Resource):
         return {"Usuario:"+usuario.nome+"cadastrado com sucesso"}
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
-        Banco_de_dados.add_bots(bots.nome,bots.responsabilidade,bots.odd_minima,bots.odd_maxima,bots.tempo_jogo_min,bots.tempo_jogo_max,bots.finalizacao_min,bots.finalizacao_max,bots.posse_bola_min,
-                                bots.posse_bola_max,bots.ativado,bots.apostar,bots.analisar,bots.username)
+        Banco_de_dados.add_bots(bots.nome,float(bots.responsabilidade),int(bots.odd_minima),float(bots.odd_maxima),int(bots.tempo_jogo_min),int(bots.tempo_jogo_max),int(bots.finalizacao_min),int(bots.finalizacao_max),int(bots.posse_bola_min),
+                                int(bots.posse_bola_max),bool(bots.ativado),bots.apostar,bots.analisar,bots.username)
         return {"Bot:"+bots.nome+"cadastrado com sucesso"}
 class Greenzord_apostas(Resource):
     def post(aposta: apostas_modelo):
