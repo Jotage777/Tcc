@@ -54,12 +54,13 @@ def criar_BD() -> None:
                            odd_maxima FLOAT NOT NULL,
                            tempo_jogo_minimo INTEGER NOT NULL,
                            tempo_jogo_maximo INTEGER NOT NULL,
-                           finalizacao_casa INTEGER NOT NULL,
-                           finalizacao_fora INTEGER NOT NULL,
-                           posse_bola_casa INTEGER NOT NULL,
-                           posse_bola_fora INTEGER NOT NULL,
+                           finalizacao_min INTEGER NOT NULL,
+                           finalizacao_max INTEGER NOT NULL,
+                           posse_bola_min INTEGER NOT NULL,
+                           posse_bola_max INTEGER NOT NULL,
                            ativado BIT NOT NULL,
-                           casa_fora VARCHAR (10) NOT NULL ,
+                           apostar VARCHAR (10) NOT NULL ,
+                           analisar VARCHAR (10) NOT NULL ,
                            fk_id_usuario INTEGER NOT NULL,
                            FOREIGN KEY(fk_id_usuario) REFERENCES Usuario (id_usuario)
                            )'''
@@ -206,8 +207,8 @@ def consultar_bots(id_bot)->int:
                 conn.commit()
             else:
                 conn.commit()
-def add_bots(nome: str,responsabilidade: float, odd_minima: float, odd_maxima: float,tempo_jogo_minimo: int,tempo_de_jogo_maximo: int,finalizacao_casa: int, finalizacao_fora: int,
-             posse_bola_casa: int, posse_de_bola_fora:int,ativado: bool, casa_ou_fora:str, username:str) -> int:
+def add_bots(nome: str,responsabilidade: float, odd_minima: float, odd_maxima: float,tempo_jogo_minimo: int,tempo_de_jogo_maximo: int,finalizacao_mim: int, finalizacao_max: int,
+             posse_bola_min: int, posse_de_bola_max:int,ativado: bool, apostar:str, analisar: str, username:str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -218,10 +219,10 @@ def add_bots(nome: str,responsabilidade: float, odd_minima: float, odd_maxima: f
 
                 fk_id_usuario = consultar_usuario(username)
                 cursor.execute('''INSERT INTO Bots (nome , responsabilidade, odd_minima,odd_maxima, tempo_jogo_minimo,tempo_jogo_maxima,finalizacao_minima,
-                 finalizacao_maxima,posse_bola_minima,posse_bola_maxima,ativado,casa_ou_fora,fk_id_usuario)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?)''', (
-                nome,responsabilidade,odd_minima,odd_maxima,tempo_jogo_minimo,tempo_de_jogo_maximo,finalizacao_casa,finalizacao_fora,
-                posse_bola_casa,posse_de_bola_fora,ativado,casa_ou_fora,fk_id_usuario))
+                 finalizacao_maxima,posse_bola_minima,posse_bola_maxima,ativado,apostar,analisar,fk_id_usuario)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
+                nome,responsabilidade,odd_minima,odd_maxima,tempo_jogo_minimo,tempo_de_jogo_maximo,finalizacao_mim,finalizacao_max,
+                posse_bola_min,posse_de_bola_max,ativado,apostar,analisar,fk_id_usuario))
                 conn.commit()
             else:
                 conn.commit()
