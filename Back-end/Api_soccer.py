@@ -209,4 +209,5 @@ create_db = not os.path.isfile('Greenzord.db')
 if create_db:
   Banco_de_dados.criar_BD()
 if __name__=="__main__":
+
     app.run(debug= True)
