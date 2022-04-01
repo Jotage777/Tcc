@@ -44,8 +44,8 @@ class bots_modelo(BaseModel):
     responsabilidade: str
     odd_minima: str
     odd_maxima: str
-    tempo_jogo_max: str
-    tempo_jogo_min: str
+    tempo_jogo_maximo: str
+    tempo_jogo_minimo: str
     finalizacao_min: str
     finalizacao_max: str
     posse_bola_min: str
@@ -199,8 +199,11 @@ class Greenzord_usuario(Resource):
 
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
+    # def post(bots):
+        print("entrou")
+        print(type(bots))
         Banco_de_dados.add_bots(bots.nome, float(bots.responsabilidade), int(bots.odd_minima), float(bots.odd_maxima),
-                                int(bots.tempo_jogo_min), int(bots.tempo_jogo_max), int(bots.finalizacao_min),
+                                int(bots.tempo_jogo_minimo), int(bots.tempo_jogo_maximo), int(bots.finalizacao_min),
                                 int(bots.finalizacao_max), int(bots.posse_bola_min), int(bots.posse_bola_max),
                                 bool(bots.ativado), bots.apostar, bots.analisar, bots.username)
         return {"Bot:" + bots.nome + "cadastrado com sucesso"}
