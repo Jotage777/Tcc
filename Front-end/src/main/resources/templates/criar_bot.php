@@ -41,35 +41,73 @@
 //        print_r('<br>');
 //    }
     if(isset($_POST['submit'])) {
-        $dados = [
-            "nome" => $_POST['nome'],
-            "responsabilidade" => $_POST['responsa'],
-            "odd_minima" => $_POST['oddmin'],
-            "odd_maxima" => $_POST['oddmax'],
-            "tempo_jogo_minimo" => $_POST['tempomin'],
-            "tempo_jogo_maximo" => $_POST['tempomax'],
-            "finalizacao_min" => $_POST['finamin'],
-            "finalizacao_max" => $_POST['finamax'],
-            "posse_bola_min" => $_POST[55],
-            "posse_bola_max" => $_POST[75],
-            "apostar" => $_POST['timeapo'],
-            "analisar" => $_POST['timesta'],
-        ];
+//        $dados = [
+//            "nome" => $_POST['nome'],
+//            "responsabilidade" => $_POST['responsa'],
+//            "odd_minima" => $_POST['oddmin'],
+//            "odd_maxima" => $_POST['oddmax'],
+//            "tempo_jogo_minimo" => $_POST['tempomin'],
+//            "tempo_jogo_maximo" => $_POST['tempomax'],
+//            "finalizacao_min" => $_POST['finamin'],
+//            "finalizacao_max" => $_POST['finamax'],
+//            "posse_bola_min" => $_POST['possemin'],
+//            "posse_bola_max" => $_POST['possemax'],
+//            "apostar" => $_POST['timeapo'],
+//            "analisar" => $_POST['timesta']
+//        ];
+        $dados =
+            '{
+            "nome": '.$_POST['nome'].',
+            "responsabilidade": '.$_POST['responsa'].',
+            "odd_minima": '.$_POST['oddmin'].',
+            "odd_maxima": '.$_POST['oddmax'].',
+            "tempo_jogo_minimo": '.$_POST['tempomin'].',
+            "tempo_jogo_maximo": '.$_POST['tempomax'].',
+            "finalizacao_min": '.$_POST['finamin'].',
+            "finalizacao_max": '.$_POST['finamax'].',
+            "posse_bola_min": '.$_POST['possemin'].',
+            "posse_bola_max": '.$_POST['possemax'].',
+            "apostar": '.$_POST['timapo'].',
+            "analisar": '.$_POST['timesta'].',
+            "ativado": "1",
+            "username": "gabriel"
+            }'
+        ;
+//        $dados = '{
+//        "nome":' .$_POST['nome']. '
+//        }';
+//        $dados = '{"nome": $_POST['nome']}';
+//        $dados = '{"nome": "teste"}';
+        print_r($dados);
         $json = json_decode($dados);
-        $headers = [
-            'Content-type: application/json',
-            'Content-length:' . strlen($json),
-        ];
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'POST',
-                'header' => $headers,
-                'content' => $json
-            ],
-        ]);
+//        $headers = [
+//            'Content-type: application/json',
+////            'Content-length:' . strlen($json),
+//            'Content-length:' . strlen($dados)
+//        ];
+//        $context = stream_context_create([
+//            'http' => [
+//                'method' => 'POST',
+//                'header' => $headers,
+//                'content' => $json
+//            ],
+//        ]);
+
         $url = "http://127.0.0.1:5000/greenzord/bots";
-        file_get_contents($url, false, $context);
-        fopen($url, 'r', false, $context);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($json))
+        );
+
+        $jsonRet = json_decode(curl_exec($ch));
+
+//        file_get_contents($url, false, $context);
+//        fopen($url, 'r', false, $context);
     };
 ?>
 
@@ -205,7 +243,7 @@
         </div>
     </div>
     <div class="content" id="content">
-        <form action="" method="GET">
+        <form action="criar_bot.php" method="POST">
             <fieldset>
                 <legend><b>Adicionar Bot</b></legend>
                 <br><br>
@@ -277,11 +315,17 @@
                 </div>
                 <br>
                 <!-- Adicionar posse de bola minima e maxima -->
+                <p>Posse de Bola:</p>
+                <div class="inputBox">
+                    <label for="possemin">de:</label>
+                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" required>
+                    <label for="possemax">á:</label>
+                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" required>
+                </div>
+                <br>
                 <input type="submit" name="submit" id="submit" value="Adicionar">
             </fieldset>
         </form>
     </div>
 </body>
 </html>
-
-http://127.0.0.1:5000/greenzord/bots
