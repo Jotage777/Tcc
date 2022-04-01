@@ -1,5 +1,6 @@
 import re
 
+
 def validar_username(username):
     validar = re.compile(r'\W')
     validar2 = re.compile(r'\s')
@@ -12,26 +13,30 @@ def validar_username(username):
     else:
         return True
 
+
 def validar_nome(nome):
     validar = '^[ a-zA-Z á]*$'
-    if (re.search(validar,nome)):
+    if (re.search(validar, nome)):
         return True
     else:
         return False
 
+
 def validar_email(email):
-       validar = '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]'
-       if (re.search(validar, email)):
-           return True
-       else:
-           return False
+    validar = '[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]'
+    if (re.search(validar, email)):
+        return True
+    else:
+        return False
+
 
 def validar_inteiros(numero):
     validar = '^[0-9]*$'
-    if(re.search(validar,numero)):
+    if (re.search(validar, numero)):
         return True
     else:
         return False
+
 
 def validar_float(numero):
     validar = '^[0-9]+\.[0-9]'
