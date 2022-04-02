@@ -6,92 +6,28 @@
         header('Location: login.php');
     }
     $logado = $_SESSION['username'];
-//    if(isset($_POST['submit'])){
-//        print_r('Nome: ' . $_POST['nome']);
-//        print_r('<br>');
-//        print_r('Responsabilidade: ' . $_POST['responsa']);
-//        print_r('<br>');
-//        print_r('Oddmin: ' . $_POST['oddmin']);
-//        print_r('<br>');
-//        print_r('Oddmax: ' . $_POST['oddmax']);
-//        print_r('<br>');
-//        print_r('favapo: ' . $_POST['favapo']);
-//        print_r('<br>');
-//        print_r('zebraapo: ' . $_POST['zebraapo']);
-//        print_r('<br>');
-//        print_r('casaapo: ' . $_POST['casaapo']);
-//        print_r('<br>');
-//        print_r('foraapo: ' . $_POST['foraapo']);
-//        print_r('<br>');
-//        print_r('favesta: ' . $_POST['favesta']);
-//        print_r('<br>');
-//        print_r('zebraesta: ' . $_POST['zebraesta']);
-//        print_r('<br>');
-//        print_r('casaesta: ' . $_POST['casaesta']);
-//        print_r('<br>');
-//        print_r('foraesta: ' . $_POST['foraesta']);
-//        print_r('<br>');
-//        print_r('tempomin: ' . $_POST['tempomin']);
-//        print_r('<br>');
-//        print_r('tempomax: ' . $_POST['tempomax']);
-//        print_r('<br>');
-//        print_r('finamin: ' . $_POST['finamin']);
-//        print_r('<br>');
-//        print_r('finamax: ' . $_POST['finamax']);
-//        print_r('<br>');
-//    }
+
     if(isset($_POST['submit'])) {
-//        $dados = [
-//            "nome" => $_POST['nome'],
-//            "responsabilidade" => $_POST['responsa'],
-//            "odd_minima" => $_POST['oddmin'],
-//            "odd_maxima" => $_POST['oddmax'],
-//            "tempo_jogo_minimo" => $_POST['tempomin'],
-//            "tempo_jogo_maximo" => $_POST['tempomax'],
-//            "finalizacao_min" => $_POST['finamin'],
-//            "finalizacao_max" => $_POST['finamax'],
-//            "posse_bola_min" => $_POST['possemin'],
-//            "posse_bola_max" => $_POST['possemax'],
-//            "apostar" => $_POST['timeapo'],
-//            "analisar" => $_POST['timesta']
-//        ];
-        $dados =
-            '{
-            "nome": '.$_POST['nome'].',
-            "responsabilidade": '.$_POST['responsa'].',
-            "odd_minima": '.$_POST['oddmin'].',
-            "odd_maxima": '.$_POST['oddmax'].',
-            "tempo_jogo_minimo": '.$_POST['tempomin'].',
-            "tempo_jogo_maximo": '.$_POST['tempomax'].',
-            "finalizacao_min": '.$_POST['finamin'].',
-            "finalizacao_max": '.$_POST['finamax'].',
-            "posse_bola_min": '.$_POST['possemin'].',
-            "posse_bola_max": '.$_POST['possemax'].',
-            "apostar": '.$_POST['timapo'].',
-            "analisar": '.$_POST['timesta'].',
-            "ativado": "1",
-            "username": "gabriel"
-            }'
-        ;
-//        $dados = '{
-//        "nome":' .$_POST['nome']. '
-//        }';
-//        $dados = '{"nome": $_POST['nome']}';
-//        $dados = '{"nome": "teste"}';
+
+        $dados = array(
+            "nome" => $_POST['nome'],
+            "responsabilidade" => $_POST['responsa'],
+            "odd_minima" => $_POST['oddmin'],
+            "odd_maxima" => $_POST['oddmax'],
+            "tempo_jogo_minimo" => $_POST['tempomin'],
+            "tempo_jogo_maximo" => $_POST['tempomax'],
+            "finalizacao_min" => $_POST['finamin'],
+            "finalizacao_max" => $_POST['finamax'],
+            "posse_bola_min" => $_POST['possemin'],
+            "posse_bola_max" => $_POST['possemax'],
+            "apostar" => $_POST['timapo'],
+            "analisar" => $_POST['timesta'],
+            "ativado" => "1",
+            "username" => "gabriel"
+        );
+
         print_r($dados);
-        $json = json_decode($dados);
-//        $headers = [
-//            'Content-type: application/json',
-////            'Content-length:' . strlen($json),
-//            'Content-length:' . strlen($dados)
-//        ];
-//        $context = stream_context_create([
-//            'http' => [
-//                'method' => 'POST',
-//                'header' => $headers,
-//                'content' => $json
-//            ],
-//        ]);
+        $json = json_encode($dados);
 
         $url = "http://127.0.0.1:5000/greenzord/bots";
 
@@ -105,9 +41,6 @@
         );
 
         $jsonRet = json_decode(curl_exec($ch));
-
-//        file_get_contents($url, false, $context);
-//        fopen($url, 'r', false, $context);
     };
 ?>
 
