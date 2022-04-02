@@ -151,18 +151,32 @@ def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: st
                 conn.commit()
 
 
+# def consultar_usuario(username: str) -> int:
+#     with sqlite3.connect('Greenzord.db') as conn:
+#         with closing(conn.cursor()) as cursor:
+#             cursor.execute('PRAGMA foreign_keys = ON;')
+#             cursor.execute('''SELECT id_usuario FROM Usuario WHERE username = ?''', (username,))
+#             result = cursor.fetchone()
+#             if result is None:
+#                 print("Não existe esse username na base de dados")
+#                 conn.commit()
+#             else:
+#                 conn.commit()
+
+
 def consultar_usuario(username: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT username FROM Usuario WHERE username = ?''', (username,))
-            result = cursor.fetchone()
-            if result is None:
+            cursor.execute('''SELECT * FROM Usuario WHERE username = ?''', (username,))
+            result = cursor.fetchall()
+            id = result[0][0]
+            if id is None:
                 print("Não existe esse username na base de dados")
                 conn.commit()
             else:
+                return id
                 conn.commit()
-
 
 def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
@@ -192,7 +206,7 @@ def consultar_bots(id_bot) -> int:
 
 
 def add_bots(nome: str, responsabilidade: float, odd_minima: float, odd_maxima: float, tempo_jogo_minimo: int,
-             tempo_de_jogo_maximo: int, finalizacao_mim: int, finalizacao_max: int, posse_bola_min: int,
+             tempo_de_jogo_maximo: int, finalizacao_min: int, finalizacao_max: int, posse_bola_min: int,
              posse_de_bola_max: int, ativado: bool, apostar: str, analisar: str, username: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
@@ -202,12 +216,12 @@ def add_bots(nome: str, responsabilidade: float, odd_minima: float, odd_maxima: 
             if result is None:
                 fk_id_usuario = consultar_usuario(username)
                 cursor.execute('''INSERT INTO Bots (nome, responsabilidade, odd_minima, odd_maxima, tempo_jogo_minimo,
-                tempo_jogo_maxima, finalizacao_minima, finalizacao_maxima, posse_bola_minima, posse_bola_maxima,
+                tempo_jogo_maximo, finalizacao_min, finalizacao_max, posse_bola_min, posse_bola_max,
                 ativado, apostar, analisar, fk_id_usuario)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''', (nome, responsabilidade, odd_minima, odd_maxima,
-                                                       tempo_jogo_minimo, tempo_de_jogo_maximo, finalizacao_mim,
-                                                       finalizacao_max, posse_bola_min, posse_de_bola_max, ativado,
-                                                       apostar, analisar, fk_id_usuario))
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (nome, responsabilidade, odd_minima, odd_maxima,
+                                                         tempo_jogo_minimo, tempo_de_jogo_maximo, finalizacao_min,
+                                                         finalizacao_max, posse_bola_min, posse_de_bola_max, ativado,
+                                                         apostar, analisar, fk_id_usuario))
                 conn.commit()
             else:
                 conn.commit()

@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, abort, reqparse
 import Banco_de_dados
 from pydantic import BaseModel
@@ -194,19 +194,16 @@ class Greenzord_usuario(Resource):
     def post(usuario: usuario_modelo):
         Banco_de_dados.add_usuario(usuario.username, usuario.nome, usuario.email, usuario.data_nascimento,
                                    usuario.saldo)
-        return {"Usuario:" + usuario.nome + "cadastrado com sucesso"}
+        return {"Usuario cadastrado com sucesso"}
 
 
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
-    # def post(bots):
-        print("entrou")
-        print(type(bots))
-        Banco_de_dados.add_bots(bots.nome, float(bots.responsabilidade), int(bots.odd_minima), float(bots.odd_maxima),
-                                int(bots.tempo_jogo_minimo), int(bots.tempo_jogo_maximo), int(bots.finalizacao_min),
-                                int(bots.finalizacao_max), int(bots.posse_bola_min), int(bots.posse_bola_max),
-                                bool(bots.ativado), bots.apostar, bots.analisar, bots.username)
-        return {"Bot:" + bots.nome + "cadastrado com sucesso"}
+        Banco_de_dados.add_bots(request.json['nome'], float(request.json['responsabilidade']), int(request.json['odd_minima']), float(request.json['odd_maxima']),
+                                int(request.json['tempo_jogo_minimo']), int(request.json['tempo_jogo_maximo']), int(request.json['finalizacao_min']),
+                                int(request.json['finalizacao_max']), int(request.json['posse_bola_min']), int(request.json['posse_bola_max']),
+                                bool(request.json['ativado']), request.json['apostar'], request.json['analisar'], request.json['username'])
+        return 200
 
 
 class Greenzord_apostas(Resource):
