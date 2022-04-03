@@ -217,8 +217,6 @@ class Greenzord_apostas(Resource):
 
 class Greenzord_relatorio(Resource):
     def post(relatorio: relatorio_modelo):
-       # Banco_de_dados.add_relatorio(relatorio.greens, relatorio.reds, relatorio.lucro, relatorio.total_apostas,
-                                   #  relatorio.id_bot)
         Banco_de_dados.add_relatorio(int(request.json['greens']) , int( request.json['reds']),float( request.json['lucro']),int(request.json['total_apostas']) ,
                                     request.json['id_bot'])
         return {200}
