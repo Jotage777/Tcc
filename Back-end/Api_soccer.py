@@ -73,52 +73,106 @@ class relatorio_modelo(BaseModel):
 
 
 class Greenzord(Resource):
-    def get(self, tipo, id):
+    def get(self, tipo, tipo2, nome):
         if tipo == 1:
-            informacoes = Banco_de_dados.consultas("Campeonato")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    campeonato = informacoes[i]
-                    return campeonato
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Campeonato")
+            if tipo2 ==1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        campeonato = informacoes[i]
+                        return campeonato
+            if tipo2 ==2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
+
         elif tipo == 2:
-            informacoes = Banco_de_dados.consultas("Times")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    times = informacoes[i]
-                    return times
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Times")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        time = informacoes[i]
+                        return time
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
         elif tipo == 3:
-            informacoes = Banco_de_dados.consultas("Jogos")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    jogos = informacoes[i]
-                    return jogos
+            # falta configurar
+
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        time = informacoes[i]
+                        return time
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
         elif tipo == 4:
-            informacoes = Banco_de_dados.consultas("Usuario")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    jogos = informacoes[i]
-                    return jogos
+
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Usuario")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        usuario = informacoes[i]
+                        return usuario
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
         elif tipo == 5:
             bots = []
             index = 0
-            informacoes = Banco_de_dados.consultas("Bots")
-            for i in range(len(informacoes)):
-                if informacoes[i][-1] == id:
-                    index += 1
-                    bots.insert(index, informacoes[i])
-            return bots
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Bots")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][-1] == int(nome):
+                        index += 1
+                        bots.insert(index, informacoes[i])
+                return bots
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
+
         elif tipo == 6:
-            informacoes = Banco_de_dados.consultas("Apostas")
+        # falta configurar
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Apostas")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        usuario = informacoes[i]
+                        return usuario
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        id = informacoes[i][0]
+                        return id
             for i in informacoes:
                 if informacoes[i][0] == id:
                     apostas = informacoes[i]
                     return apostas
         elif tipo == 7:
-            informacoes = Banco_de_dados.consultas("Relatorio")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    relatorio = informacoes[i]
-                    return relatorio
+
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Relatorio")
+            if tipo2 == 1:
+                for i in range(len(informacoes)):
+                    if informacoes[i][-1] == int(nome):
+                        relatorio = informacoes[i]
+                        return relatorio
+            if tipo2 == 2:
+                for i in range(len(informacoes)):
+                    if informacoes[i][-1] == int(nome):
+                        id = informacoes[i][0]
+                        return id
+
         else:
             return {"Opcao invalida"}
 
@@ -225,7 +279,7 @@ class Greenzord_apostas(Resource):
         return 200
 
 
-api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:id>")
+api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<str:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
 api.add_resource(Greenzord_jogos, "/greenzord/jogos")
