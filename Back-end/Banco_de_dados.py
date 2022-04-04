@@ -1,6 +1,3 @@
-
-
-
 from contextlib import closing
 import sqlite3
 
@@ -189,14 +186,12 @@ def consultar_bots(nome:str) -> int:
             cursor.execute('PRAGMA foreign_keys = ON;')
             cursor.execute('''SELECT * FROM Bots WHERE nome = ?''', (nome,))
             result = cursor.fetchone()
-            print(result)
-            id = result[0]
-            print(id)
-            if result is None:
+            id_bot = result[0]
+            if id_bot is None:
                 print("Não existe esse bot na base de dados")
                 conn.commit()
             else:
-                return id
+                return id_bot
                 conn.commit()
 
 
@@ -246,11 +241,10 @@ def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, id_bot: 
             conn.commit()
 
 
-def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, id_bot: str) -> int:
+def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, fk_id_bot: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            fk_id_bot = consultar_bots(id_bot)
             cursor.execute('''INSERT INTO Relatorio (greens , reds, lucro,total_apostas,fk_id_bot) VALUES(?,?,?,?,?)''',
                            (greens, reds, lucro, total_apostas, fk_id_bot))
             conn.commit()
