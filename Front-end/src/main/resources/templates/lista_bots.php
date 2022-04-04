@@ -6,6 +6,13 @@
         header('Location: login.php');
     }
     $logado = $_SESSION['username'];
+
+    $url = "http://127.0.0.1:5000/greenzord/5/3";
+
+    $resultado = json_decode(file_get_contents($url));
+
+    var_dump($resultado);
+
 ?>
 
 <!doctype html>
@@ -113,6 +120,7 @@
                 <th scope="col">Time para Analisar</th>
                 <th scope="col">Intervalo de Jogo</th>
                 <th scope="col">Finalizações</th>
+                <th scope="col">Posse</th>
                 <th scope="col">...</th>
             </tr>
             </thead>
@@ -126,6 +134,7 @@
                 <td>Ambos</td>
                 <td>0' ~ 35'</td>
                 <td>5</td>
+                <td>0% ~ 45%</td>
                 <td>
                     <a class="btn btn-success btn-sm" href="editbot.php?id=1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
