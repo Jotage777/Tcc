@@ -80,10 +80,10 @@
     <div class="content" id="content">
         <h1>Login do Greenzord</h1>
         <br>
-        <p>Informe seu usuario e senha</p>
+        <p>Informe seu usuário e senha</p>
         <br>
         <form action="testLogin.php" method="POST">
-            <input type="text"  placeholder="Digite seu Usuario" name="username" /></label>
+            <input type="text"  placeholder="Digite seu Usuário" name="username" /></label>
             <br><br>
             <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
             <br><br><br>
