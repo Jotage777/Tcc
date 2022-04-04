@@ -190,7 +190,8 @@ def consultar_bots(nome:str) -> int:
             cursor.execute('''SELECT * FROM Bots WHERE nome = ?''', (nome,))
             result = cursor.fetchone()
             print(result)
-            id = result[0][0]
+            id = result[0]
+            print(id)
             if result is None:
                 print("Não existe esse bot na base de dados")
                 conn.commit()
