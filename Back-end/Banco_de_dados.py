@@ -254,7 +254,7 @@ def consultas(tabela: str):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT * FROM tabela = ?''', (tabela,))
+            cursor.execute('''SELECT * FROM Bots''')
             tudo = cursor.fetchall()
             return tudo
             conn.commit()

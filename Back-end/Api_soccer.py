@@ -99,11 +99,14 @@ class Greenzord(Resource):
                     jogos = informacoes[i]
                     return jogos
         elif tipo == 5:
+            bots = []
+            index = 0
             informacoes = Banco_de_dados.consultas("Bots")
-            for i in informacoes:
-                if informacoes[i][0] == id:
-                    bots = informacoes[i]
-                    return bots
+            for i in range(len(informacoes)):
+                if informacoes[i][-1] == id:
+                    index += 1
+                    bots.insert(index, informacoes[i])
+            return bots
         elif tipo == 6:
             informacoes = Banco_de_dados.consultas("Apostas")
             for i in informacoes:
@@ -222,14 +225,6 @@ class Greenzord_apostas(Resource):
         return 200
 
 
-class Greenzord_relatorio(Resource):
-    def post(relatorio: relatorio_modelo):
-        Banco_de_dados.add_relatorio(int(request.json['greens']), int(request.json['reds']),
-                                     float(request.json['lucro']), int(request.json['total_apostas']),
-                                     request.json['id_bot'])
-        return 200
-
-
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:id>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
@@ -237,10 +232,11 @@ api.add_resource(Greenzord_jogos, "/greenzord/jogos")
 api.add_resource(Greenzord_usuario, "/greenzord/usuario")
 api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
-api.add_resource(Greenzord_relatorio, "/greenzord/relatorio")
 
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
     Banco_de_dados.criar_BD()
 if __name__ == "__main__":
     app.run(debug=True)
+
+# http://127.0.0.1:5000
