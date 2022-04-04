@@ -179,19 +179,23 @@ def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, sald
                 VALUES(?,?,?,?,?)''', (username, nome, email, data_Nascimento, saldo))
                 conn.commit()
             else:
+                return id
                 conn.commit()
 
 
-def consultar_bots(id_bot) -> int:
+def consultar_bots(nome:str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_bot FROM Bots WHERE id_bot = ?''', (id_bot,))
+            cursor.execute('''SELECT * FROM Bots WHERE nome = ?''', (nome,))
             result = cursor.fetchone()
+            print(result)
+            id = result[0][0]
             if result is None:
                 print("Não existe esse bot na base de dados")
                 conn.commit()
             else:
+                return id
                 conn.commit()
 
 
