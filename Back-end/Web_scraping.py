@@ -42,16 +42,25 @@ def WebScraping():
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
         if tempo=="Intervalo":
             estatisticas.append('45')
+        elif tempo == 'Encerrado':
+            estatisticas.append('90')
         else:
             tempo_2 = tempo[11:]
             estatisticas.append(tempo_2)
         # Nome de casa estatistica
-        resultado = soup_jogo.find_all('div',class_='detailScore__wrapper detailScore__live')
-        resul = list(resultado[0].getText())
-        estatisticas.append(resul[0])
-        estatisticas.append(resul[2])
-        print(resul[0])
-        print(resul[2])
+
+        if tempo == 'Encerrado':
+            resultado = soup_jogo.find_all('div', class_='detailScore__matchInfo')
+            resul = list(resultado[0].getText())
+            estatisticas.append(resul[0])
+            estatisticas.append(resul[2])
+        else:
+            resultado = soup_jogo.find_all('div',class_='detailScore__wrapper detailScore__live')
+            resul = list(resultado[0].getText())
+            estatisticas.append(resul[0])
+            estatisticas.append(resul[2])
+            print(resul[0])
+            print(resul[2])
         stats_name = soup_jogo.find_all('div', class_='stat__categoryName')
 
         # Estatisticas do time da casa
