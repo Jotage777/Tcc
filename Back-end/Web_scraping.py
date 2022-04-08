@@ -27,7 +27,7 @@ def WebScraping():
                 estatisticas.append('0')
         estatisticas = []
         estatisticas.append(id)
-        browser.get(' https://www.flashscore.com.br/jogo/' + id + '/#/resumo-de-jogo/estatisticas-de-jogo/0')
+        browser.get(' https://www.flashscore.com.br/jogo/'+ id +'/#/resumo-de-jogo/estatisticas-de-jogo/0')
         time.sleep(1)
         jogo = browser.find_element_by_xpath('/html/body/div[2]/div')
         jogo_html = jogo.get_attribute('outerHTML')
@@ -46,6 +46,12 @@ def WebScraping():
             tempo_2 = tempo[11:]
             estatisticas.append(tempo_2)
         # Nome de casa estatistica
+        resultado = soup_jogo.find_all('div',class_='detailScore__wrapper detailScore__live')
+        resul = list(resultado[0].getText())
+        estatisticas.append(resul[0])
+        estatisticas.append(resul[2])
+        print(resul[0])
+        print(resul[2])
         stats_name = soup_jogo.find_all('div', class_='stat__categoryName')
 
         # Estatisticas do time da casa
