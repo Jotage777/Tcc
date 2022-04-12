@@ -29,6 +29,12 @@ Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '4')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '5')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '6')
 
+estatisticas=['h8dml01n', 'França F', 'Eslovénia F', '12.04.2022 16:10', 'EUROPA: Copa do Mundo de Futebol Feminino ', '0', '1', '0', '0', '0', '0', '1.03', '13.00', '36.00']
+Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1], int(estatisticas[6]),
+                                estatisticas[2], int(estatisticas[7]), int(estatisticas[5]), estatisticas[3],
+                                int(estatisticas[8]), int(estatisticas[9]), int(estatisticas[10]),
+                                int(estatisticas[11]), float(estatisticas[12]), float(estatisticas[13]),
+                                float(estatisticas[14]))
 # delete = "DELETE FROM Bots WHERE id_bot = 1"
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
 # Banco_de_dados.deletar(delete)

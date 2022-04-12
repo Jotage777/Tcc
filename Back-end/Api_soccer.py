@@ -154,7 +154,7 @@ class Greenzord(Resource):
                         return usuario
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
+                    if informacoes[i][0] == nome:
                         id = informacoes[i][0]
                         return id
             for i in informacoes:

@@ -23,9 +23,12 @@ def WebScraping():
                 print(odd[1].getText())
                 print(odd[2].getText())
                 print(estatisticas)
-                Banco_de_dados.add_jogos_aovivo(estatisticas[4],estatisticas[0],estatisticas[1],estatisticas[6],estatisticas)
+                Banco_de_dados.add_jogos_aovivo(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),int(estatisticas[5]),estatisticas[3],int(estatisticas[8]),int(estatisticas[9]),int(estatisticas[10]),int(estatisticas[11]),float(estatisticas[12]),float(estatisticas[13]),float(estatisticas[14]))
             except:
                 print("Odds não disponiveis")
+                estatisticas.append('0.00')
+                estatisticas.append('0.00')
+                estatisticas.append('0.00')
                 print(estatisticas)
 
         estatisticas = []
@@ -57,7 +60,11 @@ def WebScraping():
             estatisticas.append('90')
         else:
             tempo_2 = tempo[11:]
-            estatisticas.append(tempo_2)
+            if len(tempo_2) > 2:
+                tempo_3= tempo_2[:2]
+                estatisticas.append(tempo_3)
+            else:
+                estatisticas.append(tempo_2)
         # Nome de casa estatistica
         if tempo == 'Encerrado':
             resultado = soup_jogo.find('div', class_='detailScore__matchInfo').get_text()
@@ -81,9 +88,18 @@ def WebScraping():
         cont = 0
         for i in range(len(stats_name)):
             if stats_name[i].getText() in nome_stats:
-                cont += 1
-                estatisticas.append(casa_stats[i].getText())
-                estatisticas.append(fora_stats[i].getText())
+                if len(casa_stats[i].getText()) > 2:
+                    cont += 1
+                    casa_stat = casa_stats[i].getText()
+                    fora_stat = fora_stats[i].getText()
+                    casa_sta = casa_stat[:2]
+                    fora_sta = fora_stat[:2]
+                    estatisticas.append(casa_sta)
+                    estatisticas.append(fora_sta)
+                else:
+                    cont += 1
+                    estatisticas.append(casa_stats[i].getText())
+                    estatisticas.append(fora_stats[i].getText())
         if cont == 0:
             estatisticas.append('0')
             estatisticas.append('0')
