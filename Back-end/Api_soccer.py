@@ -104,10 +104,7 @@ class Greenzord(Resource):
 
             informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos")
             if tipo2 == 1:
-                for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        time = informacoes[i]
-                        return time
+                      return informacoes
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
