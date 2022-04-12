@@ -6,6 +6,14 @@
         header('Location: login.php');
     }
     $logado = $_SESSION['username'];
+
+    $id_user = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
+
+    $resultado_id_user = json_decode(file_get_contents($id_user));
+
+
+
+//    var_dump($resultado_id_user);
 ?>
 
 <!doctype html>
