@@ -46,11 +46,14 @@ def WebScraping():
         data_hora = soup_jogo.find('div', class_='duelParticipant__startTime').get_text()
         estatisticas.append(data_hora)
         campeonato = soup_jogo.find('span', class_='tournamentHeader__country').get_text()
-        for i in range(len(campeonato)):
-            if campeonato[i] == '-':
-                camp = campeonato[:i]
-                estatisticas.append(camp)
-                break
+        if '-' in campeonato:
+            for i in range(len(campeonato)):
+                if campeonato[i] == '-':
+                    camp = campeonato[:i]
+                    estatisticas.append(camp)
+                    break
+        else:
+            estatisticas.append(campeonato)
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
         if tempo == "Intervalo":
             estatisticas.append('45')

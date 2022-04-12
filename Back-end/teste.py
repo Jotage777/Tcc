@@ -30,7 +30,7 @@ Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '5')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '6')
 
 estatisticas = ['r9RodtKN', 'Medea', 'Constantine', '12.04.2022 11:45', 'ARGÉLIA: Ligue 1 ','2', '0','3.26', '2.95', '2.30']
-Banco_de_dados.add_jogos(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[5]),estatisticas[2],int(estatisticas[6]),estatisticas[3],float(estatisticas[7]),float(estatisticas[8]),float(estatisticas[9]))
+Banco_de_dados.add_jogos(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[5]),estatisticas[2],int(estatisticas[6]),estatisticas[3],float(estatisticas[7]),float(estatisticas[8]),float(estatisticas[]))
 
 # delete = "DELETE FROM Bots WHERE id_bot = 1"
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
