@@ -97,8 +97,8 @@
             transform: translate(-50%,-50%);
             background-color: rgba( 0,0,0,0.5);
             text-align: center;
-            padding: 8px;
-            border-radius: 15px;
+            padding: 5px;
+            border-radius: 10px;
             width: 33%;
         }
         #submit{
@@ -113,11 +113,11 @@
         }
         fieldset{
             border: 3px solid #fff;
-            padding: 8px;
+            padding: 5px;
         }
         legend{
             border: 1px solid #fff;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
             border-radius: 8px;
         }
