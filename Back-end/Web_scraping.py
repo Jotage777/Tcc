@@ -37,7 +37,6 @@ def WebScraping():
         estatisticas.append(times[1].getText())
         # data e hora do jogo
         data_hora = soup_jogo.find('div', class_='duelParticipant__startTime').get_text()
-
         estatisticas.append(data_hora)
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
         if tempo=="Intervalo":
@@ -48,27 +47,23 @@ def WebScraping():
             tempo_2 = tempo[11:]
             estatisticas.append(tempo_2)
         # Nome de casa estatistica
-
         if tempo == 'Encerrado':
-            resultado = soup_jogo.find_all('div', class_='detailScore__matchInfo')
-            resul = list(resultado[0].getText())
+            resultado = soup_jogo.find('div', class_='detailScore__matchInfo').get_text()
+            resul = list(resultado)
             estatisticas.append(resul[0])
             estatisticas.append(resul[2])
         else:
-            resultado = soup_jogo.find_all('div',class_='detailScore__wrapper detailScore__live')
-            resul = list(resultado[0].getText())
+            resultado = soup_jogo.find('div',class_='detailScore__wrapper detailScore__live').get_text()
+            resul = list(resultado)
             estatisticas.append(resul[0])
             estatisticas.append(resul[2])
             print(resul[0])
             print(resul[2])
         stats_name = soup_jogo.find_all('div', class_='stat__categoryName')
-
         # Estatisticas do time da casa
         casa_stats = soup_jogo.find_all('div', class_='stat__homeValue')
-
         # Estatistica do time de fora
         fora_stats = soup_jogo.find_all('div', class_='stat__awayValue')
-
         # Lista com todos os nomes das estatisticas da partida
         nome_stats = ['Posse de bola', 'Finalizações']
         cont = 0
@@ -82,18 +77,14 @@ def WebScraping():
             estatisticas.append('0')
             estatisticas.append('0')
             estatisticas.append('0')
-            print(estatisticas)
         elif cont==1:
             estatisticas.append('0')
             estatisticas.append('0')
-            print(estatisticas)
         else:
-            print(estatisticas)
-
+            print('ok')
         raspagem_odd(id)
+        print(estatisticas)
         todos_os_jogos.append(estatisticas)
-
-
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
     ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')

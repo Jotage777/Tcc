@@ -81,7 +81,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         campeonato = informacoes[i]
                         return campeonato
-            if tipo2 ==2:
+            elif tipo2 ==2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -94,7 +94,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         time = informacoes[i]
                         return time
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -108,7 +108,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         time = informacoes[i]
                         return time
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -121,7 +121,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         usuario = informacoes[i]
                         return usuario
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -136,7 +136,7 @@ class Greenzord(Resource):
                         index += 1
                         bots.insert(index, informacoes[i])
                 return bots
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -150,7 +150,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         usuario = informacoes[i]
                         return usuario
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -167,7 +167,7 @@ class Greenzord(Resource):
                     if informacoes[i][-1] == int(nome):
                         relatorio = informacoes[i]
                         return relatorio
-            if tipo2 == 2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][-1] == int(nome):
                         id = informacoes[i][0]
@@ -279,7 +279,7 @@ class Greenzord_apostas(Resource):
         return 200
 
 
-api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<str:nome>")
+api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
 api.add_resource(Greenzord_jogos, "/greenzord/jogos")
