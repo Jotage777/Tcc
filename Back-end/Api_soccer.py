@@ -142,6 +142,7 @@ class Greenzord(Resource):
                     if informacoes[i][0] == int(nome):
                         bot = informacoes[i]
                         return bot
+                return 0
 
         elif tipo == 6:
         # falta configurar
