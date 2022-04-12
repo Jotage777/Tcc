@@ -5,6 +5,7 @@
         unset($_SESSION['password']);
         header('Location: login.php');
     }
+
     $logado = $_SESSION['username'];
 
     if(isset($_POST['submit'])) {
@@ -23,7 +24,7 @@
             "apostar" => $_POST['timapo'],
             "analisar" => $_POST['timesta'],
             "ativado" => "1",
-            "username" => "gabriel"
+            "username" => $logado
         );
 
         print_r($dados);
@@ -41,7 +42,7 @@
         );
 
         $jsonRet = json_decode(curl_exec($ch));
-    };
+    }
 ?>
 
 <!doctype html>
@@ -191,7 +192,6 @@
                     <input type="number" name="responsa" id="responsa" class="inputBot" required>
                     <label for="responsa" class="labelInput">Responsabilidade</label>
                 </div>
-                <br>
                 <!-- Entrada da odd aceita pelo bot -->
                 <p>Odds:</p>
                 <div class="inputBox">
@@ -237,7 +237,6 @@
                     <label for="tempomin">á:</label>
                     <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" required>
                 </div>
-                <br>
                 <!-- Finalizações do time ou ambos no jogo todo -->
                 <p>Finalizações:</p>
                 <div class="inputBox">
@@ -246,7 +245,6 @@
                     <label for="finamax">á:</label>
                     <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" required>
                 </div>
-                <br>
                 <!-- Adicionar posse de bola minima e maxima -->
                 <p>Posse de Bola:</p>
                 <div class="inputBox">
