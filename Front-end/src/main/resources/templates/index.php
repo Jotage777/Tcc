@@ -8,12 +8,12 @@
     $logado = $_SESSION['username'];
 
     $id_user = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
-
     $resultado_id_user = json_decode(file_get_contents($id_user));
 
+    $jogos = "http://127.0.0.1:5000/greenzord/3/1/" . $resultado_id_user;
+    $jogos_live = json_decode(file_get_contents($jogos));
 
-
-//    var_dump($resultado_id_user);
+//    var_dump($jogos_live);
 ?>
 
 <!doctype html>
@@ -70,7 +70,6 @@
         .content{
             text-align: center;
             padding-top: 16px;
-            height: 100vh;
         }
     </style>
 </head>
@@ -95,7 +94,41 @@
         </div>
     </div>
     <div class="content" id="content">
-        <h1>Jogos e Apostas...</h1>
+        <h1>Lista de Jogos</h1>
+    </div>
+    <div class="m-5">
+        <table class="table table-bg text-white">
+            <thead>
+            <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Campeonato</th>
+                <th scope="col">Casa</th>
+                <th scope="col">Gols</th>
+                <th scope="col">Gols</th>
+                <th scope="col">Fora</th>
+                <th scope="col">1</th>
+                <th scope="col">X</th>
+                <th scope="col">2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($jogos_live as $bot){
+                echo "<tr>";
+                echo "<td>" . $bot[6] . "</td>"; //data
+                echo "<td>" . $bot[2] . "</td>"; //id_campeonato
+                echo "<td>" . $bot[1] . "</td>"; //id_casa
+                echo "<td>" . $bot[4] . "</td>"; //resultado_casa
+                echo "<td>" . $bot[5] . "</td>"; //resultado_fora
+                echo "<td>" . $bot[3] . "</td>"; //id_fora
+                echo "<td>" . $bot[7] . "</td>"; //odd_casa
+                echo "<td>" . $bot[8] . "</td>"; //odd_fora
+                echo "<td>" . $bot[9] . "</td>"; //odd_empate
+                echo "<tr>";
+            }
+            ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
