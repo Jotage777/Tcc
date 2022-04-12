@@ -17,7 +17,7 @@ def criar_BD() -> None:
                     name VARCHAR(45) NOT NULL
                     )''')
             cursor.execute('''
-                CREATE TABLE Jogos(
+                CREATE TABLE Jogos_Encerrados(
                     id_jogo VARCHAR (20) primary key ,
                     fk_id_casa INTEGER NOT NULL,
                     fk_id_campeonato INTEGER NOT NULL,
@@ -25,13 +25,29 @@ def criar_BD() -> None:
                     resultado_fora INTEGER NOT NULL ,
                     resultado_casa INTEGER NOT NULL ,
                     date VARCHAR(10) NOT NULL,
-                    odd_casa FLOAT NOT NUll,
-                    odd_fora FLOAT NOT NUll,
-                    odd_empate FLOAT NOT NULL,
                     FOREIGN KEY(fk_id_casa) REFERENCES Times (id_time),
                     FOREIGN KEY(fk_id_fora) REFERENCES Times (id_time),
                     FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato)
                     )''')
+            cursor.execute('''CREATE TABLE Jogos_AoVivo(
+                               id_jogo VARCHAR (20) primary key ,
+                               time_casa VARCHAR (40) NOT NULL,
+                               nome_campeonato VARCHAR (40) NOT NULL,
+                               time_fora VARCHAR (20) NOT NULL ,
+                               resultado_casa INTEGER NOT NULL ,
+                               resultado_fora INTEGER NOT NULL ,
+                               tempo INTEGER NOT NULL, 
+                               date VARCHAR(10) NOT NULL,
+                               posse_bola_casa INTEGER NOT NULL,
+                               posse_bola_fora INTEGER  NOT NULL,
+                               finalizacao_casa INTEGER NOT NULL ,
+                               finalizacao_fora INTEGER NOT NULL ,
+                               odd_casa FLOAT NOT NUll,
+                               odd_fora FLOAT NOT NUll,
+                               odd_empate FLOAT NOT NULL,
+                               fk_id_campeonato INTEGER NOT NULL ,
+                               FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato))
+            ''')
             cursor.execute('''
                 CREATE TABLE Usuario(
                     id_usuario INTEGER primary key AUTOINCREMENT ,
@@ -131,21 +147,36 @@ def consultar_jogos(id: str) -> int:
                 conn.commit()
 
 
-def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int, data: str,
-              odd_casa, odd_fora, odd_empate) -> int:
+def add_jogos_aovivo(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int,tempo:int, data: str,posse_casa:int, posse_fora: int, finalizacao_casa: int, finalizacao_fora:int,odd_casa:float,odd_empate:float,odd_fora:float) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_jogo FROM Jogos WHERE id_jogo = ?''', (id,))
+            cursor.execute('''SELECT id_jogo FROM Jogos_AoVivo WHERE id_jogo = ?''', (id,))
+            result = cursor.fetchone()
+            if result is None:
+                fk_id_campeonato = add_campeonato(campeonato)
+
+                cursor.execute('''INSERT INTO Jogos_AoVivo (id_jogo, time_casa,nome_campeonato,time_fora, resultado_casa,resultado_fora,tempo,
+                date,posse_bola_casa,posse_bola_fora,finalizacao_casa,finalizacao_fora,odd_casa,odd_empate,odd_fora,fk_id_campeonato)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (id,casa, campeonato,fora, resultado_casa, resultado_fora, tempo, data,posse_casa,posse_fora,finalizacao_casa,finalizacao_fora,odd_casa,odd_empate,odd_fora,fk_id_campeonato))
+                conn.commit()
+            else:
+                conn.commit()
+
+def add_jogos_encerrados(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int, data: str) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT id_jogo FROM Jogos_Encerrados WHERE id_jogo = ?''', (id,))
             result = cursor.fetchone()
             if result is None:
                 fk_id_campeonato = add_campeonato(campeonato)
                 fk_id_casa = add_times(casa)
                 fk_id_fora = add_times(fora)
-                cursor.execute('''INSERT INTO Jogos (id_jogo, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora,
-                date, fk_id_campeonato, odd_casa, odd_fora, odd_empate)
-                VALUES(?,?,?,?,?,?,?,?,?,?)''', (id, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora, data,
-                                                 fk_id_campeonato, odd_casa, odd_fora, odd_empate))
+                cursor.execute('''INSERT INTO Jogos_Encerrados (id_jogo, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora,
+                date, fk_id_campeonato)
+                VALUES(?,?,?,?,?,?,?)''', (id, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora, data,
+                                                 fk_id_campeonato))
                 conn.commit()
             else:
                 conn.commit()
