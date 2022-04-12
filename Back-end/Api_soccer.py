@@ -139,7 +139,7 @@ class Greenzord(Resource):
                 return bots
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
+                    if informacoes[i][0] == int(nome):
                         bot = informacoes[i]
                         return bot
 
