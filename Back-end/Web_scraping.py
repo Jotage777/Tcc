@@ -23,14 +23,10 @@ def WebScraping():
                 print(odd[1].getText())
                 print(odd[2].getText())
                 print(estatisticas)
-                Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1], int(estatisticas[6]),
-                                         estatisticas[2], int(estatisticas[7]), estatisticas[3],
-                                         float(estatisticas[12]), float(estatisticas[13]), float(estatisticas[14]))
+                Banco_de_dados.add_jogos_aovivo(estatisticas[4],estatisticas[0],estatisticas[1],estatisticas[6],estatisticas)
             except:
                 print("Odds não disponiveis")
                 print(estatisticas)
-                Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1], int(estatisticas[6]),
-                                         estatisticas[2], int(estatisticas[7]), estatisticas[3], '0.00', '0.00', '0.00')
 
         estatisticas = []
         estatisticas.append(id)

@@ -104,7 +104,10 @@ class Greenzord(Resource):
 
             informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos")
             if tipo2 == 1:
-                      return informacoes
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        time = informacoes[i]
+                        return time
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
@@ -127,6 +130,7 @@ class Greenzord(Resource):
             bots = []
             index = 0
             informacoes = Banco_de_dados.consultas("SELECT * FROM Bots")
+            print(informacoes)
             if tipo2 == 1:
                 for i in range(len(informacoes)):
                     if informacoes[i][-1] == int(nome):
@@ -135,9 +139,10 @@ class Greenzord(Resource):
                 return bots
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        id = informacoes[i][0]
-                        return id
+                    if informacoes[i][0] == int(nome):
+                        bot = informacoes[i]
+                        return bot
+                return 0
 
         elif tipo == 6:
         # falta configurar
