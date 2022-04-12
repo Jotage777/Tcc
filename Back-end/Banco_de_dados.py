@@ -132,7 +132,7 @@ def consultar_jogos(id: str) -> int:
 
 
 def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int, data: str,
-              odd_casa: float, odd_fora: float, odd_empate: float) -> int:
+              odd_casa, odd_fora, odd_empate) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')

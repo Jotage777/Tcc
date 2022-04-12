@@ -2,14 +2,15 @@ import time
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
-
+import Banco_de_dados
 def WebScraping():
-    todos_os_jogos = []
+
     def raspagem_stats(id):
         def raspagem_odd(id):
+            browser.get(
+                'https://www.flashscore.com.br/jogo/' + id + '/#/comparacao-de-odds/1x2-odds/tempo-regulamentar')
+            time.sleep(1)
             try:
-                browser.get('https://www.flashscore.com.br/jogo/'+id+'/#/comparacao-de-odds/1x2-odds/tempo-regulamentar')
-                time.sleep(1)
                 odds = browser.find_element_by_xpath('/html/body/div[2]/div/div[6]/div[3]/div/div[2]/div[1]')
                 odds_html = odds.get_attribute('outerHTML')
                 soup_odds = BeautifulSoup(odds_html, 'html.parser')
@@ -20,11 +21,12 @@ def WebScraping():
                 print(odd[0].getText())
                 print(odd[1].getText())
                 print(odd[2].getText())
+                print(estatisticas)
+                Banco_de_dados.add_jogos(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3],float(estatisticas[12]),float(estatisticas[13]),float(estatisticas[14]))
             except:
                 print("Odds não disponiveis")
-                estatisticas.append('0')
-                estatisticas.append('0')
-                estatisticas.append('0')
+                print(estatisticas)
+                Banco_de_dados.add_jogos(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3],'0.00','0.00','0.00')
         estatisticas = []
         estatisticas.append(id)
         browser.get(' https://www.flashscore.com.br/jogo/'+ id +'/#/resumo-de-jogo/estatisticas-de-jogo/0')
@@ -38,6 +40,12 @@ def WebScraping():
         # data e hora do jogo
         data_hora = soup_jogo.find('div', class_='duelParticipant__startTime').get_text()
         estatisticas.append(data_hora)
+        campeonato = soup_jogo.find('span',class_='tournamentHeader__country').get_text()
+        for i in range(len(campeonato)):
+            if campeonato[i]=='-':
+                camp =campeonato[:i]
+                estatisticas.append(camp)
+                break
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
         if tempo=="Intervalo":
             estatisticas.append('45')
@@ -84,7 +92,7 @@ def WebScraping():
             print('ok')
         raspagem_odd(id)
         print(estatisticas)
-        todos_os_jogos.append(estatisticas)
+
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
     ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
@@ -102,6 +110,5 @@ def WebScraping():
         id_jogo=rodada['id']
         id_j = id_jogo[4:]
         raspagem_stats(id_j)
-    print(todos_os_jogos)
-    return todos_os_jogos
+
 WebScraping()

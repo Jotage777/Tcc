@@ -1,11 +1,5 @@
 import Banco_de_dados
-
-Banco_de_dados.add_usuario('gabriel', 'Joao Gabriel de Oliveira Ponciano', 'gabrieloliveira_pb@hotmail.com',
-                           '24/05/1999', '200.00')
-Banco_de_dados.add_usuario('messias', 'Joao Messias da Silva Medeiros', 'joaomessias00@hotmail.com', '27/05/1999',
-                           '500.00')
-Banco_de_dados.add_usuario('igor', 'igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00')
-
+#
 # (nome: str, responsabilidade: float, odd_minima: float, odd_maxima: float, tempo_jogo_minimo: int,
 # tempo_de_jogo_maximo: int, finalizacao_min: int, finalizacao_max: int, posse_bola_min: int, posse_de_bola_max: int,
 # ativado: bool, apostar: str, analisar: str, username: str)
@@ -27,3 +21,5 @@ Banco_de_dados.add_usuario('igor', 'igor barbosa', 'igor@ifpb.com', '04/04/2000'
 # delete = "DELETE FROM Bots WHERE id_bot = 1"
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
 # Banco_de_dados.deletar(delete)
+estatisticas = ['r9RodtKN', 'Medea', 'Constantine', '12.04.2022 11:45', 'ARGÉLIA: Ligue 1 ','2', '0','3.26', '2.95', '2.30']
+Banco_de_dados.add_jogos(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[5]),estatisticas[2],int(estatisticas[6]),estatisticas[3],float(estatisticas[7]),float(estatisticas[8]),float(estatisticas[9]))
