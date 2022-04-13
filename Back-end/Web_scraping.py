@@ -222,6 +222,3 @@ def WebScraping():
         id_jogo = rodada['id']
         id_j = id_jogo[4:]
         raspagem_stats(id_j)
-
-
-WebScraping()

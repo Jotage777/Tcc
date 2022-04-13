@@ -248,7 +248,6 @@ class Greenzord_jogos(Resource):
                Web_scraping.WebScraping()
 
 
-
 class Greenzord_usuario(Resource):
     def post(usuario: usuario_modelo):
         Banco_de_dados.add_usuario(request.json['username'], request.json['nome'], request.json['email'],
