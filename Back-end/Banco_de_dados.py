@@ -290,6 +290,13 @@ def consultas(acao):
             return tudo
             conn.commit()
 
+def atualizar(acao):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute(acao)
+            conn.commit()
+
 
 def deletar(acao):
     with sqlite3.connect('Greenzord.db') as conn:

@@ -19,17 +19,131 @@ def WebScraping():
                 estatisticas.append(odd[0].getText())
                 estatisticas.append(odd[1].getText())
                 estatisticas.append(odd[2].getText())
-                print(odd[0].getText())
-                print(odd[1].getText())
-                print(odd[2].getText())
-                print(estatisticas)
-                Banco_de_dados.add_jogos_aovivo(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),int(estatisticas[5]),estatisticas[3],int(estatisticas[8]),int(estatisticas[9]),int(estatisticas[10]),int(estatisticas[11]),float(estatisticas[12]),float(estatisticas[13]),float(estatisticas[14]))
+
+                if estatisticas[5] =='Encerrado':
+                    Banco_de_dados.add_jogos_encerrados(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3])
+                else:
+                    print(estatisticas)
+                    primeiro = True
+                    acao = 'Select * FROM Jogos_AoVivo '
+                    jogo = Banco_de_dados.consultas(acao)
+                    for i in range(len(jogo)):
+                        if jogo[i][0] == estatisticas[0]:
+                            esse = jogo[i]
+                            primeiro = False
+                    if primeiro == False:
+                        if esse[4] != int(estatisticas[6]):
+                            acao = 'UPDATE Jogos_AoVivo SET resultado_casa = ' + estatisticas[6] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[5] != int(estatisticas[7]):
+                            acao = 'UPDATE Jogos_AoVivo SET resultado_fora = ' + estatisticas[7] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[6] != int(estatisticas[5]):
+                            acao = 'UPDATE Jogos_AoVivo SET tempo = ' + estatisticas[5] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[8] != int(estatisticas[8]):
+                            acao = 'UPDATE Jogos_AoVivo SET posse_bola_casa = ' + estatisticas[8] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[9] != estatisticas[9]:
+                            acao = 'UPDATE Jogos_AoVivo SET posse_bola_fora = ' + estatisticas[9] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[10] != estatisticas[10]:
+                            acao = 'UPDATE Jogos_AoVivo SET finalizacao_casa = ' + estatisticas[10] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[11] != estatisticas[11]:
+                            acao = 'UPDATE Jogos_AoVivo SET finalizacao_fora = ' + estatisticas[11] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[12] != estatisticas[12]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_casa = ' + estatisticas[12] + ' WHERE id_jogo =' +estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[13] != estatisticas[13]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_fora = ' + estatisticas[13] + ' WHERE id_jogo =' +estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[13] != estatisticas[13]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_empate = ' +estatisticas[14] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                    else:
+                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
+                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
+                                                        int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
+                                                        int(estatisticas[9]), int(estatisticas[10]),
+                                                        int(estatisticas[11]), float(estatisticas[12]),
+                                                        float(estatisticas[14]), float(estatisticas[13]))
+
             except:
                 print("Odds não disponiveis")
                 estatisticas.append('0.00')
                 estatisticas.append('0.00')
                 estatisticas.append('0.00')
-                print(estatisticas)
+                if estatisticas[5] == 'Encerrado':
+                    Banco_de_dados.add_jogos_encerrados(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3])
+                else:
+                    print(estatisticas)
+                    primeiro = True
+                    acao = 'Select * FROM Jogos_AoVivo '
+                    jogo = Banco_de_dados.consultas(acao)
+                    for i in range(len(jogo)):
+                        if jogo[i][0] == estatisticas[0]:
+                            esse = jogo[i]
+                            primeiro = False
+                    if primeiro ==False:
+                        if esse[4] != int(estatisticas[6]):
+                            acao='UPDATE Jogos_AoVivo SET resultado_casa = '+estatisticas[6]+' WHERE id_jogo ='+estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[5] != int(estatisticas[7]):
+                            acao = 'UPDATE Jogos_AoVivo SET resultado_fora = ' +estatisticas[7] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[6]!= int(estatisticas[5]):
+                            acao = 'UPDATE Jogos_AoVivo SET tempo = ' + estatisticas[5] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[8] !=int(estatisticas[8]):
+                            acao = 'UPDATE Jogos_AoVivo SET posse_bola_casa = ' +estatisticas[8] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[9] !=estatisticas[9]:
+                            acao = 'UPDATE Jogos_AoVivo SET posse_bola_fora = ' + estatisticas[9] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[10] != estatisticas[10]:
+                            acao = 'UPDATE Jogos_AoVivo SET finalizacao_casa = ' + estatisticas[10] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[11] != estatisticas[11]:
+                            acao = 'UPDATE Jogos_AoVivo SET finalizacao_fora = ' + estatisticas[11] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+                        if esse[12] != estatisticas[12]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_casa = ' + estatisticas[12] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+
+                        if esse[13] != estatisticas[13]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_fora = ' + estatisticas[13] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+
+                        if esse[13] != estatisticas[13]:
+                            acao = 'UPDATE Jogos_AoVivo SET odd_empate = ' + estatisticas[14] + ' WHERE id_jogo =' + estatisticas[0]
+                            print(acao)
+                            Banco_de_dados.atualizar(acao)
+
+                    else:
+                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],int(estatisticas[6]), estatisticas[2],int(estatisticas[7]),int(estatisticas[5]),estatisticas[3],int(estatisticas[8]),int(estatisticas[9]),int(estatisticas[10]),int(estatisticas[11]),float(estatisticas[12]),float(estatisticas[14]),float(estatisticas[13]))
+
+
 
         estatisticas = []
         estatisticas.append(id)
@@ -54,17 +168,30 @@ def WebScraping():
         else:
             estatisticas.append(campeonato)
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
+
         if tempo == "Intervalo":
             estatisticas.append('45')
         elif tempo == 'Encerrado':
-            estatisticas.append('90')
+            estatisticas.append(tempo)
         else:
             tempo_2 = tempo[11:]
+            print(tempo_2)
+            print(len(tempo_2))
             if len(tempo_2) > 2:
                 tempo_3= tempo_2[:2]
-                estatisticas.append(tempo_3)
-            else:
-                estatisticas.append(tempo_2)
+                if tempo_3[0] == '0' or tempo_3[0] =='1' or tempo_3[0] == '2' or tempo_3[0] == '3'or tempo_3[0] =='4' or tempo_3[0] =='5' or tempo_3[0] == '6' or tempo_3[0] =='7' or tempo_3[0] =='8' or tempo_3[0] =='9':
+                    if tempo_3[1] == '0' or tempo_3[1] =='1' or tempo_3[1] =='2' or tempo_3[1] =='3'or tempo_3[0] =='4' or tempo_3[1] =='5' or tempo_3[1] =='6' or tempo_3[1] =='7' or tempo_3[1] =='8' or tempo_3[1] =='9':
+                        estatisticas.append(tempo_3)
+                    else:
+                        estatisticas.append(tempo_3[0])
+
+            elif len(tempo_2) == 2:
+                if tempo_2[0] == '0' or tempo_2[0] == '1' or tempo_2[0] == '2' or tempo_2[0] == '3' or tempo_2[0] == '4' or tempo_2[0] == '5' or tempo_2[0] == '6' or tempo_2[0] == '7' or tempo_2[0] == '8' or  tempo_2[0] == '9':
+                    if tempo_2[1] == '0' or tempo_2[1] == '1' or tempo_2[1] == '2' or tempo_2[1] == '3' or tempo_2[1] == '4' or tempo_2[1] == '5' or tempo_2[1] == '6' or tempo_2[1] == '7' or tempo_2[1] == '8' or tempo_2[1] == '9':
+                        estatisticas.append(tempo_2)
+                    else:
+                        estatisticas.append(tempo_2[0])
+
         # Nome de casa estatistica
         if tempo == 'Encerrado':
             resultado = soup_jogo.find('div', class_='detailScore__matchInfo').get_text()
@@ -76,8 +203,7 @@ def WebScraping():
             resul = list(resultado)
             estatisticas.append(resul[0])
             estatisticas.append(resul[2])
-            print(resul[0])
-            print(resul[2])
+
         stats_name = soup_jogo.find_all('div', class_='stat__categoryName')
         # Estatisticas do time da casa
         casa_stats = soup_jogo.find_all('div', class_='stat__homeValue')
@@ -111,7 +237,7 @@ def WebScraping():
         else:
             print('ok')
         raspagem_odd(id)
-        print(estatisticas)
+
 
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
