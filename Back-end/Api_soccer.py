@@ -3,6 +3,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, abort, reqparse
 import Banco_de_dados
+import Web_scraping
 from pydantic import BaseModel
 
 app = Flask(__name__)
@@ -100,14 +101,11 @@ class Greenzord(Resource):
                         id = informacoes[i][0]
                         return id
         elif tipo == 3:
-            # falta configurar
 
-            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos")
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos_AoVivo")
+
             if tipo2 == 1:
-                for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        time = informacoes[i]
-                        return time
+               return informacoes
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
@@ -243,13 +241,8 @@ class Greenzord_times(Resource):
 
 
 class Greenzord_jogos(Resource):
-    def post(jogos: jogos_modelo):
-        Banco_de_dados.add_jogos(request.json['campeonato'], request.json['id_jogo'], request.json['time_casa'],
-                                 int(request.json['resultado_casa']), request.json['id_time'],
-                                 int(request.json['resultado_fora']), request.json['data'],
-                                 float(request.json['odd_casa']), float(request.json['odd_fora']),
-                                 float(request.json['odd_empate']))
-        return 200
+    def get(jogos):
+                Web_scraping.WebScraping()
 
 
 class Greenzord_usuario(Resource):
