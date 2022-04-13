@@ -26,8 +26,8 @@
             $finalizacao_max = $bot_edit[8];
             $posse_bola_min = $bot_edit[9];
             $posse_bola_max = $bot_edit[10];
-            $apostar = $bot_edit[13];
-            $analisar = $bot_edit[12];
+            $apostar = $bot_edit[12];
+            $analisar = $bot_edit[13];
             $ativado = $bot_edit[11];
         }
         else{
