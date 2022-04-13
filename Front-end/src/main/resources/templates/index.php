@@ -106,6 +106,8 @@
                 <th scope="col">Gols</th>
                 <th scope="col">Gols</th>
                 <th scope="col">Fora</th>
+                <th scope="col">Posse</th>
+                <th scope="col">Finalização</th>
                 <th scope="col">1</th>
                 <th scope="col">X</th>
                 <th scope="col">2</th>
@@ -115,15 +117,17 @@
             <?php
             foreach ($jogos_live as $bot){
                 echo "<tr>";
-                echo "<td>" . $bot[6] . "</td>"; //data
+                echo "<td>" . $bot[6] . " minutos</td>"; //tempo
                 echo "<td>" . $bot[2] . "</td>"; //id_campeonato
-                echo "<td>" . $bot[1] . "</td>"; //id_casa
+                echo "<td>" . $bot[1] . "</td>"; //time_casa
                 echo "<td>" . $bot[4] . "</td>"; //resultado_casa
                 echo "<td>" . $bot[5] . "</td>"; //resultado_fora
-                echo "<td>" . $bot[3] . "</td>"; //id_fora
-                echo "<td>" . $bot[7] . "</td>"; //odd_casa
-                echo "<td>" . $bot[8] . "</td>"; //odd_fora
-                echo "<td>" . $bot[9] . "</td>"; //odd_empate
+                echo "<td>" . $bot[3] . "</td>"; //time_fora
+                echo "<td>" . $bot[8] . " x " . $bot[9] . "</td>"; //posse
+                echo "<td>" . $bot[10] . " x " . $bot[11] . "</td>"; //finalização
+                echo "<td>" . $bot[12] . "</td>"; //odd_casa
+                echo "<td>" . $bot[13] . "</td>"; //odd_fora
+                echo "<td>" . $bot[14] . "</td>"; //odd_empate
                 echo "<tr>";
             }
             ?>
