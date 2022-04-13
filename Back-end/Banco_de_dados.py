@@ -290,14 +290,58 @@ def consultas(acao):
             return tudo
             conn.commit()
 
-def atualizar(acao):
+def atualizar_jogosAoVivo(valor,id,tipo):
     with sqlite3.connect('Greenzord.db') as conn:
-        with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute(acao)
-            conn.commit()
-
-
+        if tipo ==1:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET resultado_casa = ? WHERE id_jogo =?''', (valor,id,))
+                conn.commit()
+        elif tipo ==2:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET resultado_fora = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo==3:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET tempo = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo ==4:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET posse_bola_casa = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo ==5:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET posse_bola_fora = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo==6:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET finalizacao_casa = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo==7:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET finalizacao_fora = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo ==8:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET odd_casa = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo==9:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET odd_fora = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo ==10:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos_AoVivo SET odd_empate = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
 def deletar(acao):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
