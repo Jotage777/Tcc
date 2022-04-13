@@ -20,8 +20,10 @@ def WebScraping():
                 estatisticas.append(odd[1].getText())
                 estatisticas.append(odd[2].getText())
 
-                if estatisticas[5] =='Encerrado':
-                    Banco_de_dados.add_jogos_encerrados(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3])
+                if estatisticas[5] == 'Encerrado':
+                    Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
+                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
+                                                        estatisticas[3])
                 else:
                     print(estatisticas)
                     primeiro = True
@@ -32,57 +34,6 @@ def WebScraping():
                             esse = jogo[i]
                             primeiro = False
                     if primeiro == False:
-                        if esse[4] != int(estatisticas[6]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[6]),estatisticas[0],1)
-                        if esse[5] != int(estatisticas[7]):
-
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[7]),estatisticas[0],2)
-                        if esse[6] != int(estatisticas[5]):
-
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[5]),estatisticas[0],3)
-                        if esse[8] != int(estatisticas[8]):
-
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[8]),estatisticas[0],4)
-                        if esse[9] != estatisticas[9]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[9]),estatisticas[0],5)
-                        if esse[10] != estatisticas[10]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[10]),estatisticas[0],6)
-                        if esse[11] != estatisticas[11]:
-
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[11]),estatisticas[0],7)
-                        if esse[12] != estatisticas[12]:
-
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[12]),estatisticas[0],8)
-                        if esse[13] != estatisticas[13]:
-
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[13]),estatisticas[0],9)
-                        if esse[13] != estatisticas[13]:
-                           Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[14]),estatisticas[0],10)
-                    else:
-                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
-                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
-                                                        int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
-                                                        int(estatisticas[9]), int(estatisticas[10]),
-                                                        int(estatisticas[11]), float(estatisticas[12]),
-                                                        float(estatisticas[14]), float(estatisticas[13]))
-
-            except:
-                print("Odds não disponiveis")
-                estatisticas.append('0.00')
-                estatisticas.append('0.00')
-                estatisticas.append('0.00')
-                if estatisticas[5] == 'Encerrado':
-                    Banco_de_dados.add_jogos_encerrados(estatisticas[4],estatisticas[0],estatisticas[1],int(estatisticas[6]),estatisticas[2],int(estatisticas[7]),estatisticas[3])
-                else:
-                    print(estatisticas)
-                    primeiro = True
-                    acao = 'Select * FROM Jogos_AoVivo '
-                    jogo = Banco_de_dados.consultas(acao)
-                    for i in range(len(jogo)):
-                        if jogo[i][0] == estatisticas[0]:
-                            esse = jogo[i]
-                            primeiro = False
-                    if primeiro ==False:
                         if esse[4] != int(estatisticas[6]):
                             Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[6]), estatisticas[0], 1)
                         if esse[5] != int(estatisticas[7]):
@@ -103,11 +54,60 @@ def WebScraping():
                             Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[13]), estatisticas[0], 9)
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[14]), estatisticas[0], 10)
-
                     else:
-                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],int(estatisticas[6]), estatisticas[2],int(estatisticas[7]),int(estatisticas[5]),estatisticas[3],int(estatisticas[8]),int(estatisticas[9]),int(estatisticas[10]),int(estatisticas[11]),float(estatisticas[12]),float(estatisticas[14]),float(estatisticas[13]))
+                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
+                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
+                                                        int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
+                                                        int(estatisticas[9]), int(estatisticas[10]),
+                                                        int(estatisticas[11]), float(estatisticas[12]),
+                                                        float(estatisticas[14]), float(estatisticas[13]))
 
-
+            except:
+                print("Odds não disponiveis")
+                estatisticas.append('0.00')
+                estatisticas.append('0.00')
+                estatisticas.append('0.00')
+                if estatisticas[5] == 'Encerrado':
+                    Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
+                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
+                                                        estatisticas[3])
+                else:
+                    print(estatisticas)
+                    primeiro = True
+                    acao = 'Select * FROM Jogos_AoVivo '
+                    jogo = Banco_de_dados.consultas(acao)
+                    for i in range(len(jogo)):
+                        if jogo[i][0] == estatisticas[0]:
+                            esse = jogo[i]
+                            primeiro = False
+                    if primeiro == False:
+                        if esse[4] != int(estatisticas[6]):
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[6]), estatisticas[0], 1)
+                        if esse[5] != int(estatisticas[7]):
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[7]), estatisticas[0], 2)
+                        if esse[6] != int(estatisticas[5]):
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[5]), estatisticas[0], 3)
+                        if esse[8] != int(estatisticas[8]):
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[8]), estatisticas[0], 4)
+                        if esse[9] != estatisticas[9]:
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[9]), estatisticas[0], 5)
+                        if esse[10] != estatisticas[10]:
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[10]), estatisticas[0], 6)
+                        if esse[11] != estatisticas[11]:
+                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[11]), estatisticas[0], 7)
+                        if esse[12] != estatisticas[12]:
+                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[12]), estatisticas[0], 8)
+                        if esse[13] != estatisticas[13]:
+                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[13]), estatisticas[0], 9)
+                        if esse[13] != estatisticas[13]:
+                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[14]), estatisticas[0], 10)
+                    else:
+                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
+                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
+                                                        int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
+                                                        int(estatisticas[9]), int(estatisticas[10]),
+                                                        int(estatisticas[11]), float(estatisticas[12]),
+                                                        float(estatisticas[14]), float(estatisticas[13]))
 
         estatisticas = []
         estatisticas.append(id)
@@ -142,16 +142,23 @@ def WebScraping():
             print(tempo_2)
             print(len(tempo_2))
             if len(tempo_2) > 2:
-                tempo_3= tempo_2[:2]
-                if tempo_3[0] == '0' or tempo_3[0] =='1' or tempo_3[0] == '2' or tempo_3[0] == '3'or tempo_3[0] =='4' or tempo_3[0] =='5' or tempo_3[0] == '6' or tempo_3[0] =='7' or tempo_3[0] =='8' or tempo_3[0] =='9':
-                    if tempo_3[1] == '0' or tempo_3[1] =='1' or tempo_3[1] =='2' or tempo_3[1] =='3'or tempo_3[0] =='4' or tempo_3[1] =='5' or tempo_3[1] =='6' or tempo_3[1] =='7' or tempo_3[1] =='8' or tempo_3[1] =='9':
+                tempo_3 = tempo_2[:2]
+                if tempo_3[0] == '0' or tempo_3[0] == '1' or tempo_3[0] == '2' or tempo_3[0] == '3' or tempo_3[0] == \
+                        '4' or tempo_3[0] == '5' or tempo_3[0] == '6' or tempo_3[0] == '7' or tempo_3[0] == '8' or \
+                        tempo_3[0] == '9':
+                    if tempo_3[1] == '0' or tempo_3[1] == '1' or tempo_3[1] == '2' or tempo_3[1] == '3' or tempo_3[0] \
+                            == '4' or tempo_3[1] == '5' or tempo_3[1] == '6' or tempo_3[1] == '7' or tempo_3[1] == '8' \
+                            or tempo_3[1] == '9':
                         estatisticas.append(tempo_3)
                     else:
                         estatisticas.append(tempo_3[0])
-
             elif len(tempo_2) == 2:
-                if tempo_2[0] == '0' or tempo_2[0] == '1' or tempo_2[0] == '2' or tempo_2[0] == '3' or tempo_2[0] == '4' or tempo_2[0] == '5' or tempo_2[0] == '6' or tempo_2[0] == '7' or tempo_2[0] == '8' or  tempo_2[0] == '9':
-                    if tempo_2[1] == '0' or tempo_2[1] == '1' or tempo_2[1] == '2' or tempo_2[1] == '3' or tempo_2[1] == '4' or tempo_2[1] == '5' or tempo_2[1] == '6' or tempo_2[1] == '7' or tempo_2[1] == '8' or tempo_2[1] == '9':
+                if tempo_2[0] == '0' or tempo_2[0] == '1' or tempo_2[0] == '2' or tempo_2[0] == '3' or tempo_2[0] == \
+                        '4' or tempo_2[0] == '5' or tempo_2[0] == '6' or tempo_2[0] == '7' or tempo_2[0] == '8' or \
+                        tempo_2[0] == '9':
+                    if tempo_2[1] == '0' or tempo_2[1] == '1' or tempo_2[1] == '2' or tempo_2[1] == '3' or tempo_2[1] \
+                            == '4' or tempo_2[1] == '5' or tempo_2[1] == '6' or tempo_2[1] == '7' or tempo_2[1] == '8' \
+                            or tempo_2[1] == '9':
                         estatisticas.append(tempo_2)
                     else:
                         estatisticas.append(tempo_2[0])
@@ -201,7 +208,6 @@ def WebScraping():
         else:
             print('ok')
         raspagem_odd(id)
-
 
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')

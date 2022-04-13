@@ -77,12 +77,12 @@ class Greenzord(Resource):
     def get(self, tipo, tipo2, nome):
         if tipo == 1:
             informacoes = Banco_de_dados.consultas("SELECT * FROM Campeonato")
-            if tipo2 ==1:
+            if tipo2 == 1:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         campeonato = informacoes[i]
                         return campeonato
-            elif tipo2 ==2:
+            elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
@@ -100,17 +100,16 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
                         return id
+
         elif tipo == 3:
-
             informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos_AoVivo")
-
             if tipo2 == 1:
-               return informacoes
+                return informacoes
             elif tipo2 == 2:
                 Web_scraping.WebScraping()
                 return 200
-        elif tipo == 4:
 
+        elif tipo == 4:
             informacoes = Banco_de_dados.consultas("SELECT * FROM Usuario")
             if tipo2 == 1:
                 for i in range(len(informacoes)):
@@ -122,6 +121,7 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
                         return id
+
         elif tipo == 5:
             bots = []
             index = 0
@@ -140,7 +140,7 @@ class Greenzord(Resource):
                 return 0
 
         elif tipo == 6:
-        # falta configurar
+            # falta configurar
             informacoes = Banco_de_dados.consultas("SELECT * FROM Apostas")
             if tipo2 == 1:
                 for i in range(len(informacoes)):
@@ -156,8 +156,8 @@ class Greenzord(Resource):
                 if informacoes[i][0] == id:
                     apostas = informacoes[i]
                     return apostas
-        elif tipo == 7:
 
+        elif tipo == 7:
             informacoes = Banco_de_dados.consultas("SELECT * FROM Relatorio")
             if tipo2 == 1:
                 for i in range(len(informacoes)):
@@ -253,7 +253,7 @@ class Greenzord_usuario(Resource):
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
         Banco_de_dados.add_bots(request.json['nome'], float(request.json['responsabilidade']),
-                                int(request.json['odd_minima']), float(request.json['odd_maxima']),
+                                float(request.json['odd_minima']), float(request.json['odd_maxima']),
                                 int(request.json['tempo_jogo_minimo']), int(request.json['tempo_jogo_maximo']),
                                 int(request.json['finalizacao_min']), int(request.json['finalizacao_max']),
                                 int(request.json['posse_bola_min']), int(request.json['posse_bola_max']),
@@ -262,23 +262,25 @@ class Greenzord_bots(Resource):
         id_bot = Banco_de_dados.consultar_bots(request.json['nome'])
         Banco_de_dados.add_relatorio(0, 0, 0.0, 0, id_bot)
         return 200
-class Greenzord_bots_editar(Resource):
-    def post(bots: bots_modelo,id):
-        Banco_de_dados.atulizar_bots(request.json['nome'],id,1)
-        Banco_de_dados.atulizar_bots(float(request.json['responsabilidade']),id,2)
-        Banco_de_dados.atulizar_bots(float(request.json['odd_minima']),id,3)
-        Banco_de_dados.atulizar_bots(float(request.json['odd_maxima']),id,4)
-        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_minimo']),id,5)
-        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_maximo']),id,6)
-        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_min']),id,7)
-        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_max']),id,8)
-        Banco_de_dados.atulizar_bots( int(request.json['posse_bola_min']),id,9)
-        Banco_de_dados.atulizar_bots(int(request.json['posse_bola_max']),id,10)
-        Banco_de_dados.atulizar_bots(bool(request.json['ativado']),id,11)
-        Banco_de_dados.atulizar_bots( request.json['apostar'],id,12)
-        Banco_de_dados.atulizar_bots(request.json['analisar'],id,13)
 
+
+class Greenzord_bots_editar(Resource):
+    def post(bots: bots_modelo, id):
+        Banco_de_dados.atulizar_bots(request.json['nome'], id, 1)
+        Banco_de_dados.atulizar_bots(float(request.json['responsabilidade']), id, 2)
+        Banco_de_dados.atulizar_bots(float(request.json['odd_minima']), id, 3)
+        Banco_de_dados.atulizar_bots(float(request.json['odd_maxima']), id, 4)
+        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_minimo']), id, 5)
+        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_maximo']), id, 6)
+        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_min']), id, 7)
+        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_max']), id, 8)
+        Banco_de_dados.atulizar_bots(int(request.json['posse_bola_min']), id, 9)
+        Banco_de_dados.atulizar_bots(int(request.json['posse_bola_max']), id, 10)
+        Banco_de_dados.atulizar_bots(bool(request.json['ativado']), id, 11)
+        Banco_de_dados.atulizar_bots(request.json['apostar'], id, 12)
+        Banco_de_dados.atulizar_bots(request.json['analisar'], id, 13)
         return 200
+
 
 class Greenzord_apostas(Resource):
     def post(aposta: apostas_modelo):
@@ -286,9 +288,11 @@ class Greenzord_apostas(Resource):
                                    float(request.json['odd_aposta']), request.json['id_bot'], request.json['id_jogo'])
         return 200
 
+
 class Greenzord_apagar_bots(Resource):
-    def post(id_bot):
-        Banco_de_dados.deletar_bot(id_bot)
+    def post(Self, id):
+        print(id)
+        Banco_de_dados.deletar_bot(id)
         return 200
 
 

@@ -17,7 +17,8 @@ import Web_scraping
 #                         'Messias')
 # Banco_de_dados.add_bots('bot5m', '2.5', '1.2', '2.5', '5', '40', '0', '10', '55', '99', '1', 'favapo', 'favesta',
 #                         'Messias')
-# Banco_de_dados.add_bots('bot6i', '5', '1.1', '2.6', '0', '25', '5', '99', '0', '35', '1', 'casaapo', 'foraesta', 'Igor')
+# Banco_de_dados.add_bots('bot6i', '5', '1.1', '2.6', '0', '25', '5', '99', '0', '35', '1', 'casaapo', 'foraesta',
+#                         'Igor')
 #
 # Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '1')
 # Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '2')
