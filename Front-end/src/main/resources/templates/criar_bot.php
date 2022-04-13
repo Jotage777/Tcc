@@ -27,7 +27,6 @@
             "username" => $logado
         );
 
-        print_r($dados);
         $json = json_encode($dados);
 
         $url = "http://127.0.0.1:5000/greenzord/bots";

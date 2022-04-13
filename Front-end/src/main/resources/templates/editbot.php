@@ -5,6 +5,7 @@
         unset($_SESSION['password']);
         header('Location: login.php');
     }
+
     $logado = $_SESSION['username'];
 
     $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
@@ -37,6 +38,42 @@
     else{
         header('Location: lista_bots.php');
     }
+
+//    if(isset($_POST['update'])) {
+//
+//        $dados = array(
+//            "nome" => $_POST['nome'],
+//            "responsabilidade" => $_POST['responsa'],
+//            "odd_minima" => $_POST['oddmin'],
+//            "odd_maxima" => $_POST['oddmax'],
+//            "tempo_jogo_minimo" => $_POST['tempomin'],
+//            "tempo_jogo_maximo" => $_POST['tempomax'],
+//            "finalizacao_min" => $_POST['finamin'],
+//            "finalizacao_max" => $_POST['finamax'],
+//            "posse_bola_min" => $_POST['possemin'],
+//            "posse_bola_max" => $_POST['possemax'],
+//            "apostar" => $_POST['timapo'],
+//            "analisar" => $_POST['timesta'],
+//            "ativado" => "1",
+//            "username" => $logado
+//        );
+//
+//        print_r($dados);
+//        $json = json_encode($dados);
+//
+//        $url = "http://127.0.0.1:5000/greenzord/bots/editar/" . $id;
+//
+//        $ch = curl_init($url);
+//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+//        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+//                'Content-Type: application/json',
+//                'Content-Length: ' . strlen($json))
+//        );
+//
+//        $jsonRet = json_decode(curl_exec($ch));
+//    }
 ?>
 
 <!doctype html>
@@ -151,107 +188,108 @@
     </style>
 </head>
 <body id="body">
-<div class="header" id="header">
-    <div class="logo_header">
-        <img scr="robo.png" class="img_logo_header" alt="Logo Greenzord">
+    <div class="header" id="header">
+        <div class="logo_header">
+            <img scr="robo.png" class="img_logo_header" alt="Logo Greenzord">
+        </div>
+        <div class="navigation_header" id="navigation_header">
+            <a href="index.php">Home</a>
+            <a href="relatorio.php">Relatorio</a>
+            <a href="lista_bots.php">Bots</a>
+        </div>
+        <div class="navigation_header" id="navigation_header">
+            <?php
+            echo "<a>$logado</a>"
+            ?>
+            <?php
+            echo "<a>Saldo</a>"
+            ?>
+            <a href="sair.php">Sair</a>
+        </div>
     </div>
-    <div class="navigation_header" id="navigation_header">
-        <a href="index.php">Home</a>
-        <a href="relatorio.php">Relatorio</a>
-        <a href="lista_bots.php">Bots</a>
+    <div class="content" id="content">
+        <form action="saveEdit.php" method="POST"
+<!--        <form action="editbot.php" method="POST">-->
+            <fieldset>
+                <legend><b>Editar Bot</b></legend>
+                <br><br>
+                <!-- Entrada nome do bot -->
+                <div class="inputBox">
+                    <input type="text" name="nome" id="nome" class="inputBot" value="<?php echo $nome ?>" required>
+                    <label for="nome" class="labelInput">Nome do Bot</label>
+                </div>
+                <br>
+                <!-- Entrada responsabilidade da aposta do bot -->
+                <div class="inputBox">
+                    <input type="number" name="responsa" id="responsa" class="inputBot" value="<?php echo $responsabilidade ?>" required>
+                    <label for="responsa" class="labelInput">Responsabilidade</label>
+                </div>
+                <!-- Entrada da odd aceita pelo bot -->
+                <p>Odds:</p>
+                <div class="inputBox">
+                    <label for="oddmin">de:</label>
+                    <input type="number" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" required>
+                    <label for="oddmax">á:</label>
+                    <input type="number" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" required>
+                </div>
+                <br>
+                <!-- Times a serem apostados -->
+                <p>Times (Para Apostar):</p>
+                <input type="radio" id="favapo" name="timapo" value="favapo" <?php echo $apostar == 'favapo' ? 'checked' : '' ?> required>
+                <label for="casa">Favorito</label>
+                <br>
+                <input type="radio" id="zebraapo" name="timapo" value="zebraapo" <?php echo $apostar == 'zebraapo' ? 'checked' : '' ?> required>
+                <label for="fora">Zebra</label>
+                <br>
+                <input type="radio" id="casaapo" name="timapo" value="casaapo" <?php echo $apostar == 'casaapo' ? 'checked' : '' ?> required>
+                <label for="ambos">Casa</label>
+                <br>
+                <input type="radio" id="foraapo" name="timapo" value="foraapo" <?php echo $apostar == 'foraapo' ? 'checked' : '' ?> required>
+                <label for="ambos">Fora</label>
+                <br>
+                <!-- Times a serem analisados -->
+                <p>Times (Para Estatísticas):</p>
+                <input type="radio" id="favesta" name="timesta" value="favesta" <?php echo $analisar == 'favesta' ? 'checked' : '' ?> required>
+                <label for="casa">Favorito</label>
+                <br>
+                <input type="radio" id="zebraesta" name="timesta" value="zebraesta" <?php echo $analisar == 'zebraesta' ? 'checked' : '' ?> required>
+                <label for="fora">Zebra</label>
+                <br>
+                <input type="radio" id="casaesta" name="timesta" value="casaesta" <?php echo $analisar == 'casaesta' ? 'checked' : '' ?> required>
+                <label for="casa">Casa</label>
+                <br>
+                <input type="radio" id="foraesta" name="timesta" value="foraesta" <?php echo $analisar == 'foraesta' ? 'checked' : '' ?> required>
+                <label for="fora">Fora</label>
+                <br>
+                <!-- Tempo de jogo a ser apostado -->
+                <p>Tempo de Jogo(0 a 90):</p>
+                <div class="inputBox">
+                    <label for="tempomin">de:</label>
+                    <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="<?php echo $tempo_jogo_minimo ?>" required>
+                    <label for="tempomin">á:</label>
+                    <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="<?php echo $tempo_jogo_maximo ?>" required>
+                </div>
+                <!-- Finalizações do time ou ambos no jogo todo -->
+                <p>Finalizações:</p>
+                <div class="inputBox">
+                    <label for="finamin">de:</label>
+                    <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" value="<?php echo $finalizacao_min ?>" required>
+                    <label for="finamax">á:</label>
+                    <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="<?php echo $finalizacao_max ?>" required>
+                </div>
+                <!-- Adicionar posse de bola minima e maxima -->
+                <p>Posse de Bola:</p>
+                <div class="inputBox">
+                    <label for="possemin">de:</label>
+                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" value="<?php echo $posse_bola_min ?>" required>
+                    <label for="possemax">á:</label>
+                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" value="<?php echo $posse_bola_max ?>" required>
+                </div>
+                <br>
+                <input type="hidden" name="id" value="<?php echo $id ?>">
+                <input type="submit" name="update" id="update" value="Salvar">
+            </fieldset>
+        </form>
     </div>
-    <div class="navigation_header" id="navigation_header">
-        <?php
-        echo "<a>$logado</a>"
-        ?>
-        <?php
-        echo "<a>Saldo</a>"
-        ?>
-        <a href="sair.php">Sair</a>
-    </div>
-</div>
-<div class="content" id="content">
-    <form action="saveEdit.php" method="POST">
-        <fieldset>
-            <legend><b>Editar Bot</b></legend>
-            <br><br>
-            <!-- Entrada nome do bot -->
-            <div class="inputBox">
-                <input type="text" name="nome" id="nome" class="inputBot" value="<?php echo $nome ?>" required>
-                <label for="nome" class="labelInput">Nome do Bot</label>
-            </div>
-            <br>
-            <!-- Entrada responsabilidade da aposta do bot -->
-            <div class="inputBox">
-                <input type="number" name="responsa" id="responsa" class="inputBot" value="<?php echo $responsabilidade ?>" required>
-                <label for="responsa" class="labelInput">Responsabilidade</label>
-            </div>
-            <!-- Entrada da odd aceita pelo bot -->
-            <p>Odds:</p>
-            <div class="inputBox">
-                <label for="oddmin">de:</label>
-                <input type="number" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" required>
-                <label for="oddmax">á:</label>
-                <input type="number" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" required>
-            </div>
-            <br>
-            <!-- Times a serem apostados -->
-            <p>Times (Para Apostar):</p>
-            <input type="radio" id="favapo" name="timapo" value="favapo" <?php echo $apostar == 'favapo' ? 'checked' : '' ?> required>
-            <label for="casa">Favorito</label>
-            <br>
-            <input type="radio" id="zebraapo" name="timapo" value="zebraapo" <?php echo $apostar == 'zebraapo' ? 'checked' : '' ?> required>
-            <label for="fora">Zebra</label>
-            <br>
-            <input type="radio" id="casaapo" name="timapo" value="casaapo" <?php echo $apostar == 'casaapo' ? 'checked' : '' ?> required>
-            <label for="ambos">Casa</label>
-            <br>
-            <input type="radio" id="foraapo" name="timapo" value="foraapo" <?php echo $apostar == 'foraapo' ? 'checked' : '' ?> required>
-            <label for="ambos">Fora</label>
-            <br>
-            <!-- Times a serem analisados -->
-            <p>Times (Para Estatísticas):</p>
-            <input type="radio" id="favesta" name="timesta" value="favesta" <?php echo $analisar == 'favesta' ? 'checked' : '' ?> required>
-            <label for="casa">Favorito</label>
-            <br>
-            <input type="radio" id="zebraesta" name="timesta" value="zebraesta" <?php echo $analisar == 'zebraesta' ? 'checked' : '' ?> required>
-            <label for="fora">Zebra</label>
-            <br>
-            <input type="radio" id="casaesta" name="timesta" value="casaesta" <?php echo $analisar == 'casaesta' ? 'checked' : '' ?> required>
-            <label for="casa">Casa</label>
-            <br>
-            <input type="radio" id="foraesta" name="timesta" value="foraesta" <?php echo $analisar == 'foraesta' ? 'checked' : '' ?> required>
-            <label for="fora">Fora</label>
-            <br>
-            <!-- Tempo de jogo a ser apostado -->
-            <p>Tempo de Jogo(0 a 90):</p>
-            <div class="inputBox">
-                <label for="tempomin">de:</label>
-                <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="<?php echo $tempo_jogo_minimo ?>" required>
-                <label for="tempomin">á:</label>
-                <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="<?php echo $tempo_jogo_maximo ?>" required>
-            </div>
-            <!-- Finalizações do time ou ambos no jogo todo -->
-            <p>Finalizações:</p>
-            <div class="inputBox">
-                <label for="finamin">de:</label>
-                <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" value="<?php echo $finalizacao_min ?>" required>
-                <label for="finamax">á:</label>
-                <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="<?php echo $finalizacao_max ?>" required>
-            </div>
-            <!-- Adicionar posse de bola minima e maxima -->
-            <p>Posse de Bola:</p>
-            <div class="inputBox">
-                <label for="possemin">de:</label>
-                <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" value="<?php echo $posse_bola_min ?>" required>
-                <label for="possemax">á:</label>
-                <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" value="<?php echo $posse_bola_max ?>" required>
-            </div>
-            <br>
-            <input type="hidden" name="id" value="<?php echo $id ?>">
-            <input type="submit" name="update" id="update" value="Salvar">
-        </fieldset>
-    </form>
-</div>
 </body>
 </html>

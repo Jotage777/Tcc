@@ -13,6 +13,8 @@
     $jogos = "http://127.0.0.1:5000/greenzord/3/1/" . $resultado_id_user;
     $jogos_live = json_decode(file_get_contents($jogos));
 
+    $url = "http://127.0.0.1:5000/greenzord/3/2" . $resultado_id_user;
+
 //    var_dump($jogos_live);
 ?>
 
@@ -123,7 +125,7 @@
                 echo "<td>" . $bot[4] . "</td>"; //resultado_casa
                 echo "<td>" . $bot[5] . "</td>"; //resultado_fora
                 echo "<td>" . $bot[3] . "</td>"; //time_fora
-                echo "<td>" . $bot[8] . " x " . $bot[9] . "</td>"; //posse
+                echo "<td>" . $bot[8] . "% x " . $bot[9] . "%</td>"; //posse
                 echo "<td>" . $bot[10] . " x " . $bot[11] . "</td>"; //finalização
                 echo "<td>" . $bot[12] . "</td>"; //odd_casa
                 echo "<td>" . $bot[13] . "</td>"; //odd_fora
