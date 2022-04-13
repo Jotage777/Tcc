@@ -101,14 +101,11 @@ class Greenzord(Resource):
                         id = informacoes[i][0]
                         return id
         elif tipo == 3:
-            # falta configurar
 
-            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos")
+            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos_AoVivo")
+
             if tipo2 == 1:
-                for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        time = informacoes[i]
-                        return time
+               return informacoes
             elif tipo2 == 2:
                 for i in range(len(informacoes)):
                     if informacoes[i][1] == nome:
@@ -245,7 +242,7 @@ class Greenzord_times(Resource):
 
 class Greenzord_jogos(Resource):
     def get(jogos):
-               Web_scraping.WebScraping()
+                Web_scraping.WebScraping()
 
 
 class Greenzord_usuario(Resource):
