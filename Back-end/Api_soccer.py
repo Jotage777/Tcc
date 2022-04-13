@@ -107,10 +107,8 @@ class Greenzord(Resource):
             if tipo2 == 1:
                return informacoes
             elif tipo2 == 2:
-                for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        id = informacoes[i][0]
-                        return id
+                Web_scraping.WebScraping()
+                return 200
         elif tipo == 4:
 
             informacoes = Banco_de_dados.consultas("SELECT * FROM Usuario")
@@ -128,7 +126,6 @@ class Greenzord(Resource):
             bots = []
             index = 0
             informacoes = Banco_de_dados.consultas("SELECT * FROM Bots")
-            print(informacoes)
             if tipo2 == 1:
                 for i in range(len(informacoes)):
                     if informacoes[i][-1] == int(nome):
@@ -241,8 +238,8 @@ class Greenzord_times(Resource):
 
 
 class Greenzord_jogos(Resource):
-    def get(jogos):
-                Web_scraping.WebScraping()
+    def get(id):
+        Web_scraping.WebScraping()
 
 
 class Greenzord_usuario(Resource):
@@ -277,7 +274,7 @@ class Greenzord_apostas(Resource):
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
-api.add_resource(Greenzord_jogos, "/greenzord/jogos")
+api.add_resource(Greenzord_jogos, "/greenzord/jogos/<int:id>")
 api.add_resource(Greenzord_usuario, "/greenzord/usuario")
 api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
