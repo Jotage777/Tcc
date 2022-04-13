@@ -270,6 +270,11 @@ class Greenzord_apostas(Resource):
                                    float(request.json['odd_aposta']), request.json['id_bot'], request.json['id_jogo'])
         return 200
 
+class Greenzord_apagar_bots(Resource):
+    def post(id_bot):
+        Banco_de_dados.deletar_bot(id_bot)
+        return 200
+
 
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
@@ -278,6 +283,7 @@ api.add_resource(Greenzord_jogos, "/greenzord/jogos/<int:id>")
 api.add_resource(Greenzord_usuario, "/greenzord/usuario")
 api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
+api.add_resource(Greenzord_apagar_bots, "/greenzord/bots/deletar/<int:id>")
 
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
