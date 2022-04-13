@@ -262,7 +262,23 @@ class Greenzord_bots(Resource):
         id_bot = Banco_de_dados.consultar_bots(request.json['nome'])
         Banco_de_dados.add_relatorio(0, 0, 0.0, 0, id_bot)
         return 200
+class Greenzord_bots_editar(Resource):
+    def post(bots: bots_modelo,id):
+        Banco_de_dados.atulizar_bots(request.json['nome'],id,1)
+        Banco_de_dados.atulizar_bots(float(request.json['responsabilidade']),id,2)
+        Banco_de_dados.atulizar_bots(float(request.json['odd_minima']),id,3)
+        Banco_de_dados.atulizar_bots(float(request.json['odd_maxima']),id,4)
+        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_minimo']),id,5)
+        Banco_de_dados.atulizar_bots(int(request.json['tempo_jogo_maximo']),id,6)
+        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_min']),id,7)
+        Banco_de_dados.atulizar_bots(int(request.json['finalizacao_max']),id,8)
+        Banco_de_dados.atulizar_bots( int(request.json['posse_bola_min']),id,9)
+        Banco_de_dados.atulizar_bots(int(request.json['posse_bola_max']),id,10)
+        Banco_de_dados.atulizar_bots(bool(request.json['ativado']),id,11)
+        Banco_de_dados.atulizar_bots( request.json['apostar'],id,12)
+        Banco_de_dados.atulizar_bots(request.json['analisar'],id,13)
 
+        return 200
 
 class Greenzord_apostas(Resource):
     def post(aposta: apostas_modelo):
@@ -284,7 +300,7 @@ api.add_resource(Greenzord_usuario, "/greenzord/usuario")
 api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
 api.add_resource(Greenzord_apagar_bots, "/greenzord/bots/deletar/<int:id>")
-
+api.add_resource(Greenzord_bots_editar, "/greenzord/bots/editar/<int:id>")
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
     Banco_de_dados.criar_BD()

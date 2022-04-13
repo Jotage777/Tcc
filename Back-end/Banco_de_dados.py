@@ -246,8 +246,73 @@ def add_bots(nome: str, responsabilidade: float, odd_minima: float, odd_maxima: 
                 conn.commit()
             else:
                 conn.commit()
-
-
+def atulizar_bots(valor,id_bot,tipo):
+    with sqlite3.connect('Greenzord.db') as conn:
+        if tipo==1:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET nome = ? WHERE id_bot =?''', (valor,id_bot,))
+                conn.commit()
+        elif tipo==2:
+               with closing(conn.cursor()) as cursor:
+                    cursor.execute('PRAGMA foreign_keys = ON;')
+                    cursor.execute('''UPDATE Bots SET responsabilidade = ? WHERE id_bot =?''', (valor, id_bot,))
+                    conn.commit()
+        elif tipo==3:
+               with closing(conn.cursor()) as cursor:
+                    cursor.execute('PRAGMA foreign_keys = ON;')
+                    cursor.execute('''UPDATE Bots SET odd_minima = ? WHERE id_bot =?''', (valor, id_bot,))
+                    conn.commit()
+        elif tipo==4:
+               with closing(conn.cursor()) as cursor:
+                    cursor.execute('PRAGMA foreign_keys = ON;')
+                    cursor.execute('''UPDATE Bots SET odd_maxima = ? WHERE id_bot =?''', (valor, id_bot,))
+                    conn.commit()
+        elif tipo==5:
+               with closing(conn.cursor()) as cursor:
+                    cursor.execute('PRAGMA foreign_keys = ON;')
+                    cursor.execute('''UPDATE Bots SET tempo_jogo_minimo = ? WHERE id_bot =?''', (valor, id_bot,))
+                    conn.commit()
+        elif tipo==6:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET tempo_jogo_maximo  = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==7:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET finalizacao_min   = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==8:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET finalizacao_max = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo ==9:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET posse_bola_min = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==10:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET posse_bola_max = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==11:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET ativado = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==12:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET apostar = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
+        elif tipo==13:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Bots SET analisar = ? WHERE id_bot =?''', (valor, id_bot,))
+                conn.commit()
 def consultar_aposta(id_aposta) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
