@@ -13,7 +13,8 @@
     $jogos = "http://127.0.0.1:5000/greenzord/3/1/" . $resultado_id_user;
     $jogos_live = json_decode(file_get_contents($jogos));
 
-    $url = "http://127.0.0.1:5000/greenzord/3/2" . $resultado_id_user;
+    $url = "http://127.0.0.1:5000/greenzord/3/2/" . $resultado_id_user;
+//    $response = file_get_contents($url);
 
 //    var_dump($jogos_live);
 ?>
