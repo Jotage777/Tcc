@@ -27,7 +27,8 @@ import Web_scraping
 # Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '5')
 # Banco_de_dados.add_relatorio(0, 0, 0.0, 0, '6')
 
-Web_scraping.WebScraping()
+# Web_scraping.WebScraping()
+# Banco_de_dados.deletar_bot(2)
 
 # estatisticas=['h8dml01n', 'França F', 'Eslovénia F', '12.04.2022 16:10', 'EUROPA: Copa do Mundo de Futebol Feminino ', '0', '1', '0', '0', '0', '0', '1.03', '13.00', '36.00']
 # ('n3F6bzD0', 'U. Católica (Chi)', 'AMÉRICA DO SUL: Copa Libertadores ', 'Sporting Cristal (Per)', 1, 0, 46, '12.04.2022 19:15', 48, 52, 2, 0, 1.55, 6.0, 4.2, 8)
@@ -37,6 +38,6 @@ Web_scraping.WebScraping()
 #                                 int(estatisticas[11]), float(estatisticas[12]), float(estatisticas[13]),
 #                                 float(estatisticas[14]))
 
-# delete = "DELETE FROM Bots WHERE id_bot = 1"
+delete = "DELETE FROM Bots WHERE id_bot = 1"
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
-# Banco_de_dados.deletar(delete)
+Banco_de_dados.deletar(delete)
