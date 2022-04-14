@@ -26,7 +26,7 @@ def WebScraping():
                                                         estatisticas[3])
                     Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
                 else:
-                    print(estatisticas)
+
                     primeiro = True
                     acao = 'Select * FROM Jogos_AoVivo '
                     jogo = Banco_de_dados.consultas(acao)
@@ -64,7 +64,7 @@ def WebScraping():
                                                         float(estatisticas[14]), float(estatisticas[13]))
 
             except:
-                print("Odds não disponiveis")
+
                 estatisticas.append('0.00')
                 estatisticas.append('0.00')
                 estatisticas.append('0.00')
@@ -72,8 +72,8 @@ def WebScraping():
                     Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
                                                         estatisticas[3])
+                    Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
                 else:
-                    print(estatisticas)
                     primeiro = True
                     acao = 'Select * FROM Jogos_AoVivo '
                     jogo = Banco_de_dados.consultas(acao)
@@ -140,8 +140,6 @@ def WebScraping():
             estatisticas.append(tempo)
         else:
             tempo_2 = tempo[11:]
-            print(tempo_2)
-            print(len(tempo_2))
             if len(tempo_2) > 2:
                 tempo_3 = tempo_2[:2]
                 if tempo_3[0] == '0' or tempo_3[0] == '1' or tempo_3[0] == '2' or tempo_3[0] == '3' or tempo_3[0] == \
