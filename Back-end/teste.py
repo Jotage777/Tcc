@@ -38,6 +38,6 @@ import Web_scraping
 #                                 int(estatisticas[11]), float(estatisticas[12]), float(estatisticas[13]),
 #                                 float(estatisticas[14]))
 
-delete = "DELETE FROM Bots WHERE id_bot = 1"
+
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
-Banco_de_dados.deletar(delete)
+Banco_de_dados.deletar_bot(5)

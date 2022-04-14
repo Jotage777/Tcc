@@ -438,7 +438,6 @@ def deletar(acao):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             try:
-                cursor.execute('PRAGMA foreign_keys = ON;')
                 cursor.execute(acao)
                 conn.commit()
             except:
@@ -447,13 +446,11 @@ def deletar(acao):
                 print("Registro excluido")
 
 
-def deletar_bot(id):
+def deletar_bot(id:int):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             try:
-                cursor.execute('PRAGMA foreign_keys = ON;')
-                print(id)
-                cursor.execute('''DELETE FROM Bots WHERE id_bot=?'''(id, ))
+                cursor.execute('''DELETE FROM Bots WHERE id_bot = ?''',(id,))
                 conn.commit()
             except:
                 print("erro")
