@@ -24,6 +24,7 @@ def WebScraping():
                     Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
                                                         estatisticas[3])
+                    Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
                 else:
                     print(estatisticas)
                     primeiro = True

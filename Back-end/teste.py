@@ -40,4 +40,4 @@ import Web_scraping
 
 
 # delete = "DELETE FROM Usuario WHERE id_usuario = 1"
-Banco_de_dados.deletar_bot(5)
+Banco_de_dados.deletar_jogoAoVivo('xn5lxz59')

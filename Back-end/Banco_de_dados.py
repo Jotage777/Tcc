@@ -456,3 +456,14 @@ def deletar_bot(id:int):
                 print("erro")
             finally:
                 print("Registro excluido")
+
+def deletar_jogoAoVivo(id):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            try:
+                cursor.execute('''DELETE FROM Jogos_AoVivo WHERE id_jogo = ?''',(id,))
+                conn.commit()
+            except:
+                print("erro")
+            finally:
+                print("Registro excluido")
