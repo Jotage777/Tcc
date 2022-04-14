@@ -202,7 +202,19 @@ def consultar_usuario(username: str) -> int:
             else:
                 return id
                 conn.commit()
-
+def consultar_usuario_saldo(id: int) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Usuario WHERE id_usuario = ?''', (id,))
+            result = cursor.fetchall()
+            saldo = result[0][5]
+            if saldo is None:
+                print("Não existe esse usuario na base de dados")
+                conn.commit()
+            else:
+                return saldo
+                conn.commit()
 
 def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
