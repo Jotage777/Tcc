@@ -1,13 +1,5 @@
 <?php
-//    session_start();
-//    if(!isset($_SESSION['username']) == true && (!isset($_SESSION['password']) == true)){
-//        unset($_SESSION['username']);
-//        unset($_SESSION['password']);
-//        header('Location: login.php');
-//    }
-//    else{
-//        header('Location: index.php');
-//    }
+    $login = isset($_GET['entrar']) ? $_GET['entrar'] : '';
 ?>
 
 <!doctype html>
@@ -93,8 +85,13 @@
         <h1>Login do Greenzord</h1>
         <br>
         <p>Informe seu usuário e senha</p>
+        <?php if($login == 'erro') { ?>
+            <div id="error">
+                <span class="text text-danger"> Usuário ou senha inválida </span>
+            </div>
+        <?php } ?>
         <br>
-        <form action="testLogin.php" method="POST">
+        <form id="form" action="testLogin.php" method="POST">
             <input type="text"  placeholder="Digite seu Usuário" name="username" /></label>
             <br><br>
             <input type="password"  placeholder="Digite sua Senha" name="password" /></label>
