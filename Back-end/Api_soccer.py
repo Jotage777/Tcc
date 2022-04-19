@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_restful import Resource, Api, abort, reqparse
 import Banco_de_dados
 import Web_scraping
+import Apostar
 from pydantic import BaseModel
 
 app = Flask(__name__)
@@ -314,6 +315,10 @@ class Greenzord_Login_Cadastro(Resource):
                                    float(request.json['saldo']), request.json['senha'])
         return 200
 
+class Greenzord_realizar_apostas(Resource):
+    def get(self):
+        Apostar.analise()
+        return 200
 
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
@@ -325,7 +330,7 @@ api.add_resource(Greenzord_apostas, "/greenzord/apostas")
 api.add_resource(Greenzord_apagar_bots, "/greenzord/bots/deletar/<int:id>")
 api.add_resource(Greenzord_bots_editar, "/greenzord/bots/editar/<int:id>")
 api.add_resource(Greenzord_Login_Cadastro, "/greenzord/login_cadastro")
-
+api.add_resource(Greenzord_realizar_apostas, "/greenzord/apostar")
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
     Banco_de_dados.criar_BD()
