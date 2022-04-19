@@ -57,7 +57,7 @@ def criar_BD() -> None:
                     email VARCHAR (45) NOT NULL ,
                     data_Nascimento DATE NOT NULL,
                     saldo FLOAT NOT NULL,
-                    senha VARCHAR (20) NOT NULL, 
+                    senha VARCHAR (20) NOT NULL
                     )''')
             cursor.execute('''
                 CREATE TABLE Bots(
@@ -203,7 +203,9 @@ def consultar_usuario(username: str) -> int:
             else:
                 return id
                 conn.commit()
-def consultar_login(username: str,senha:str) -> int:
+
+
+def consultar_login(username: str, senha: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -215,6 +217,8 @@ def consultar_login(username: str,senha:str) -> int:
             else:
                 return False
                 conn.commit()
+
+
 def consultar_usuario_saldo(id: int) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
@@ -229,7 +233,8 @@ def consultar_usuario_saldo(id: int) -> int:
                 return saldo
                 conn.commit()
 
-def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float,senha: str) -> int:
+
+def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float, senha: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -459,22 +464,23 @@ def deletar(acao):
                 print("Registro excluido")
 
 
-def deletar_bot(id:int):
+def deletar_bot(id: int):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             try:
-                cursor.execute('''DELETE FROM Bots WHERE id_bot = ?''',(id,))
+                cursor.execute('''DELETE FROM Bots WHERE id_bot = ?''', (id,))
                 conn.commit()
             except:
                 print("erro")
             finally:
                 print("Registro excluido")
 
+
 def deletar_jogoAoVivo(id):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             try:
-                cursor.execute('''DELETE FROM Jogos_AoVivo WHERE id_jogo = ?''',(id,))
+                cursor.execute('''DELETE FROM Jogos_AoVivo WHERE id_jogo = ?''', (id,))
                 conn.commit()
             except:
                 print("erro")

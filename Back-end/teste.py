@@ -1,11 +1,11 @@
 import Banco_de_dados
 import Web_scraping
-
+#
 # Banco_de_dados.add_usuario('Gabriel', 'Joao Gabriel de Oliveira Ponciano', 'gabrieloliveira_pb@hotmail.com',
-#                            '24/05/1999', '200.00')
+#                            '24/05/1999', '200.00', 'gabriel')
 # Banco_de_dados.add_usuario('Messias', 'Joao Messias da Silva Medeiros', 'joaomessias00@hotmail.com', '27/05/1999',
-#                            '500.00')
-# Banco_de_dados.add_usuario('Igor', 'Igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00')
+#                            '500.00', 'messias123')
+# Banco_de_dados.add_usuario('Igor', 'Igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00', '1234')
 #
 # Banco_de_dados.add_bots('bot1g', '1', '1.2', '2.0', '0', '50', '5', '99', '55', '99', '1', 'favapo', 'favesta',
 #                         'Gabriel')
@@ -39,6 +39,6 @@ import Web_scraping
 #                                 float(estatisticas[14]))
 
 
-delete = "DELETE FROM Jogos_AoVivo "
-#Banco_de_dados.deletar_jogoAoVivo('xn5lxz59')
-Banco_de_dados.deletar(delete)
+# delete = "DELETE FROM Jogos_AoVivo"
+# Banco_de_dados.deletar_jogoAoVivo('xn5lxz59')
+# Banco_de_dados.deletar(delete)

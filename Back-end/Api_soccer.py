@@ -18,6 +18,7 @@ class campeonato_modelo(BaseModel):
 class times_modelo(BaseModel):
     nome: str
 
+
 class greenzord_login(BaseModel):
     username: str
     senha: str
@@ -299,14 +300,18 @@ class Greenzord_apagar_bots(Resource):
         print(id)
         Banco_de_dados.deletar_bot(id)
         return 200
+
+
 class Greenzord_Login_Cadastro(Resource):
     def get(login: greenzord_login):
-        validar = Banco_de_dados.consultar_login(request.json['username'],request.json['senha'])
+        validar = Banco_de_dados.consultar_login(request.json['username'], request.json['password'])
 
         return validar
+
     def post(usuario: usuario_modelo):
-        Banco_de_dados.add_usuario(request.json['username'],request.json['nome'],request.json['email'],request.json['data_nascimento'],
-                                   float(request.json['saldo']),request.json['senha'])
+        Banco_de_dados.add_usuario(request.json['username'], request.json['nome'], request.json['email'],
+                                   request.json['data_nascimento'],
+                                   float(request.json['saldo']), request.json['senha'])
         return 200
 
 
@@ -319,11 +324,10 @@ api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
 api.add_resource(Greenzord_apagar_bots, "/greenzord/bots/deletar/<int:id>")
 api.add_resource(Greenzord_bots_editar, "/greenzord/bots/editar/<int:id>")
-api.add_resource(Greenzord_Login_Cadastro,"/greenzord/login_cadastro")
+api.add_resource(Greenzord_Login_Cadastro, "/greenzord/login_cadastro")
+
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
     Banco_de_dados.criar_BD()
 if __name__ == "__main__":
     app.run(debug=True)
-
-
