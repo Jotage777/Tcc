@@ -26,7 +26,8 @@ def analise():
                     elif bot[13] == 'foraesta': #analisar o time de fora
                         if bot[8] >= jogo[11] >= bot[7] and bot[10] >= jogo[9] >= bot[9]: #1* analisar finalizações fora 2* analisar posse fora
                             var = 1
-                if var == 1:
+                verificar = Banco_de_dados.verificar_apostas(jogo[0],bot[0])
+                if var == 1 and verificar == False:
                     if bot[12] == 'favapo': #apostar no favorito
                         if jogo[12] <= jogo[13]: #casa é o favorito
                             if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa

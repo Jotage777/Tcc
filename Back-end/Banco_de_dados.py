@@ -366,6 +366,16 @@ def consultar_aposta(id_aposta) -> int:
                 conn.commit()
             else:
                 conn.commit()
+def verificar_apostas(id_jogo, id_bot) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Aposta WHERE fk_id_bot = ?''', (id_bot,))
+            result = cursor.fetchone()
+            for i in range(len(result)):
+                if result[i][4] == id_bot and result[i][5] == id_jogo:
+                    return True
+            return False
 
 
 def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, id_bot: str, id_jogo: str) -> int:
