@@ -39,5 +39,6 @@ import Web_scraping
 #                                 float(estatisticas[14]))
 
 
-# delete = "DELETE FROM Usuario WHERE id_usuario = 1"
-Banco_de_dados.deletar_jogoAoVivo('xn5lxz59')
+delete = "DELETE FROM Jogos_AoVivo "
+#Banco_de_dados.deletar_jogoAoVivo('xn5lxz59')
+Banco_de_dados.deletar(delete)

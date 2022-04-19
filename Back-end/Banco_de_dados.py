@@ -56,7 +56,8 @@ def criar_BD() -> None:
                     nome VARCHAR (45) NOT NULL ,
                     email VARCHAR (45) NOT NULL ,
                     data_Nascimento DATE NOT NULL,
-                    saldo FLOAT NOT NULL
+                    saldo FLOAT NOT NULL,
+                    senha VARCHAR (20) NOT NULL, 
                     )''')
             cursor.execute('''
                 CREATE TABLE Bots(
@@ -202,6 +203,18 @@ def consultar_usuario(username: str) -> int:
             else:
                 return id
                 conn.commit()
+def consultar_login(username: str,senha:str) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Usuario WHERE username = ?''', (username,))
+            result = cursor.fetchall()
+            if result[0][1] == username and result[0][6] == senha:
+                return True
+                conn.commit()
+            else:
+                return False
+                conn.commit()
 def consultar_usuario_saldo(id: int) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
@@ -216,18 +229,18 @@ def consultar_usuario_saldo(id: int) -> int:
                 return saldo
                 conn.commit()
 
-def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float) -> int:
+def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float,senha: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
             cursor.execute('''SELECT username FROM Usuario WHERE username = ?''', (username,))
             result = cursor.fetchone()
             if result is None:
-                cursor.execute('''INSERT INTO Usuario (username , nome , email , data_Nascimento , saldo)
-                VALUES(?,?,?,?,?)''', (username, nome, email, data_Nascimento, saldo))
+                cursor.execute('''INSERT INTO Usuario (username , nome , email , data_Nascimento , saldo,senha)
+                VALUES(?,?,?,?,?,?)''', (username, nome, email, data_Nascimento, saldo, senha))
                 conn.commit()
             else:
-                return id
+
                 conn.commit()
 
 
