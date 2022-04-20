@@ -18,7 +18,7 @@ def analise():
                     elif bot[13] == 'zebraesta': #analisar a zebra
                         if jogo[12] >= jogo[13] and bot[8] >= jogo[10] >= bot[7] and bot[10] >= jogo[8] >= bot[9]: #1* casa zebra 2* analisar finalizações casa 3* analisar posse casa
                             var = 1
-                        if jogo[13] > jogo[12] and bot[8] >= jogo[11] >= bot[7] and bot[10] >= jogo[9] >= bot[9]: #1* fora zebra 2* analisar finalizações fora 3* analisar posse fora
+                        elif jogo[13] > jogo[12] and bot[8] >= jogo[11] >= bot[7] and bot[10] >= jogo[9] >= bot[9]: #1* fora zebra 2* analisar finalizações fora 3* analisar posse fora
                             var = 1
                     elif bot[13] == 'casaesta': #analisar o time da casa
                         if bot[8] >= jogo[10] >= bot[7] and bot[10] >= jogo[8] >= bot[9]: #1* analisar finalizações casa 2* analisar posse casa
@@ -26,25 +26,25 @@ def analise():
                     elif bot[13] == 'foraesta': #analisar o time de fora
                         if bot[8] >= jogo[11] >= bot[7] and bot[10] >= jogo[9] >= bot[9]: #1* analisar finalizações fora 2* analisar posse fora
                             var = 1
-                verificar = Banco_de_dados.verificar_apostas(jogo[0],bot[0])
+                verificar = Banco_de_dados.verificar_apostas(jogo[0], bot[0])
                 if var == 1 and verificar == False:
                     if bot[12] == 'favapo': #apostar no favorito
                         if jogo[12] <= jogo[13]: #casa é o favorito
                             if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                                print("Apostado em favorito(casa)")
+                                print("Apostado em favorito(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else: #fora é o favorito
                             if bot[4] >= jogo[13] >= bot[3]: #analizar odd fora
-                                print("Apostado em favorito(fora)")
+                                print("Apostado em favorito(fora) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'zebraapo': #apostar na zebra
                         if jogo[12] > jogo[13]: #casa é a zebra
                             if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                                print("Apostado em zebra(casa)")
+                                print("Apostado em zebra(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else: #fora é a zebra
                             if bot[4] >= jogo[13] >= bot[3]: #analizar odd fora
-                                print("Apostado em zebra(fora)")
+                                print("Apostado em zebra(fora) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'casaapo': #apostar no time da casa
                         if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                            print("Apostado em casa")
+                            print("Apostado em casa id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'foraapo': #apostar no time fora
                         if bot[4] >= jogo[13] >= bot[3]:  #analizar odd fora
-                            print("Apostado em fora")
+                            print("Apostado em fora id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
