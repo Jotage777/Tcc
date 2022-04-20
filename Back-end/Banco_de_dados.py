@@ -84,8 +84,10 @@ def criar_BD() -> None:
                     mercado VARCHAR(45) NOT NULL,
                     valor_apostado FLOAT NOT NULL,
                     odd_aposta FLOAT NOT NULL ,
+                    situacao VARCHAR (15) NOT NULL ,
                     fk_id_bot INTEGER NOT NULL,
                     fk_id_jogos INTEGER NOT NULL ,
+                    casa_fora INTEGER NOT NULL ,
                     FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot),
                     FOREIGN KEY(fk_id_jogos) REFERENCES Jogos(id_jogo)
                     )''')
@@ -233,6 +235,40 @@ def consultar_usuario_saldo(id: int) -> int:
                 return saldo
                 conn.commit()
 
+def atulizar_usuario(valor, id_usuario, tipo):
+    with sqlite3.connect('Greenzord.db') as conn:
+        if tipo == 1:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET username = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+        elif tipo == 2:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET nome = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+        elif tipo == 3:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET email = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+        elif tipo == 4:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET data_Nascimento = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+        elif tipo == 5:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET saldo = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+        elif tipo == 6:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Usuario SET senha = ? WHERE id_usuario =?''', (valor, id_usuario,))
+                conn.commit()
+
+
 
 def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, saldo: float, senha: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
@@ -263,6 +299,19 @@ def consultar_bots(nome: str) -> int:
                 return id_bot
                 conn.commit()
 
+def consultar_usuario_bots(id_bot) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Bots WHERE id_bot = ?''', (id_bot,))
+            result = cursor.fetchone()
+            id_usuario = result[14]
+            if id_usuario is None:
+                print("Não existe esse bot na base de dados")
+                conn.commit()
+            else:
+                return id_usuario
+                conn.commit()
 
 def add_bots(nome: str, responsabilidade: float, odd_minima: float, odd_maxima: float, tempo_jogo_minimo: int,
              tempo_de_jogo_maximo: int, finalizacao_min: int, finalizacao_max: int, posse_bola_min: int,
@@ -374,25 +423,30 @@ def verificar_apostas(id_jogo, id_bot) -> int:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
                 cursor.execute('''SELECT * FROM Apostas WHERE fk_id_bot = ?''', (id_bot,))
-                result = cursor.fetchone()
+                result = cursor.fetchall()
                 for i in range(len(result)):
-                    if result[i][4] == id_bot and result[i][5] == id_jogo:
+                    if result[i][5] == id_bot and result[i][6] == id_jogo:
                         return True
                 return False
     except:
         return False
 
 
-def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, id_bot: str, id_jogo: str) -> int:
+def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, situacao: str, id_bot: str, id_jogo: str,casa_fora:int) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            fk_id_bot = id_bot
+            fk_id_jogos = id_jogo
+            cursor.execute('''INSERT INTO Apostas (mercado, valor_apostado, odd_aposta,situacao, fk_id_bot,fk_id_jogos,casa_fora)
+            VALUES(?,?,?,?,?,?,?)''', (mercado, valor_apostado, odd_aposta,situacao, fk_id_bot, fk_id_jogos,casa_fora))
+            conn.commit()
+
+def atulizar_aposta(valor, id_aposta):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            fk_id_bot = consultar_bots(id_bot)
-            fk_id_jogos = consultar_jogos(id_jogo)
-            cursor.execute('''INSERT INTO Apostas (mercado, valor_apostado, odd_aposta, fk_id_bot,fk_id_jogo)
-            VALUES(?,?,?,?,?)''', (mercado, valor_apostado, odd_aposta, fk_id_bot, fk_id_jogos))
+            cursor.execute('''UPDATE Apostas  SET situacao = ? WHERE id_apostas =?''', (valor, id_aposta,))
             conn.commit()
-
 
 def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, fk_id_bot: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
