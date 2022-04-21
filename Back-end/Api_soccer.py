@@ -129,10 +129,8 @@ class Greenzord(Resource):
                         id = informacoes[i][0]
                         return id
             elif tipo==3:
-                for i in range(len(informacoes)):
-                    if informacoes[i][1] == nome:
-                        saldo = informacoes[i][5]
-                        return saldo
+                saldo= Banco_de_dados.consultar_usuario_saldo(nome)
+                return saldo
 
         elif tipo == 5:
             bots = []
