@@ -94,7 +94,7 @@
             echo "<a>$logado</a>"
             ?>
             <?php
-            echo "<a>$saldo_usuario</a>"
+            echo "<a>R$ $saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>

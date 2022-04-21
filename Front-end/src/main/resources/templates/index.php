@@ -16,7 +16,7 @@
     $apostas = "http://127.0.0.1:5000/greenzord/apostas/bot/" . $resultado_id_user . "/2";
     $apostas_feitas = json_decode(file_get_contents($apostas));
 
-    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id_user;
     $saldo_usuario = json_decode(file_get_contents($saldo));
 
 //    var_dump($jogos_live);
@@ -98,7 +98,7 @@
                 echo "<a>$logado</a>"
             ?>
             <?php
-                echo "<a>$saldo_usuario</a>"
+                echo "<a>R$ $saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>
