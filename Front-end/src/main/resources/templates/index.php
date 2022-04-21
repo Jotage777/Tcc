@@ -16,8 +16,8 @@
     $apostas = "http://127.0.0.1:5000/greenzord/apostas/bot/" . $resultado_id_user . "/2";
     $apostas_feitas = json_decode(file_get_contents($apostas));
 
-//    $url = "http://127.0.0.1:5000/greenzord/3/2/" . $resultado_id_user;
-//    $response = file_get_contents($url);
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo_usuario = json_decode(file_get_contents($saldo));
 
 //    var_dump($jogos_live);
 ?>
@@ -98,7 +98,7 @@
                 echo "<a>$logado</a>"
             ?>
             <?php
-                echo "<a>Saldo</a>"
+                echo "<a>$saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>
@@ -111,7 +111,7 @@
             <table class="table table-bg text-white">
                 <thead>
                 <tr>
-                    <th scope="col">Data</th>
+                    <th scope="col">Tempo</th>
                     <th scope="col">Campeonato</th>
                     <th scope="col">Casa</th>
                     <th scope="col">Gols</th>
@@ -148,34 +148,34 @@
     </div>
     <div>
         <div class="content" id="content">
-            <h1>Lista de Apostas</h1>
+            <h1>Lista de Apostas em Andamento</h1>
         </div>
         <div class="m-5">
             <table class="table table-bg text-white">
                 <thead>
                 <tr>
-                    <th scope="col">Mercado</th>
-                    <th scope="col">Valor Apo</th>
+                    <th scope="col">Nome do Bot</th>
+                    <th scope="col">1</th>
+                    <th scope="col">X</th>
+                    <th scope="col">2</th>
+                    <th scope="col">Aposta</th>
                     <th scope="col">Odd</th>
-                    <th scope="col">Situação</th>
-                    <th scope="col">bot</th>
-                    <th scope="col">jogo</th>
-                    <th scope="col">usuario</th>
-                    <th scope="col">casa_fora</th>
+                    <th scope="col">Possivel Retorno</th>
+                    <th scope="col">Time Apostado</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                 foreach ($apostas_feitas as $aposta){
                     echo "<tr>";
-                    echo "<td>" . $aposta[1] . "</td>"; //Mercado
-                    echo "<td>" . $aposta[2] . "</td>"; //valor apostado
-                    echo "<td>" . $aposta[3] . "</td>"; //odd
-                    echo "<td>" . $aposta[4] . "</td>"; //situaão
-                    echo "<td>" . $aposta[5] . "</td>"; //id bot
-                    echo "<td>" . $aposta[6] . "</td>"; //id jogo
-                    echo "<td>" . $aposta[8] . "</td>"; //id usuario
-                    echo "<td>" . $aposta[7] . "</td>"; //casa_fora
+                    echo "<td>" . $aposta[13] . "</td>"; //Nome
+                    echo "<td>" . $aposta[6] . "</td>"; //Casa
+                    echo "<td>X</td>";
+                    echo "<td>" . $aposta[7] . "</td>"; //Fora
+                    echo "<td>" . $aposta[2] . "</td>"; //Aposta
+                    echo "<td>" . $aposta[3] . "</td>"; //ODD
+                    echo "<td>" . $aposta[4] . "</td>"; //Retorno
+                    echo "<td>" . $aposta[11] . "</td>"; //Time Apostado
                     echo "<tr>";
                 }
                 ?>
