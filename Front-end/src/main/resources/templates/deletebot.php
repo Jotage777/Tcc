@@ -19,6 +19,7 @@
         if($bot_edit != 0 and $bot_edit[14] == $resultado_id){
             $urldel = "http://127.0.0.1:5000/greenzord/bots/deletar/".$id;
             $response = file_get_contents($urldel);
+            header('Location: lista_bots.php');
         }
         else{
             header('Location: lista_bots.php');

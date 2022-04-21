@@ -201,9 +201,9 @@
                 <p>Odds:</p>
                 <div class="inputBox">
                     <label for="oddmin">de:</label>
-                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="0.0" min="0" max="999" required>
+                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="0.0" min="0" max="999.99" required>
                     <label for="oddmax">á:</label>
-                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="999.9" min="0" max="999" required>
+                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="999.99" min="0" max="999.99" required>
                 </div>
                 <br>
                 <!-- Times a serem apostados -->
