@@ -120,30 +120,29 @@
             <thead>
             <tr>
                 <th scope="col">Data</th>
-                <th scope="col">Campeonato</th>
                 <th scope="col">Casa</th>
                 <th scope="col">X</th>
                 <th scope="col">Fora</th>
-                <th scope="col">Aposta</th>
+                <th scope="col">Mercado</th>
                 <th scope="col">Odd</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Resultado</th>
+                <th scope="col">Aposta</th>
                 <th scope="col">Retorno</th>
+                <th scope="col">Situação</th>
             </tr>
             </thead>
             <tbody>
             <?php
             foreach ($apostas_feitas as $aposta){
                 echo "<tr>";
-                echo "<td>" . $aposta[1] . "</td>";
-                echo "<td>" . $aposta[2] . "</td>";
-                echo "<td>" . $aposta[3] . "</td>";
+                echo "<td>" . $aposta[8] . "</td>";
+                echo "<td>" . $aposta[6] . "</td>";
                 echo "<td>x</td>";
+                echo "<td>" . $aposta[7] . "</td>";
+                echo "<td>" . $aposta[1] . "</td>";
+                echo "<td>" . $aposta[3] . "</td>";
+                echo "<td>" . $aposta[2] . "</td>";
                 echo "<td>" . $aposta[4] . "</td>";
                 echo "<td>" . $aposta[5] . "</td>";
-                echo "<td>" . $aposta[6] . "</td>";
-                echo "<td>" . $aposta[7] . "</td>";
-                echo "<td>" . $aposta[8] . "</td>";
                 echo "<tr>";
             }
             ?>
