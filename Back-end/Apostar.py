@@ -98,6 +98,4 @@ def analise():
                             Banco_de_dados.add_apostas(bot[12],float(bot[2]),float(jogo[12]),'aberto',bot[0],jogo[0],2,bot[14])
                             saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                             novo_saldo = saldo - float(bot[2])
-                            Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
-                            print("Apostado em fora id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
-    concluir_aposta()
+... (3 linhas)
