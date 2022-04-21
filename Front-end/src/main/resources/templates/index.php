@@ -13,7 +13,7 @@
     $jogos = "http://127.0.0.1:5000/greenzord/3/1/" . $resultado_id_user;
     $jogos_live = json_decode(file_get_contents($jogos));
 
-    $apostas = "http://127.0.0.1:5000/greenzord/apostas/usuario/" . $resultado_id_user;
+    $apostas = "http://127.0.0.1:5000/greenzord/apostas/bot/" . $resultado_id_user . "/2";
     $apostas_feitas = json_decode(file_get_contents($apostas));
 
 //    $url = "http://127.0.0.1:5000/greenzord/3/2/" . $resultado_id_user;
@@ -137,8 +137,8 @@
                     echo "<td>" . $bot[8] . "% x " . $bot[9] . "%</td>"; //posse
                     echo "<td>" . $bot[10] . " x " . $bot[11] . "</td>"; //finalização
                     echo "<td>" . $bot[12] . "</td>"; //odd_casa
-                    echo "<td>" . $bot[13] . "</td>"; //odd_fora
-                    echo "<td>" . $bot[14] . "</td>"; //odd_empate
+                    echo "<td>" . $bot[14] . "</td>"; //odd_fora
+                    echo "<td>" . $bot[13] . "</td>"; //odd_empate
                     echo "<tr>";
                 }
                 ?>
@@ -174,8 +174,8 @@
                     echo "<td>" . $aposta[4] . "</td>"; //situaão
                     echo "<td>" . $aposta[5] . "</td>"; //id bot
                     echo "<td>" . $aposta[6] . "</td>"; //id jogo
-                    echo "<td>" . $aposta[7] . "</td>"; //id usuario
-                    echo "<td>" . $aposta[8] . "</td>"; //casa_fora
+                    echo "<td>" . $aposta[8] . "</td>"; //id usuario
+                    echo "<td>" . $aposta[7] . "</td>"; //casa_fora
                     echo "<tr>";
                 }
                 ?>
