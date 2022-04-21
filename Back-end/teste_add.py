@@ -1,48 +1,84 @@
 import Banco_de_dados
 
-Banco_de_dados.add_usuario('Gabriel', 'Joao Gabriel de Oliveira Ponciano', 'gabrieloliveira_pb@hotmail.com',
-                           '24/05/1999', '200.00', 'gabriel')
-Banco_de_dados.add_usuario('Messias', 'Joao Messias da Silva Medeiros', 'joaomessias00@hotmail.com', '27/05/1999',
-                           '500.00', 'messias123')
+# Usuários
+Banco_de_dados.add_usuario('Gabriel', 'Joao Gabriel', 'gabrieloliveira_pb@hotmail.com', '24/05/1999', '500.00',
+                           'gabriel')
+Banco_de_dados.add_usuario('Messias', 'Joao Messias', 'joaomessias00@hotmail.com', '27/05/1999', '250.00', 'messias123')
 Banco_de_dados.add_usuario('Igor', 'Igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00', '1234')
+Banco_de_dados.add_usuario('Lucas', 'Lucas', 'lucas@gmail.com', '15/02/1998', '500.00', 'luc321')
 
-Banco_de_dados.add_bots('bot1g', '1', '1.2', '2.0', '0', '50', '5', '99', '55', '99', '1', 'favapo', 'favesta',
+# Bots
+Banco_de_dados.add_bots('Super Favorito', '5', '1.0', '2.3', '0', '10', '2', '99', '55', '99', '1', 'favapo', 'favesta',
                         'Gabriel')
-Banco_de_dados.add_bots('bot2m', '5', '1.8', '2.9', '15', '60', '0', '2', '0', '40', '1', 'favapo', 'zebraesta',
+Banco_de_dados.add_bots('Zebra Bem', '5', '2.1', '4.0', '5', '15', '4', '99', '53', '99', '1', 'zebraapo', 'zebraesta',
                         'Messias')
-Banco_de_dados.add_bots('bot3g', '2', '2.2', '5.0', '15', '30', '1', '99', '60', '99', '1', 'foraapo', 'foraesta',
-                        'Gabriel')
-Banco_de_dados.add_bots('bot4m', '10', '2.8', '3.9', '10', '50', '0', '1', '50', '70', '1', 'favapo', 'zebraesta',
+Banco_de_dados.add_bots('Favorito Amassando', '10', '1.8', '5.0', '45', '70', '15', '99', '65', '99', '1', 'favapo',
+                        'favapo', 'Gabriel')
+Banco_de_dados.add_bots('Zebra Mal', '10', '1.4', '2.7', '35', '55', '0', '2', '0', '40', '1', 'favapo', 'zebraesta',
                         'Messias')
-Banco_de_dados.add_bots('bot5m', '2.5', '1.2', '2.5', '5', '40', '0', '10', '55', '99', '1', 'favapo', 'favesta',
-                        'Messias')
-Banco_de_dados.add_bots('bot6i', '5', '1.1', '2.6', '0', '25', '5', '99', '0', '35', '1', 'casaapo', 'foraesta',
+Banco_de_dados.add_bots('Casa com Muita Chance', '10', '1.0', '2.5', '0', '45', '10', '99', '60', '99', '1', 'casaapo',
+                        'casaesta', 'Messias')
+Banco_de_dados.add_bots('Fora Mal', '7.5', '1.7', '2.5', '15', '30', '0', '0', '0', '37', '1', 'casaapo', 'foraesta',
                         'Igor')
-Banco_de_dados.add_bots('bot7i', '2.5', '2.1', '5.0', '0', '95', '0', '10', '55', '99', '1', 'zebraapo', 'casaesta',
+Banco_de_dados.add_bots('Fora Bem', '2.5', '1.8', '5.0', '20', '45', '8', '99', '58', '99', '1', 'foraapo', 'foraesta',
                         'Igor')
-Banco_de_dados.add_bots('bot8g', '30', '2.1', '3.6', '45', '95', '0', '5', '0', '65', '1', 'zebraapo', 'foraesta',
+Banco_de_dados.add_bots('Favorito Mal', '5', '2.5', '4.5', '55', '80', '0', '5', '0', '50', '1', 'zebraapo', 'favesta',
                         'Gabriel')
-Banco_de_dados.add_bots('bot9m', '50', '1.1', '1.6', '75', '95', '0', '2', '0', '40', '1', 'casaapo', 'zebraesta',
+Banco_de_dados.add_bots('Casa Mal', '7.5', '2.5', '4.0', '35', '80', '0', '3', '0', '40', '1', 'foraapo', 'casaesta',
                         'Messias')
+Banco_de_dados.add_bots('Zebra Melhor', '2.5', '3.0', '6.0', '60', '85', '17', '99', '60', '99', '1', 'zebraapo',
+                        'zebraesta', 'Igor')
 
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '1')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '2')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '3')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '4')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '5')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '6')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '7')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '8')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0,0, '9')
+# Relatorio dos Bots
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '2')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '3')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '4')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '5')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '6')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '7')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '8')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10')
 
-Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'nfoasnfw', 'Flamengo', 3,  'São Paulo', 1, 45, '19.04.2022 19:30', 60, 40, 7, 2, 1.8, 2.8, 4.0)
-Banco_de_dados.add_jogos_aovivo('BRASIL: Copa do Brasil ', 'okpasjg', 'Flamengo', 7, 'Campinense', 1, 30, '19.04.2022 19:30', 80, 20, 16, 1, 1.05, 8.0, 17.0)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'asf24fs', 'Brasil', 2, 'Alemanha', 0, 40, '19.04.2022 19:30', 40, 60, 2, 1, 2.6, 3.0, 2.4)
-Banco_de_dados.add_jogos_aovivo('EUROPA: Liga dos Campeões ', 'oihfd4f', 'Barcelona', 0, 'Bayern', 2, 20, '19.04.2022 19:30', 48, 52, 2, 3, 2.1, 2.8, 3.1)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'agadgadg', 'Brasil', 2, 'Alemanha', 0, 40, '19.04.2022 19:30', 40, 60, 2, 1, 2.6, 3.0, 2.4)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'gag6433g', 'Japão', 2, 'Alemanha', 2, 85, '19.04.2022 19:30', 55, 45, 3, 10, 4.5, 1.5, 1.9)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'pjp431oj', 'Espanha', 0, 'Gales', 0, 60, '19.04.2022 19:30', 40, 60, 7, 4, 2.0, 1.9, 3.4)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Campeonato Brasileiro ', 'dafag4g35', 'Flamengo', 0, 'Palmeiras', 0, 45, '20.04.2022 20:00', 52, 48, 9, 7, 2.5, 1.9, 4.9)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasl ', 'pou32894', 'Juventude', 2, 'São Paulo', 0, 35, '20.04.2022 19:30', 38, 62, 5, 4, 3.2, 2.8, 2.1)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasil ', 'poj4923o', 'Atletico-MG', 3, 'Brasiliense', 0, 40, '20.04.2022 19:30', 82, 18, 14, 0, 1.1, 8.0, 17.0)
-Banco_de_dados.add_jogos_encerrados('BRASIL: Campeonato Brasileiro ', 'nfoasnfw', 'Flamengo', 3, 'São Paulo', 1, '19.04.2022 19:30')
+# Jogos Ao Vivo
+Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'nion4234', 'Atlético-MG', 0, 'Cuiabá', 0, 5,
+                                '24.04.2022 19:30', 70, 30, 2, 0, 1.3, 3.9, 8.0)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'plewmn45', 'Flamengo', 1, 'Avaí', 0, 9,
+                                '17.04.2022 19:30', 65, 35, 3, 0, 1.15, 5.5, 12.0)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'qdwno453', 'Corinthians', 0, 'Vasco', 0, 14,
+                                '17.04.2022 19:30', 45, 55, 2, 4, 2.1, 2.8, 3.6)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'nfoasnfw', 'Flamengo', 3, 'São Paulo', 1, 45,
+                                '19.04.2022 19:30', 60, 40, 7, 2, 1.8, 2.8, 4.0)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Copa do Brasil ', 'okpasjg', 'Flamengo', 7, 'Campinense', 1, 30,
+                                '19.04.2022 19:30', 80, 20, 16, 1, 1.05, 8.0, 17.0)
+Banco_de_dados.add_jogos_aovivo('AMERICA: Copa America ', 'opfjea', 'Argentina', 0, 'Peru', 0, 35, '19.04.2022 19:30',
+                                40, 60, 2, 3, 1.4, 2.9, 5.2)
+Banco_de_dados.add_jogos_aovivo('EUROPA: Liga dos Campeões ', 'oihfd4f', 'Barcelona', 0, 'Bayern', 2, 20,
+                                '19.04.2022 19:30', 48, 52, 2, 3, 2.1, 2.8, 3.1)
+Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'agadgadg', 'Brasil', 2, 'Alemanha', 0, 40, '19.04.2022 19:30',
+                                40, 60, 2, 1, 2.6, 3.0, 2.4)
+Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'gag6433g', 'Japão', 2, 'Alemanha', 2, 85, '19.04.2022 19:30',
+                                55, 45, 3, 10, 4.5, 1.5, 1.9)
+Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'pjp431oj', 'Espanha', 0, 'Gales', 0, 60, '19.04.2022 19:30',
+                                40, 60, 7, 4, 2.0, 1.9, 3.4)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'dafag4g35', 'Flamengo', 0, 'Palmeiras', 0, 45,
+                                '20.04.2022 20:00', 52, 48, 9, 7, 2.5, 1.9, 4.9)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Copa do Brasil ', 'pou32894', 'Juventude', 2, 'São Paulo', 0, 35,
+                                '20.04.2022 19:30', 38, 62, 5, 4, 3.2, 2.8, 2.1)
+Banco_de_dados.add_jogos_aovivo('BRASIL: Copa do Brasil ', 'poj4923o', 'Atletico-MG', 3, 'Brasiliense', 0, 40,
+                                '20.04.2022 19:30', 82, 18, 14, 0, 1.1, 8.0, 17.0)
+Banco_de_dados.add_jogos_aovivo('INGLATERRA: Campeonato Inglês ', 'amoa4134', 'Chelsea', 2, 'Arsenal', 2, 35, '20.04.2022 15:45',
+                                60, 40, 6, 8, 2.3, 1.7, 5.5)
+Banco_de_dados.add_jogos_aovivo('INGLATERRA: Campeonato Inglês ', 'y5892hr9', 'Manchester City', 0, 'Brighton', 0, 50, '20.04.2022 16:00',
+                                67, 33, 8, 0, 1.5, 3.0, 8.0)
+Banco_de_dados.add_jogos_aovivo('ESPANHA: Campeonato Espanhol ', 'op43j5p', 'Osasuna', 1, 'Real Madrid', 2, 75, '20.04.2022 16:30',
+                                35, 65, 10, 17, 11.0, 4.0, 1.3)
+
+# Jogos Encerrados
+Banco_de_dados.add_jogos_encerrados('BRASIL: Campeonato Brasileiro ', 'nfoasnfw', 'Flamengo', 3, 'São Paulo', 1,
+                                    '19.04.2022 19:30')
+Banco_de_dados.add_jogos_encerrados('INGLATERRA: Campeonato Inglês ', 'amoa4134', 'Chelsea', 2, 'Arsenal', 4,
+                                    '20.04.2022 15:45')
+Banco_de_dados.add_jogos_encerrados('INGLATERRA: Campeonato Inglês ', 'y5892hr9', 'Manchester City', 3, 'Brighton', 0,
+                                    '20.04.2022 16:00')
