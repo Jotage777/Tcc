@@ -43,6 +43,6 @@ Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'agadgadg', 'Brasil', 2
 Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'gag6433g', 'Japão', 2, 'Alemanha', 2, 85, '19.04.2022 19:30', 55, 45, 3, 10, 4.5, 1.5, 1.9)
 Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Mundo ', 'pjp431oj', 'Espanha', 0, 'Gales', 0, 60, '19.04.2022 19:30', 40, 60, 7, 4, 2.0, 1.9, 3.4)
 Banco_de_dados.add_jogos_aovivo('MUNDO: Campeonato Brasileiro ', 'dafag4g35', 'Flamengo', 0, 'Palmeiras', 0, 45, '20.04.2022 20:00', 52, 48, 9, 7, 2.5, 1.9, 4.9)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasl ', 'pou32894', 'Juventude', 2, 'São Paulo', 0, 35, '20.04.2022 19:30', 38, 62, 5, 4, 1.25, 3.2, 7.0)
-Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasil ', 'poj4923o', 'Atletico-MG', 3, 'Brasiliense', 0, 40, '20.04.2022 19:30', 82, 18, 14, 0, 1.01, 17.0, 51.0)
+Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasl ', 'pou32894', 'Juventude', 2, 'São Paulo', 0, 35, '20.04.2022 19:30', 38, 62, 5, 4, 3.2, 2.8, 2.1)
+Banco_de_dados.add_jogos_aovivo('MUNDO: Copa do Brasil ', 'poj4923o', 'Atletico-MG', 3, 'Brasiliense', 0, 40, '20.04.2022 19:30', 82, 18, 14, 0, 1.1, 8.0, 17.0)
 Banco_de_dados.add_jogos_encerrados('BRASIL: Campeonato Brasileiro ', 'nfoasnfw', 'Flamengo', 3, 'São Paulo', 1, '19.04.2022 19:30')
