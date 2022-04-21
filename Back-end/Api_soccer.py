@@ -128,6 +128,11 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
                         return id
+            elif tipo==3:
+                for i in range(len(informacoes)):
+                    if informacoes[i][1] == nome:
+                        saldo = informacoes[i][5]
+                        return saldo
 
         elif tipo == 5:
             bots = []
