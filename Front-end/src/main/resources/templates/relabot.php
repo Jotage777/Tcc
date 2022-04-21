@@ -17,7 +17,7 @@
     $apostas = "http://127.0.0.1:5000/greenzord/apostas/bot/" . $id . "/1";
     $apostas_feitas = json_decode(file_get_contents($apostas));
 
-    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
     $saldo_usuario = json_decode(file_get_contents($saldo));
 
     $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/" . $id;
