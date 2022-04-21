@@ -128,8 +128,8 @@ class Greenzord(Resource):
                     if informacoes[i][1] == nome:
                         id = informacoes[i][0]
                         return id
-            elif tipo==3:
-                saldo= Banco_de_dados.consultar_usuario_saldo(nome)
+            elif tipo2 == 3:
+                saldo = Banco_de_dados.consultar_usuario_saldo(nome)
                 return saldo
 
         elif tipo == 5:
@@ -270,7 +270,7 @@ class Greenzord_bots(Resource):
                                 bool(request.json['ativado']), request.json['apostar'], request.json['analisar'],
                                 request.json['username'])
         id_bot = Banco_de_dados.consultar_bots(request.json['nome'])
-        Banco_de_dados.add_relatorio(0, 0, 0.0,0, 0, id_bot)
+        Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, id_bot)
         return 200
 
 
@@ -318,22 +318,29 @@ class Greenzord_Login_Cadastro(Resource):
                                    float(request.json['saldo']), request.json['senha'])
         return 200
 
+
 class Greenzord_realizar_apostas(Resource):
     def get(self):
         Apostar.analise()
         return 200
+
+
 class Greenzord_apostas_bot(Resource):
-    def get(self,id,tipo):
-        if tipo ==1:
-            apostas = Banco_de_dados.consultar_aposta_bot(id,1)
+    def get(self, id, tipo):
+        if tipo == 1:
+            apostas = Banco_de_dados.consultar_aposta_bot(id, 1)
             return apostas
-        elif tipo ==2:
-            apostas = Banco_de_dados.consultar_aposta_bot(id,2)
+        elif tipo == 2:
+            apostas = Banco_de_dados.consultar_aposta_bot(id, 2)
             return apostas
+
+
 class Greenzord_relatorio(Resource):
-    def get(self,id):
+    def get(self, id):
         relatorio = Banco_de_dados.consultar_relatorio(id)
         return relatorio
+
+
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
