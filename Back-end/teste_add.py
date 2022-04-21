@@ -32,16 +32,17 @@ Banco_de_dados.add_bots('Sempre Fav', '5', '1.35', '2.8', '0', '10', '1', '99', 
                         'Lucas')
 
 # Relatorio dos Bots
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '2')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '3')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '4')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '5')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '6')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '7')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '8')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9')
-Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1', '1', 'Super Favorito')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '2', '2', 'Zebra Bem')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '3', '1', 'Favorito Amassando')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '4', '2', 'Zebra Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '5', '2', 'Casa com Muita Chance')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '6', '3', 'Fora Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '7', '3', 'Fora Bem')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '8', '1', 'Favorito Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9', '2', 'Casa Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10', '3', 'Zebra Melhor')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '11', '4', 'Sempre Fav')
 
 # Jogos Ao Vivo
 Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'nion4234', 'Atlético-MG', 0, 'Cuiabá', 0, 5,

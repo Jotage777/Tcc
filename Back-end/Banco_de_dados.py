@@ -107,7 +107,10 @@ def criar_BD() -> None:
                     total_apostas INTEGER NOT NULL,
                     apostas_abertas INTEGER NOT NULL,
                     fk_id_bot INTEGER NOT NULL,
-                    FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot)
+                    fk_id_usuario INTEGER NOT NULL,
+                    nome_bot VARCHAR (30) NOT NULL ,
+                    FOREIGN KEY(fk_id_bot) REFERENCES Bots(id_bot),
+                    FOREIGN KEY(fk_id_usuario) REFERENCES Usuario(id_usuario)
                     )''')
             conn.commit()
 
@@ -460,7 +463,8 @@ def verificar_apostas(id_jogo, id_bot) -> int:
 
 
 def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, retorno: float, situacao: str, time_casa: str,
-                time_fora: str, data: str, id_bot: str, id_jogo: str, casa_fora: int, id_usuario: int,nome_bot:str) -> int:
+                time_fora: str, data: str, id_bot: str, id_jogo: str, casa_fora: int, id_usuario: int,
+                nome_bot: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             fk_id_bot = id_bot
@@ -468,8 +472,9 @@ def add_apostas(mercado: str, valor_apostado: float, odd_aposta: float, retorno:
             fk_id_usuario = id_usuario
             cursor.execute('''INSERT INTO Apostas (mercado, valor_apostado, odd_aposta,retorno,situacao,time_casa,time_fora,data,fk_id_bot,fk_id_jogos,casa_fora,fk_id_usuario,nome_bot)
             VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
-            mercado, valor_apostado, odd_aposta, retorno, situacao, time_casa, time_fora, data, fk_id_bot, fk_id_jogos,
-            casa_fora, fk_id_usuario,nome_bot))
+                mercado, valor_apostado, odd_aposta, retorno, situacao, time_casa, time_fora, data, fk_id_bot,
+                fk_id_jogos,
+                casa_fora, fk_id_usuario, nome_bot))
             conn.commit()
 
 
@@ -487,16 +492,18 @@ def atulizar_aposta(valor, id_aposta, tipo):
                 conn.commit()
 
 
-def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, apostas_abertas:int, fk_id_bot: str) -> int:
+def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, apostas_abertas: int,
+                  fk_id_bot: str, fk_id_usuario: str, nome_bot: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''INSERT INTO Relatorio (greens , reds, lucro,total_apostas,apostas_abertas,fk_id_bot) VALUES(?,?,?,?,?,?)''',
-                           (greens, reds, lucro, total_apostas,apostas_abertas, fk_id_bot))
+            cursor.execute(
+                '''INSERT INTO Relatorio (greens , reds, lucro,total_apostas,apostas_abertas,fk_id_bot, fk_id_usuario, nome_bot) VALUES(?,?,?,?,?,?,?,?)''',
+                (greens, reds, lucro, total_apostas, apostas_abertas, fk_id_bot, fk_id_usuario, nome_bot))
             conn.commit()
 
 
-def atualizar_relatorio(tipo,id,valor):
+def atualizar_relatorio(tipo, id, valor):
     with sqlite3.connect('Greenzord.db') as conn:
         if tipo == 1:
             with closing(conn.cursor()) as cursor:
@@ -525,13 +532,23 @@ def atualizar_relatorio(tipo,id,valor):
                 conn.commit()
 
 
-def consultar_relatorio(id:int):
+def consultar_relatorio(id: int):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT * FROM Relatorio WHERE fk_id_bot  =?''',(id,))
-            tudo = cursor.fetchone()
-            return tudo
+            cursor.execute('''SELECT * FROM Relatorio WHERE fk_id_bot  =?''', (id,))
+            relatorio = cursor.fetchone()
+            return relatorio
+            conn.commit()
+
+
+def consultar_relatorio_usuario(id: int):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Relatorio WHERE fk_id_usuario  =?''', (id,))
+            relatorios = cursor.fetchall()
+            return relatorios
             conn.commit()
 
 
