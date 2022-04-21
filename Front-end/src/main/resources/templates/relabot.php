@@ -20,10 +20,8 @@
     $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
     $saldo_usuario = json_decode(file_get_contents($saldo));
 
-    $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/" . $id;
+    $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/1/" . $id;
     $relatorio_bot = json_decode(file_get_contents($relatorio));
-
-    //    var_dump($resultado_bots);
 ?>
 
 <!doctype html>

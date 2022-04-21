@@ -12,6 +12,9 @@
 
     $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
     $saldo_usuario = json_decode(file_get_contents($saldo));
+
+    $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/2/" . $resultado_id;
+    $relatorio_bot = json_decode(file_get_contents($relatorio));
 ?>
 
 <!doctype html>
@@ -115,46 +118,27 @@
         <table class="table table-bg text-white">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Mercado</th>
-                    <th scope="col">Responsabilidade</th>
-                    <th scope="col">Odd</th>
-                    <th scope="col">Bot</th>
-                    <th scope="col">Campeonato</th>
-                    <th scope="col">Casa</th>
-                    <th scope="col">1</th>
-                    <th scope="col">X</th>
-                    <th scope="col">2</th>
-                    <th scope="col">Fora</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Total Apostas</th>
+                    <th scope="col">Abertas</th>
+                    <th scope="col">Greens</th>
+                    <th scope="col">Reds</th>
+                    <th scope="col">Lucro</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Vitoria Mandante</td>
-                    <td>R$5,00</td>
-                    <td>2.00</td>
-                    <td>Mais Finalizações</td>
-                    <td>Carioca</td>
-                    <td>Flamengo</td>
-                    <td>2</td>
-                    <td>x</td>
-                    <td>0</td>
-                    <td>Fluminense</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Vitoria Visitante</td>
-                    <td>R$5,00</td>
-                    <td>2.50</td>
-                    <td>Mais Finalizações</td>
-                    <td>Paulista</td>
-                    <td>São Paulo</td>
-                    <td>1</td>
-                    <td>x</td>
-                    <td>2</td>
-                    <td>Palmeiras</td>
-                </tr>
+                <?php
+                foreach ($relatorio_bot as $relatorio) {
+                    echo "<tr>";
+                    echo "<td>" . $relatorio[8] . "</td>";
+                    echo "<td>" . $relatorio[4] . "</td>";
+                    echo "<td>" . $relatorio[5] . "</td>";
+                    echo "<td>" . $relatorio[1] . "</td>";
+                    echo "<td>" . $relatorio[2] . "</td>";
+                    echo "<td>" . $relatorio[3] . "</td>";
+                    echo "<tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
