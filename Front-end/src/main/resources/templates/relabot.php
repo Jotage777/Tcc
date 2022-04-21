@@ -122,9 +122,7 @@
                 <th scope="col">Data</th>
                 <th scope="col">Campeonato</th>
                 <th scope="col">Casa</th>
-                <th scope="col">1</th>
                 <th scope="col">X</th>
-                <th scope="col">2</th>
                 <th scope="col">Fora</th>
                 <th scope="col">Aposta</th>
                 <th scope="col">Odd</th>
@@ -140,8 +138,8 @@
                 echo "<td>" . $aposta[1] . "</td>";
                 echo "<td>" . $aposta[2] . "</td>";
                 echo "<td>" . $aposta[3] . "</td>";
-                echo "<td>" . $aposta[4] . "</td>";
                 echo "<td>x</td>";
+                echo "<td>" . $aposta[4] . "</td>";
                 echo "<td>" . $aposta[5] . "</td>";
                 echo "<td>" . $aposta[6] . "</td>";
                 echo "<td>" . $aposta[7] . "</td>";
