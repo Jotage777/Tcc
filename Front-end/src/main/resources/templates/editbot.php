@@ -11,7 +11,7 @@
     $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
     $resultado_id = json_decode(file_get_contents($urlid));
 
-    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
     $saldo_usuario = json_decode(file_get_contents($saldo));
 
     $id = $_GET['id'];
@@ -41,42 +41,6 @@
     else{
         header('Location: lista_bots.php');
     }
-
-//    if(isset($_POST['update'])) {
-//
-//        $dados = array(
-//            "nome" => $_POST['nome'],
-//            "responsabilidade" => $_POST['responsa'],
-//            "odd_minima" => $_POST['oddmin'],
-//            "odd_maxima" => $_POST['oddmax'],
-//            "tempo_jogo_minimo" => $_POST['tempomin'],
-//            "tempo_jogo_maximo" => $_POST['tempomax'],
-//            "finalizacao_min" => $_POST['finamin'],
-//            "finalizacao_max" => $_POST['finamax'],
-//            "posse_bola_min" => $_POST['possemin'],
-//            "posse_bola_max" => $_POST['possemax'],
-//            "apostar" => $_POST['timapo'],
-//            "analisar" => $_POST['timesta'],
-//            "ativado" => "1",
-//            "username" => $logado
-//        );
-//
-//        print_r($dados);
-//        $json = json_encode($dados);
-//
-//        $url = "http://127.0.0.1:5000/greenzord/bots/editar/" . $id;
-//
-//        $ch = curl_init($url);
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-//                'Content-Type: application/json',
-//                'Content-Length: ' . strlen($json))
-//        );
-//
-//        $jsonRet = json_decode(curl_exec($ch));
-//    }
 ?>
 
 <!doctype html>
@@ -231,9 +195,9 @@
                 <p>Odds:</p>
                 <div class="inputBox">
                     <label for="oddmin">de:</label>
-                    <input type="number" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" required>
+                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" min="0" max="999" required>
                     <label for="oddmax">á:</label>
-                    <input type="number" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" required>
+                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" min="0" max="999" required>
                 </div>
                 <br>
                 <!-- Times a serem apostados -->
@@ -268,25 +232,25 @@
                 <p>Tempo de Jogo(0 a 90):</p>
                 <div class="inputBox">
                     <label for="tempomin">de:</label>
-                    <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="<?php echo $tempo_jogo_minimo ?>" required>
+                    <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="<?php echo $tempo_jogo_minimo ?>" min="0" max="99" required>
                     <label for="tempomin">á:</label>
-                    <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="<?php echo $tempo_jogo_maximo ?>" required>
+                    <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="<?php echo $tempo_jogo_maximo ?>" min="0" max="99" required>
                 </div>
                 <!-- Finalizações do time ou ambos no jogo todo -->
                 <p>Finalizações:</p>
                 <div class="inputBox">
                     <label for="finamin">de:</label>
-                    <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" value="<?php echo $finalizacao_min ?>" required>
+                    <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" value="<?php echo $finalizacao_min ?>" min="0" max="99" required>
                     <label for="finamax">á:</label>
-                    <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="<?php echo $finalizacao_max ?>" required>
+                    <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="<?php echo $finalizacao_max ?>" min="0" max="99" required>
                 </div>
                 <!-- Adicionar posse de bola minima e maxima -->
                 <p>Posse de Bola:</p>
                 <div class="inputBox">
                     <label for="possemin">de:</label>
-                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" value="<?php echo $posse_bola_min ?>" required>
+                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" value="<?php echo $posse_bola_min ?>" min="0" max="100" required>
                     <label for="possemax">á:</label>
-                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" value="<?php echo $posse_bola_max ?>" required>
+                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" value="<?php echo $posse_bola_max ?>" min="0" max="100" required>
                 </div>
                 <br>
                 <input type="hidden" name="id" value="<?php echo $id ?>">

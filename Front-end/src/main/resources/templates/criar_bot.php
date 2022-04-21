@@ -8,7 +8,10 @@
 
     $logado = $_SESSION['username'];
 
-    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
+    $resultado_id = json_decode(file_get_contents($urlid));
+
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
     $saldo_usuario = json_decode(file_get_contents($saldo));
 
     if(isset($_POST['submit'])) {
@@ -198,9 +201,9 @@
                 <p>Odds:</p>
                 <div class="inputBox">
                     <label for="oddmin">de:</label>
-                    <input type="number" name="oddmin" id="oddmin" class="inputBotIntervalo" required>
+                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="0.0" min="0" max="999" required>
                     <label for="oddmax">á:</label>
-                    <input type="number" name="oddmax" id="oddmax" class="inputBotIntervalo" required>
+                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="999.9" min="0" max="999" required>
                 </div>
                 <br>
                 <!-- Times a serem apostados -->
@@ -235,25 +238,25 @@
                 <p>Tempo de Jogo(0 a 90):</p>
                 <div class="inputBox">
                     <label for="tempomin">de:</label>
-                    <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" required>
+                    <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="0" min="0" max="99" required>
                     <label for="tempomin">á:</label>
-                    <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" required>
+                    <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="99" min="0" max="99" required>
                 </div>
                 <!-- Finalizações do time ou ambos no jogo todo -->
                 <p>Finalizações:</p>
                 <div class="inputBox">
                     <label for="finamin">de:</label>
-                    <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" required>
+                    <input type="number" name="finamin" id="finamin" class="inputBotIntervalo" value="0" min="0" max="99" required>
                     <label for="finamax">á:</label>
-                    <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" required>
+                    <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="99" min="0" max="99" required>
                 </div>
                 <!-- Adicionar posse de bola minima e maxima -->
                 <p>Posse de Bola:</p>
                 <div class="inputBox">
                     <label for="possemin">de:</label>
-                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" required>
+                    <input type="number" name="possemin" id="possemin" class="inputBotIntervalo" value="0" min="0" max="100" required>
                     <label for="possemax">á:</label>
-                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" required>
+                    <input type="number" name="possemax" id="possemax" class="inputBotIntervalo" value="100" min="0" max="100" required>
                 </div>
                 <br>
                 <input type="submit" name="submit" id="submit" value="Adicionar">
