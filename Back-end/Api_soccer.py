@@ -267,7 +267,7 @@ class Greenzord_bots(Resource):
                                 bool(request.json['ativado']), request.json['apostar'], request.json['analisar'],
                                 request.json['username'])
         id_bot = Banco_de_dados.consultar_bots(request.json['nome'])
-        Banco_de_dados.add_relatorio(0, 0, 0.0, 0, id_bot)
+        Banco_de_dados.add_relatorio(0, 0, 0.0,0, 0, id_bot)
         return 200
 
 
@@ -327,7 +327,10 @@ class Greenzord_apostas_bot(Resource):
         elif tipo ==2:
             apostas = Banco_de_dados.consultar_aposta_bot(id,2)
             return apostas
-
+class Greenzord_relatorio(Resource):
+    def get(self,id):
+        relatorio = Banco_de_dados.consultar_relatorio(id)
+        return relatorio
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
@@ -340,6 +343,7 @@ api.add_resource(Greenzord_bots_editar, "/greenzord/bots/editar/<int:id>")
 api.add_resource(Greenzord_Login_Cadastro, "/greenzord/login_cadastro")
 api.add_resource(Greenzord_realizar_apostas, "/greenzord/apostar")
 api.add_resource(Greenzord_apostas_bot, "/greenzord/apostas/bot/<int:id>/<int:tipo>")
+api.add_resource(Greenzord_relatorio, "/greenzord/relatorio/<int:id>")
 create_db = not os.path.isfile('Greenzord.db')
 if create_db:
     Banco_de_dados.criar_BD()

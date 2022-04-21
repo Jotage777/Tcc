@@ -10,26 +10,46 @@ def concluir_aposta():
                     if aposta[11]== 1 :
                         if jogos[5] > jogos[4]:
                             id_usuario = Banco_de_dados.consultar_usuario_bots(aposta[12])
+                            relatorio = Banco_de_dados.consultar_relatorio(aposta[9])
+                            Banco_de_dados.atualizar_relatorio(1, aposta[9], (relatorio[1] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, aposta[9], (relatorio[5] - 1))
+                            lucro = aposta[4]-aposta[2]
+                            Banco_de_dados.atualizar_relatorio(3, aposta[9], (relatorio[3] + lucro))
                             saldo = Banco_de_dados.consultar_usuario_saldo(id_usuario)
                             novo_saldo = saldo + (float(aposta[4]))
                             Banco_de_dados.atulizar_usuario(novo_saldo,id_usuario, 5)
                             Banco_de_dados.atulizar_aposta('green',aposta[0],1)
                             print('Deu Green')
                         else:
+                            Banco_de_dados.atulizar_aposta(0, aposta[0], 2)
                             Banco_de_dados.atulizar_aposta('red', aposta[0],1)
-                            Banco_de_dados.atulizar_aposta(0.0, aposta[0],2)
+                            relatorio = Banco_de_dados.consultar_relatorio(aposta[9])
+                            Banco_de_dados.atualizar_relatorio(2, aposta[9], (relatorio[2] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, aposta[9], (relatorio[5] - 1))
+                            lucro = 0 - aposta[2]
+                            Banco_de_dados.atualizar_relatorio(3, aposta[9], (relatorio[3] + lucro))
                             print('Deu Red')
                     elif aposta[11] == 2:
                         if jogos[4] > jogos[5]:
                             id_usuario = Banco_de_dados.consultar_usuario_bots(aposta[12])
+                            relatorio = Banco_de_dados.consultar_relatorio(aposta[9])
+                            Banco_de_dados.atualizar_relatorio(1, aposta[9], (relatorio[1] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, aposta[9], (relatorio[5] - 1))
+                            lucro = aposta[4] - aposta[2]
+                            Banco_de_dados.atualizar_relatorio(3, aposta[9], (relatorio[3] + lucro))
                             saldo = Banco_de_dados.consultar_usuario_saldo(id_usuario)
                             novo_saldo = saldo + (float(aposta[4]))
                             Banco_de_dados.atulizar_usuario(novo_saldo, id_usuario, 5)
                             Banco_de_dados.atulizar_aposta('green', aposta[0],1)
                             print('Deu Green')
                         else:
-                            Banco_de_dados.atulizar_aposta('red', aposta[0],1)
-                            Banco_de_dados.atulizar_aposta(0.0, aposta[0],2)
+                            Banco_de_dados.atulizar_aposta(0, aposta[0], 2)
+                            Banco_de_dados.atulizar_aposta('red', aposta[0], 1)
+                            relatorio = Banco_de_dados.consultar_relatorio(aposta[9])
+                            Banco_de_dados.atualizar_relatorio(2, aposta[9], (relatorio[2] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, aposta[9], (relatorio[5] - 1))
+                            lucro = 0 - aposta[2]
+                            Banco_de_dados.atualizar_relatorio(3, aposta[9], (relatorio[3] + lucro))
                             print('Deu Red')
 def analise():
     lista_bots = Banco_de_dados.consultas("SELECT * FROM Bots")
@@ -61,14 +81,20 @@ def analise():
                     if bot[12] == 'favapo': #apostar no favorito
                         if jogo[12] <= jogo[13]: #casa é o favorito
                             if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                                Banco_de_dados.add_apostas(bot[12],float(bot[2]),float(jogo[12]),float(bot[2]*jogo[12]),'aberto',jogo[1],jogo[3],jogo[7],bot[0],jogo[0],1,bot[14])
+                                Banco_de_dados.add_apostas(bot[12],float(bot[2]),float(jogo[12]),float(bot[2]*jogo[12]),'aberto',jogo[1],jogo[3],jogo[7],bot[0],jogo[0],1,bot[14],bot[1])
+                                relatorio =Banco_de_dados.consultar_relatorio(bot[0])
+                                Banco_de_dados.atualizar_relatorio(4,bot[0],(relatorio[4]+1))
+                                Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5]+1))
                                 saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                                 novo_saldo = saldo - float(bot[2])
                                 Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
                                 print("Apostado em favorito(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else: #fora é o favorito
                             if bot[4] >= jogo[13] >= bot[3]: #analizar odd fora
-                                Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 2, bot[14])
+                                Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 2, bot[14],bot[1])
+                                relatorio = Banco_de_dados.consultar_relatorio(bot[0])
+                                Banco_de_dados.atualizar_relatorio(4, bot[0], (relatorio[4] + 1))
+                                Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5] + 1))
                                 saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                                 novo_saldo = saldo - float(bot[2])
                                 Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
@@ -76,28 +102,40 @@ def analise():
                     elif bot[12] == 'zebraapo': #apostar na zebra
                         if jogo[12] > jogo[13]: #casa é a zebra
                             if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                                Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[12]),(bot[2] * jogo[12]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 1, bot[14])
+                                Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[12]),(bot[2] * jogo[12]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 1, bot[14],bot[1])
+                                relatorio = Banco_de_dados.consultar_relatorio(bot[0])
+                                Banco_de_dados.atualizar_relatorio(4, bot[0], (relatorio[4] + 1))
+                                Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5] + 1))
                                 saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                                 novo_saldo = saldo - float(bot[2])
                                 Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
                                 print("Apostado em zebra(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else: #fora é a zebra
                             if bot[4] >= jogo[13] >= bot[3]: #analizar odd fora
-                                Banco_de_dados.add_apostas(bot[12], float(bot[2]),float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 2, bot[14])
+                                Banco_de_dados.add_apostas(bot[12], float(bot[2]),float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3],jogo[7], bot[0], jogo[0], 2, bot[14],bot[1])
+                                relatorio = Banco_de_dados.consultar_relatorio(bot[0])
+                                Banco_de_dados.atualizar_relatorio(4, bot[0], (relatorio[4] + 1))
+                                Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5] + 1))
                                 saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                                 novo_saldo = saldo - float(bot[2])
                                 Banco_de_dados.atulizar_usuario(novo_saldo,bot[14],5)
                                 print("Apostado em zebra(fora) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'casaapo': #apostar no time da casa
                         if bot[4] >= jogo[12] >= bot[3]: #analizar odd casa
-                            Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[12]),float(bot[2] * jogo[12]), 'aberto', jogo[1], jogo[3], jogo[7],bot[0], jogo[0], 1, bot[14])
+                            Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[12]),float(bot[2] * jogo[12]), 'aberto', jogo[1], jogo[3], jogo[7],bot[0], jogo[0], 1, bot[14],bot[1])
+                            relatorio = Banco_de_dados.consultar_relatorio(bot[0])
+                            Banco_de_dados.atualizar_relatorio(4, bot[0], (relatorio[4] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5] + 1))
                             saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                             novo_saldo = saldo - float(bot[2])
                             Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
                             print("Apostado em casa id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'foraapo': #apostar no time fora
                         if bot[4] >= jogo[13] >= bot[3]:  #analizar odd fora
-                            Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3], jogo[7],bot[0], jogo[0], 2, bot[14])
+                            Banco_de_dados.add_apostas(bot[12], float(bot[2]), float(jogo[13]),float(bot[2] * jogo[13]), 'aberto', jogo[1], jogo[3], jogo[7],bot[0], jogo[0], 2, bot[14],bot[1])
+                            relatorio = Banco_de_dados.consultar_relatorio(bot[0])
+                            Banco_de_dados.atualizar_relatorio(4, bot[0], (relatorio[4] + 1))
+                            Banco_de_dados.atualizar_relatorio(5, bot[0], (relatorio[5] + 1))
                             saldo = Banco_de_dados.consultar_usuario_saldo(bot[14])
                             novo_saldo = saldo - float(bot[2])
                             Banco_de_dados.atulizar_usuario(novo_saldo, bot[14], 5)
