@@ -408,13 +408,21 @@ def consultar_aposta(id_aposta) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_aposta FROM Aposta WHERE id_aposta = ?''', (id_aposta,))
+            cursor.execute('''SELECT id_aposta FROM Apostas WHERE id_aposta = ?''', (id_aposta,))
             result = cursor.fetchone()
             if result is None:
                 print("Não existe essa aposta na base de dados")
                 conn.commit()
             else:
                 conn.commit()
+def consultar_aposta_bot(id_bot) -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        situacao = "aberto"
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('''SELECT * FROM Apostas WHERE situacao =? AND fk_id_bot=?''', (situacao,id_bot,))
+            result = cursor.fetchall()
+            print(result)
+            return result
 
 
 def verificar_apostas(id_jogo, id_bot) -> int:
@@ -460,7 +468,6 @@ def add_relatorio(greens: int, reds: int, lucro: float, total_apostas: int, fk_i
 def consultas(acao):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
             cursor.execute(acao)
             tudo = cursor.fetchall()
             return tudo
