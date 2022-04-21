@@ -11,6 +11,9 @@
     $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
     $resultado_id = json_decode(file_get_contents($urlid));
 
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo_usuario = json_decode(file_get_contents($saldo));
+
     $id = $_GET['id'];
 
     if(!empty($_GET['id'])) {
@@ -202,7 +205,7 @@
             echo "<a>$logado</a>"
             ?>
             <?php
-            echo "<a>Saldo</a>"
+            echo "<a>$saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>

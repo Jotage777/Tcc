@@ -17,6 +17,12 @@
     $apostas = "http://127.0.0.1:5000/greenzord/apostas/bot/" . $id . "/1";
     $apostas_feitas = json_decode(file_get_contents($apostas));
 
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo_usuario = json_decode(file_get_contents($saldo));
+
+    $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/" . $id;
+    $relatorio_bot = json_decode(file_get_contents($relatorio));
+
     //    var_dump($resultado_bots);
 ?>
 
@@ -104,10 +110,36 @@
             echo "<a>$logado</a>"
             ?>
             <?php
-            echo "<a>Saldo</a>"
+            echo "<a>$saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>
+    </div>
+    <br>
+    <h1>Relatório</h1>
+    <div class="m-5">
+        <table class="table table-bg text-white">
+            <thead>
+            <tr>
+                <th scope="col">Total Apostas</th>
+                <th scope="col">Abertas</th>
+                <th scope="col">Greens</th>
+                <th scope="col">Reds</th>
+                <th scope="col">Lucro</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                echo "<tr>";
+                echo "<td>" . $relatorio_bot[4] . "</td>";
+                echo "<td>" . $relatorio_bot[5] . "</td>";
+                echo "<td>" . $relatorio_bot[1] . "</td>";
+                echo "<td>" . $relatorio_bot[2] . "</td>";
+                echo "<td>" . $relatorio_bot[3] . "</td>";
+                echo "<tr>";
+            ?>
+            </tbody>
+        </table>
     </div>
     <br>
     <h1>Lista de Apostas do Bot

@@ -13,6 +13,9 @@
     $urlbots = "http://127.0.0.1:5000/greenzord/5/1/" . $resultado_id;
     $resultado_bots = json_decode(file_get_contents($urlbots));
 
+    $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $logado;
+    $saldo_usuario = json_decode(file_get_contents($saldo));
+
 //    var_dump($resultado_bots);
 ?>
 
@@ -95,7 +98,7 @@
             echo "<a>$logado</a>"
             ?>
             <?php
-            echo "<a>Saldo</a>"
+            echo "<a>$saldo_usuario</a>"
             ?>
             <a href="sair.php">Sair</a>
         </div>
