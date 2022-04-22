@@ -10,5 +10,5 @@ if count == 0:
     # subprocess.call("teste_add.py", shell=True)
     count = 1
 
-Web_scraping.WebScraping()
-# Apostar.analise()
+# Web_scraping.WebScraping()
+Apostar.analise()
