@@ -94,6 +94,7 @@
             <a href="lista_bots.php">Bots</a>
         </div>
         <div class="navigation_header" id="navigation_header">
+            <a href="update.php">Atualiazar</a>
             <?php
                 echo "<a>$logado</a>"
             ?>
