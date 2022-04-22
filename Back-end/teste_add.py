@@ -7,45 +7,45 @@ Banco_de_dados.add_usuario('Messias', 'Joao Messias', 'joaomessias00@hotmail.com
 Banco_de_dados.add_usuario('Igor', 'Igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00', '1234')
 Banco_de_dados.add_usuario('Lucas', 'Lucas', 'lucas@gmail.com', '15/02/1998', '500.00', 'luc321')
 
-# # Bots
-# Banco_de_dados.add_bots('Super Favorito', '5', '1.0', '2.3', '0', '10', '2', '99', '55', '99', '1', 'favapo', 'favesta',
-#                         'Gabriel')
-# Banco_de_dados.add_bots('Zebra Bem', '5', '2.1', '4.0', '5', '15', '4', '99', '53', '99', '1', 'zebraapo', 'zebraesta',
-#                         'Messias')
-# Banco_de_dados.add_bots('Favorito Amassando', '10', '1.8', '5.0', '45', '70', '15', '99', '65', '99', '1', 'favapo',
-#                         'favapo', 'Gabriel')
-# Banco_de_dados.add_bots('Zebra Mal', '10', '1.4', '2.7', '35', '55', '0', '2', '0', '40', '1', 'favapo', 'zebraesta',
-#                         'Messias')
-# Banco_de_dados.add_bots('Casa com Muita Chance', '10', '1.0', '2.5', '0', '45', '10', '99', '60', '99', '1', 'casaapo',
-#                         'casaesta', 'Messias')
-# Banco_de_dados.add_bots('Fora Mal', '7.5', '1.7', '2.5', '15', '30', '0', '0', '0', '37', '1', 'casaapo', 'foraesta',
-#                         'Igor')
-# Banco_de_dados.add_bots('Fora Bem', '2.5', '1.8', '5.0', '20', '45', '8', '99', '58', '99', '1', 'foraapo', 'foraesta',
-#                         'Igor')
-# Banco_de_dados.add_bots('Favorito Mal', '5', '2.5', '4.5', '55', '80', '0', '5', '0', '50', '1', 'zebraapo', 'favesta',
-#                         'Gabriel')
-# Banco_de_dados.add_bots('Casa Mal', '7.5', '2.5', '4.0', '35', '80', '0', '3', '0', '40', '1', 'foraapo', 'casaesta',
-#                         'Messias')
-# Banco_de_dados.add_bots('Zebra Melhor', '2.5', '3.0', '6.0', '60', '85', '17', '99', '60', '99', '1', 'zebraapo',
-#                         'zebraesta', 'Igor')
-# Banco_de_dados.add_bots('Sempre Favorito', '5', '1.35', '2.8', '0', '10', '1', '99', '55', '99', '1', 'favapo',
-#                         'favesta', 'Lucas')
-# Banco_de_dados.add_bots('Sempre Zebra', '2.5', '2.85', '4.8', '0', '10', '1', '99', '55', '99', '1', 'zebraapo',
-#                         'zebraesta', 'Lucas')
-#
-# # Relatorio dos Bots
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1', '1', 'Super Favorito')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '2', '2', 'Zebra Bem')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '3', '1', 'Favorito Amassando')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '4', '2', 'Zebra Mal')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '5', '2', 'Casa com Muita Chance')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '6', '3', 'Fora Mal')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '7', '3', 'Fora Bem')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '8', '1', 'Favorito Mal')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9', '2', 'Casa Mal')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10', '3', 'Zebra Melhor')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '11', '4', 'Sempre Favorito')
-# Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '12', '4', 'Sempre Zebra')
+# Bots
+Banco_de_dados.add_bots('Super Favorito', '5', '1.0', '2.3', '0', '10', '2', '99', '55', '99', '1', 'favapo', 'favesta',
+                        'Gabriel')
+Banco_de_dados.add_bots('Zebra Bem', '5', '2.1', '4.0', '5', '15', '4', '99', '53', '99', '1', 'zebraapo', 'zebraesta',
+                        'Messias')
+Banco_de_dados.add_bots('Favorito Amassando', '10', '1.8', '5.0', '45', '70', '15', '99', '65', '99', '1', 'favapo',
+                        'favapo', 'Gabriel')
+Banco_de_dados.add_bots('Zebra Mal', '10', '1.4', '2.7', '35', '55', '0', '2', '0', '40', '1', 'favapo', 'zebraesta',
+                        'Messias')
+Banco_de_dados.add_bots('Casa com Muita Chance', '10', '1.0', '2.5', '0', '45', '10', '99', '60', '99', '1', 'casaapo',
+                        'casaesta', 'Messias')
+Banco_de_dados.add_bots('Fora Mal', '7.5', '1.7', '2.5', '15', '30', '0', '0', '0', '37', '1', 'casaapo', 'foraesta',
+                        'Igor')
+Banco_de_dados.add_bots('Fora Bem', '2.5', '1.8', '5.0', '20', '45', '8', '99', '58', '99', '1', 'foraapo', 'foraesta',
+                        'Igor')
+Banco_de_dados.add_bots('Favorito Mal', '5', '2.5', '4.5', '55', '80', '0', '5', '0', '50', '1', 'zebraapo', 'favesta',
+                        'Gabriel')
+Banco_de_dados.add_bots('Casa Mal', '7.5', '2.5', '4.0', '35', '80', '0', '3', '0', '40', '1', 'foraapo', 'casaesta',
+                        'Messias')
+Banco_de_dados.add_bots('Zebra Melhor', '2.5', '3.0', '6.0', '60', '85', '17', '99', '60', '99', '1', 'zebraapo',
+                        'zebraesta', 'Igor')
+Banco_de_dados.add_bots('Sempre Favorito', '5', '1.35', '2.8', '0', '10', '1', '99', '55', '99', '1', 'favapo',
+                        'favesta', 'Lucas')
+Banco_de_dados.add_bots('Sempre Zebra', '2.5', '2.85', '4.8', '0', '10', '1', '99', '55', '99', '1', 'zebraapo',
+                        'zebraesta', 'Lucas')
+
+# Relatorio dos Bots
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1', '1', 'Super Favorito')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '2', '2', 'Zebra Bem')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '3', '1', 'Favorito Amassando')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '4', '2', 'Zebra Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '5', '2', 'Casa com Muita Chance')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '6', '3', 'Fora Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '7', '3', 'Fora Bem')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '8', '1', 'Favorito Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9', '2', 'Casa Mal')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10', '3', 'Zebra Melhor')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '11', '4', 'Sempre Favorito')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '12', '4', 'Sempre Zebra')
 #
 # # Jogos Ao Vivo
 # Banco_de_dados.add_jogos_aovivo('BRASIL: Campeonato Brasileiro ', 'nion4234', 'Atlético-MG', 0, 'Cuiabá', 0, 5,
