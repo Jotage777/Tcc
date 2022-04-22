@@ -210,10 +210,9 @@ def WebScraping():
 
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
-    ao_vivo = browser.find_element_by_xpath(
-        '/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
+    ao_vivo = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
     ao_vivo.click()
-    jogos = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div')
+    jogos = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/section/div/div')
     site_html = jogos.get_attribute('outerHTML')
     soup = BeautifulSoup(site_html, 'html.parser')
     for rodada in soup.find_all('div', attrs={
