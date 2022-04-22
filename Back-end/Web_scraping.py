@@ -205,7 +205,7 @@ def WebScraping():
             estatisticas.append('0')
             estatisticas.append('0')
         else:
-            print('ok')
+           ok = 1
         raspagem_odd(id)
 
     browser = webdriver.Chrome()

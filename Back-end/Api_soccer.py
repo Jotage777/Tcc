@@ -215,7 +215,6 @@ class Greenzord_bots_editar(Resource):
 
 class Greenzord_apagar_bots(Resource):
     def get(Self, id):
-        print(id)
         Banco_de_dados.deletar_bot(id)
         return 200
 

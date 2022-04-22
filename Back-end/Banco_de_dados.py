@@ -436,14 +436,12 @@ def consultar_aposta_bot(id, tipo) -> int:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('''SELECT * FROM Apostas WHERE fk_id_bot=?''', (id,))
                 result = cursor.fetchall()
-                print(result)
                 return result
         elif tipo == 2:
             situacao = "aberto"
             with closing(conn.cursor()) as cursor:
                 cursor.execute('''SELECT * FROM Apostas WHERE situacao =? AND fk_id_usuario=?''', (situacao, id,))
                 result = cursor.fetchall()
-                print(result)
                 return result
 
 

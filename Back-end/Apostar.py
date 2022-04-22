@@ -30,7 +30,6 @@ def salvar_green(id_usuario, id_bot, retorno, apostado, id_aposta):
     novo_saldo = saldo + (float(retorno))
     Banco_de_dados.atulizar_usuario(novo_saldo, id_usuario, 5)
     Banco_de_dados.atulizar_aposta('green', id_aposta, 1)
-    print('Deu Green')
 
 
 def salvar_red(id_aposta, id_bot, apostado):
@@ -41,7 +40,6 @@ def salvar_red(id_aposta, id_bot, apostado):
     Banco_de_dados.atualizar_relatorio(5, id_bot, (relatorio[5] - 1))
     lucro = 0 - apostado
     Banco_de_dados.atualizar_relatorio(3, id_bot, (relatorio[3] + lucro))
-    print('Deu Red')
 
 
 def analise():
@@ -75,28 +73,22 @@ def analise():
                         if jogo[12] <= jogo[13]:  # casa é o favorito
                             if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                                 apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                                print("Apostado em favorito(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else:  # fora é o favorito
                             if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                                 apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                                print("Apostado em favorito(fora) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'zebraapo':  # apostar na zebra
                         if jogo[12] > jogo[13]:  # casa é a zebra
                             if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                                 apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                                print("Apostado em zebra(casa) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                         else:  # fora é a zebra
                             if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                                 apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                                print("Apostado em zebra(fora) id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'casaapo':  # apostar no time da casa
                         if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                             apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                            print("Apostado em casa id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
                     elif bot[12] == 'foraapo':  # apostar no time fora
                         if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                             apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7], jogo[0], bot[1])
-                            print("Apostado em fora id bot: " + str(bot[0]) + " id jogo: " + str(jogo[0]))
     concluir_aposta()
 
 
