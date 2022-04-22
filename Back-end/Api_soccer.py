@@ -248,7 +248,7 @@ class Greenzord_times(Resource):
 
 
 class Greenzord_jogos(Resource):
-    def get(id):
+    def get(self):
         Web_scraping.WebScraping()
 
 
@@ -349,7 +349,7 @@ class Greenzord_relatorio(Resource):
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_campeonato, "/greenzord/campeonato")
 api.add_resource(Greenzord_times, "/greenzord/times")
-api.add_resource(Greenzord_jogos, "/greenzord/jogos/<int:id>")
+api.add_resource(Greenzord_jogos, "/greenzord/jogos")
 api.add_resource(Greenzord_usuario, "/greenzord/usuario")
 api.add_resource(Greenzord_bots, "/greenzord/bots")
 api.add_resource(Greenzord_apostas, "/greenzord/apostas")
