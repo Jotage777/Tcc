@@ -25,44 +25,44 @@ def WebScraping():
                     Banco_de_dados.atualizar_jogos('fechado', estatisticas[0], 11)
                 else:
                     primeiro = True
-                    indice = 0
+                    atualizou = 0
                     jogo = Banco_de_dados.consultas_jogos('aberto')
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
                             esse = jogo[i]
                             primeiro = False
                     if primeiro == False:
-                        atualizou = 0
+                        atualizou = 1
                         if esse[4] != int(estatisticas[6]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[6]), estatisticas[0], 1)
-                            atualizou = 1
+
                         if esse[5] != int(estatisticas[7]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[7]), estatisticas[0], 2)
-                            atualizou = 1
+
                         if esse[6] != int(estatisticas[5]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[5]), estatisticas[0], 3)
-                            atualizou = 1
+
                         if esse[8] != int(estatisticas[8]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[8]), estatisticas[0], 4)
-                            atualizou = 1
+
                         if esse[9] != estatisticas[9]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[9]), estatisticas[0], 5)
-                            atualizou = 1
+
                         if esse[10] != estatisticas[10]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[10]), estatisticas[0], 6)
-                            atualizou = 1
+
                         if esse[11] != estatisticas[11]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[11]), estatisticas[0], 7)
-                            atualizou = 1
+
                         if esse[12] != estatisticas[12]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[12]), estatisticas[0], 8)
-                            atualizou = 1
+
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
-                            atualizou = 1
+
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
-                            atualizou = 1
+
                         if atualizou ==1:
                             for i in range(len(jogos_ao_vivo_momento)):
                                 if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
@@ -84,6 +84,7 @@ def WebScraping():
                     Banco_de_dados.atualizar_jogos('fechado', estatisticas[0], 11)
                 else:
                     primeiro = True
+                    atualizou = 0
                     jogo = Banco_de_dados.consultas_jogos('aberto')
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
@@ -91,37 +92,37 @@ def WebScraping():
 
                             primeiro = False
                     if primeiro == False:
-                        atualizou = 0
+                        atualizou = 1
                         if esse[4] != int(estatisticas[6]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[6]), estatisticas[0], 1)
-                            atualizou = 1
+
                         if esse[5] != int(estatisticas[7]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[7]), estatisticas[0], 2)
-                            atualizou = 1
+
                         if esse[6] != int(estatisticas[5]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[5]), estatisticas[0], 3)
-                            atualizou = 1
+
                         if esse[8] != int(estatisticas[8]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[8]), estatisticas[0], 4)
-                            atualizou = 1
+
                         if esse[9] != estatisticas[9]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[9]), estatisticas[0], 5)
-                            atualizou = 1
+
                         if esse[10] != estatisticas[10]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[10]), estatisticas[0], 6)
-                            atualizou = 1
+
                         if esse[11] != estatisticas[11]:
                             Banco_de_dados.atualizar_jogos(int(estatisticas[11]), estatisticas[0], 7)
-                            atualizou = 1
+
                         if esse[12] != estatisticas[12]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[12]), estatisticas[0], 8)
-                            atualizou = 1
+
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
-                            atualizou = 1
+
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
-                            atualizou = 1
+
                         if atualizou == 1:
                             for i in range(len(jogos_ao_vivo_momento)):
                                 if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
