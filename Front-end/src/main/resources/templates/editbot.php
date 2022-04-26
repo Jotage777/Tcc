@@ -195,9 +195,9 @@
                 <p>Odds:</p>
                 <div class="inputBox">
                     <label for="oddmin">de:</label>
-                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" min="0" max="999.99" required>
+                    <input type="number" step="0.01" name="oddmin" id="oddmin" class="inputBotIntervalo" value="<?php echo $odd_minima ?>" min="0.01" max="999.99" required>
                     <label for="oddmax">á:</label>
-                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" min="0" max="999.99" required>
+                    <input type="number" step="0.01" name="oddmax" id="oddmax" class="inputBotIntervalo" value="<?php echo $odd_maxima ?>" min="0.01" max="999.99" required>
                 </div>
                 <br>
                 <!-- Times a serem apostados -->
