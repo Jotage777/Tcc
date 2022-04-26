@@ -4,6 +4,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import Banco_de_dados
 
+jogos_ao_vivo_momento=0
 
 def WebScraping():
     def raspagem_stats(id):
@@ -29,8 +30,6 @@ def WebScraping():
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
                             esse = jogo[i]
-                            indice = i
-                            print(indice)
                             primeiro = False
                     if primeiro == False:
                         atualizou = 0
@@ -65,7 +64,9 @@ def WebScraping():
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
                             atualizou = 1
                         if atualizou ==1:
-                            del(jogo[indice])
+                            for i in range(len(jogos_ao_vivo_momento)):
+                                if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
+                                    del(jogos_ao_vivo_momento[i])
                     else:
                         Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
@@ -80,17 +81,14 @@ def WebScraping():
                 estatisticas.append('0.00')
                 estatisticas.append('0.00')
                 if estatisticas[5] == 'Encerrado':
-                    Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
-                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
-                                                        estatisticas[3])
-                    Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
+                    Banco_de_dados.atualizar_jogos('fechado', estatisticas[0], 11)
                 else:
                     primeiro = True
                     jogo = Banco_de_dados.consultas_jogos('aberto')
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
                             esse = jogo[i]
-                            indice = i
+
                             primeiro = False
                     if primeiro == False:
                         atualizou = 0
@@ -125,7 +123,9 @@ def WebScraping():
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
                             atualizou = 1
                         if atualizou == 1:
-                            del (jogo[indice])
+                            for i in range(len(jogos_ao_vivo_momento)):
+                                if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
+                                    del (jogos_ao_vivo_momento[i])
                     else:
                         Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
@@ -133,11 +133,7 @@ def WebScraping():
                                                         int(estatisticas[9]), int(estatisticas[10]),
                                                         int(estatisticas[11]), float(estatisticas[12]),
                                                         float(estatisticas[14]), float(estatisticas[13]),'aberto')
-                        jogo = Banco_de_dados.consultas_jogos('aberto')
-                    tamanho = len(jogo)
-                    if tamanho > 0:
-                        for i in range(len(jogo)):
-                            Banco_de_dados.atualizar_jogos('fechado', jogo[i][0], 11)
+
 
         estatisticas = []
         estatisticas.append(id)
@@ -236,7 +232,7 @@ def WebScraping():
         else:
            ok = 1
         raspagem_odd(id)
-
+    jogos_ao_vivo_momento = Banco_de_dados.consultas_jogos('aberto')
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
     ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
@@ -255,4 +251,9 @@ def WebScraping():
         id_jogo = rodada['id']
         id_j = id_jogo[4:]
         raspagem_stats(id_j)
+
+    tamanho = len(jogos_ao_vivo_momento)
+    if tamanho > 0:
+        for i in range(tamanho):
+            Banco_de_dados.atualizar_jogos('fechado', jogos_ao_vivo_momento[i][0], 11)
 

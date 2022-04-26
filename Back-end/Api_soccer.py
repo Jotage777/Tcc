@@ -101,7 +101,7 @@ class Greenzord(Resource):
                         return id
 
         elif tipo == 3:
-            informacoes = Banco_de_dados.consultas("SELECT * FROM Jogos_AoVivo")
+            informacoes = Banco_de_dados.consultas_jogos('aberto')
             if tipo2 == 1:
                 return informacoes
             elif tipo2 == 2:

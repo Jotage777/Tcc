@@ -3,7 +3,7 @@ import Banco_de_dados
 
 def concluir_aposta():
     lista_apostas = list(Banco_de_dados.consultas("SELECT * FROM Apostas"))
-    lista_jogos_encerrados = Banco_de_dados.consultas("SELECT * FROM Jogos_Encerrados")
+    lista_jogos_encerrados = Banco_de_dados.consultas_jogos('fechado')
     for aposta in lista_apostas: # lendo cada aposta
         if aposta[5] == 'aberto': # verificar se esta em aberto a aposta
             for jogos in lista_jogos_encerrados: # lendo cada jogo encerrado
@@ -44,7 +44,7 @@ def salvar_red(id_aposta, id_bot, apostado):
 
 def analise():
     lista_bots = Banco_de_dados.consultas("SELECT * FROM Bots")
-    jogos_AoVivo = Banco_de_dados.consultas("SELECT * FROM Jogos_AoVivo")
+    jogos_AoVivo = Banco_de_dados.consultas_jogos('aberto')
     for bot in lista_bots:
         if bot[11] == True and bot[2] <= Banco_de_dados.consultar_usuario_saldo(
                 bot[14]):  # se ativado e saldo suficiente

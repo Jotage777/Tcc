@@ -24,7 +24,6 @@ def criar_BD() -> None:
                     odd_casa FLOAT NOT NUll,
                     odd_fora FLOAT NOT NUll,
                     odd_empate FLOAT NOT NULL,
-                    campeonato INTEGER NOT NULL ,
                     situacao VARCHAR (10) NOT NULL 
                     )''')
             cursor.execute('''
@@ -117,10 +116,10 @@ def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: st
             if result is None:
                 cursor.execute('''INSERT INTO Jogos (id_jogo, time_casa,nome_campeonato,time_fora, resultado_casa
                 , resultado_fora, tempo, date, posse_bola_casa, posse_bola_fora, finalizacao_casa, finalizacao_fora, 
-                odd_casa, odd_empate, odd_fora, campeonato,situacao)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
+                odd_casa, odd_empate, odd_fora,situacao)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
                     id, casa, campeonato, fora, resultado_casa, resultado_fora, tempo, data, posse_casa, posse_fora,
-                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate, odd_fora,campeonato,situacao))
+                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate,odd_fora,situacao))
                 conn.commit()
             else:
                 conn.commit()
