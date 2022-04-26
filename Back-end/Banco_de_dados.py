@@ -6,31 +6,9 @@ def criar_BD() -> None:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
+
             cursor.execute('''
-                CREATE TABLE Campeonato(
-                    id_campeonato INTEGER primary key AUTOINCREMENT ,
-                    name VARCHAR(45) NOT NULL
-                    )''')
-            cursor.execute('''
-                CREATE TABLE Times(
-                    id_time INTEGER primary key AUTOINCREMENT ,
-                    name VARCHAR(45) NOT NULL
-                    )''')
-            cursor.execute('''
-                CREATE TABLE Jogos_Encerrados(
-                    id_jogo VARCHAR (20) primary key ,
-                    fk_id_casa INTEGER NOT NULL,
-                    fk_id_campeonato INTEGER NOT NULL,
-                    fk_id_fora INTEGER  NOT NULL ,
-                    resultado_fora INTEGER NOT NULL ,
-                    resultado_casa INTEGER NOT NULL ,
-                    date VARCHAR(10) NOT NULL,
-                    FOREIGN KEY(fk_id_casa) REFERENCES Times (id_time),
-                    FOREIGN KEY(fk_id_fora) REFERENCES Times (id_time),
-                    FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato)
-                    )''')
-            cursor.execute('''
-                CREATE TABLE Jogos_AoVivo(
+                CREATE TABLE Jogos(
                     id_jogo VARCHAR (20) primary key ,
                     time_casa VARCHAR (40) NOT NULL,
                     nome_campeonato VARCHAR (40) NOT NULL,
@@ -46,8 +24,8 @@ def criar_BD() -> None:
                     odd_casa FLOAT NOT NUll,
                     odd_fora FLOAT NOT NUll,
                     odd_empate FLOAT NOT NULL,
-                    fk_id_campeonato INTEGER NOT NULL ,
-                    FOREIGN KEY(fk_id_campeonato) REFERENCES Campeonato (id_campeonato)
+                    campeonato INTEGER NOT NULL ,
+                    situacao VARCHAR (10) NOT NULL 
                     )''')
             cursor.execute('''
                 CREATE TABLE Usuario(
@@ -115,40 +93,6 @@ def criar_BD() -> None:
             conn.commit()
 
 
-def add_campeonato(campeonato: str) -> int:
-    with sqlite3.connect('Greenzord.db') as conn:
-        with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_campeonato FROM Campeonato WHERE name = ?''', (campeonato,))
-            result = cursor.fetchone()
-            if result is None:
-                cursor.execute('''INSERT INTO Campeonato (name) VALUES(?)''', (campeonato,))
-                cursor.execute('''SELECT id_campeonato FROM Campeonato WHERE name = ?''', (campeonato,))
-                result = cursor.fetchone()
-                conn.commit()
-                return result[0]
-            else:
-                conn.commit()
-                return result[0]
-
-
-def add_times(time: str) -> int:
-    with sqlite3.connect('Greenzord.db') as conn:
-        with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_time FROM Times WHERE name = ?''', (time,))
-            result = cursor.fetchone()
-            if result is None:
-                cursor.execute('''INSERT INTO Times (name) VALUES(?)''', (time,))
-                cursor.execute('''SELECT id_time FROM Times WHERE name = ?''', (time,))
-                result = cursor.fetchone()
-                conn.commit()
-                return result[0]
-            else:
-                conn.commit()
-                return result[0]
-
-
 def consultar_jogos(id: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
@@ -162,45 +106,32 @@ def consultar_jogos(id: str) -> int:
                 conn.commit()
 
 
-def add_jogos_aovivo(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int,
+def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int,
                      tempo: int, data: str, posse_casa: int, posse_fora: int, finalizacao_casa: int,
-                     finalizacao_fora: int, odd_casa: float, odd_empate: float, odd_fora: float) -> int:
+                     finalizacao_fora: int, odd_casa: float, odd_empate: float, odd_fora: float,situacao:str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_jogo FROM Jogos_AoVivo WHERE id_jogo = ?''', (id,))
+            cursor.execute('''SELECT id_jogo FROM Jogos WHERE id_jogo = ?''', (id,))
             result = cursor.fetchone()
             if result is None:
-                fk_id_campeonato = add_campeonato(campeonato)
-                cursor.execute('''INSERT INTO Jogos_AoVivo (id_jogo, time_casa,nome_campeonato,time_fora, resultado_casa
+                cursor.execute('''INSERT INTO Jogos (id_jogo, time_casa,nome_campeonato,time_fora, resultado_casa
                 , resultado_fora, tempo, date, posse_bola_casa, posse_bola_fora, finalizacao_casa, finalizacao_fora, 
-                odd_casa, odd_empate, odd_fora, fk_id_campeonato)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
+                odd_casa, odd_empate, odd_fora, campeonato,situacao)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
                     id, casa, campeonato, fora, resultado_casa, resultado_fora, tempo, data, posse_casa, posse_fora,
-                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate, odd_fora, fk_id_campeonato))
+                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate, odd_fora,campeonato,situacao))
                 conn.commit()
             else:
                 conn.commit()
 
-
-def add_jogos_encerrados(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int,
-                         data: str) -> int:
+def consultas_jogos(valor):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_jogo FROM Jogos_Encerrados WHERE id_jogo = ?''', (id,))
-            result = cursor.fetchone()
-            if result is None:
-                fk_id_campeonato = add_campeonato(campeonato)
-                fk_id_casa = add_times(casa)
-                fk_id_fora = add_times(fora)
-                cursor.execute('''INSERT INTO Jogos_Encerrados (id_jogo, fk_id_casa, resultado_casa, fk_id_fora,
-                resultado_fora, date, fk_id_campeonato)
-                VALUES(?,?,?,?,?,?,?)''', (id, fk_id_casa, resultado_casa, fk_id_fora, resultado_fora, data,
-                                           fk_id_campeonato))
-                conn.commit()
-            else:
-                conn.commit()
+            cursor.execute('''Select * FROM Jogos WHERE situacao = ?''',(valor,))
+            tudo = cursor.fetchall()
+            return tudo
+            conn.commit()
 
 
 def consultar_usuario(username: str) -> int:
@@ -559,57 +490,62 @@ def consultas(acao):
             conn.commit()
 
 
-def atualizar_jogosAoVivo(valor, id, tipo):
+def atualizar_jogos(valor, id, tipo):
     with sqlite3.connect('Greenzord.db') as conn:
         if tipo == 1:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET resultado_casa = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET resultado_casa = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 2:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET resultado_fora = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET resultado_fora = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 3:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET tempo = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET tempo = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 4:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET posse_bola_casa = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET posse_bola_casa = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 5:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET posse_bola_fora = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET posse_bola_fora = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 6:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET finalizacao_casa = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET finalizacao_casa = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 7:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET finalizacao_fora = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET finalizacao_fora = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 8:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET odd_casa = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET odd_casa = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 9:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET odd_fora = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET odd_fora = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
         elif tipo == 10:
             with closing(conn.cursor()) as cursor:
                 cursor.execute('PRAGMA foreign_keys = ON;')
-                cursor.execute('''UPDATE Jogos_AoVivo SET odd_empate = ? WHERE id_jogo =?''', (valor, id,))
+                cursor.execute('''UPDATE Jogos SET odd_empate = ? WHERE id_jogo =?''', (valor, id,))
+                conn.commit()
+        elif tipo == 11:
+            with closing(conn.cursor()) as cursor:
+                cursor.execute('PRAGMA foreign_keys = ON;')
+                cursor.execute('''UPDATE Jogos SET situacao = ? WHERE id_jogo =?''', (valor, id,))
                 conn.commit()
 
 

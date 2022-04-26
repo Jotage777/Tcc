@@ -21,47 +21,58 @@ def WebScraping():
                 estatisticas.append(odd[2].getText())
 
                 if estatisticas[5] == 'Encerrado':
-                    Banco_de_dados.add_jogos_encerrados(estatisticas[4], estatisticas[0], estatisticas[1],
-                                                        int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
-                                                        estatisticas[3])
-                    Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
+                    Banco_de_dados.atualizar_jogos('fechado', estatisticas[0], 11)
                 else:
-
                     primeiro = True
-                    acao = 'Select * FROM Jogos_AoVivo '
-                    jogo = Banco_de_dados.consultas(acao)
+                    indice = 0
+                    jogo = Banco_de_dados.consultas_jogos('aberto')
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
                             esse = jogo[i]
+                            indice = i
+                            print(indice)
                             primeiro = False
                     if primeiro == False:
+                        atualizou = 0
                         if esse[4] != int(estatisticas[6]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[6]), estatisticas[0], 1)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[6]), estatisticas[0], 1)
+                            atualizou = 1
                         if esse[5] != int(estatisticas[7]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[7]), estatisticas[0], 2)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[7]), estatisticas[0], 2)
+                            atualizou = 1
                         if esse[6] != int(estatisticas[5]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[5]), estatisticas[0], 3)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[5]), estatisticas[0], 3)
+                            atualizou = 1
                         if esse[8] != int(estatisticas[8]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[8]), estatisticas[0], 4)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[8]), estatisticas[0], 4)
+                            atualizou = 1
                         if esse[9] != estatisticas[9]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[9]), estatisticas[0], 5)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[9]), estatisticas[0], 5)
+                            atualizou = 1
                         if esse[10] != estatisticas[10]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[10]), estatisticas[0], 6)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[10]), estatisticas[0], 6)
+                            atualizou = 1
                         if esse[11] != estatisticas[11]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[11]), estatisticas[0], 7)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[11]), estatisticas[0], 7)
+                            atualizou = 1
                         if esse[12] != estatisticas[12]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[12]), estatisticas[0], 8)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[12]), estatisticas[0], 8)
+                            atualizou = 1
                         if esse[13] != estatisticas[13]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[13]), estatisticas[0], 9)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
+                            atualizou = 1
                         if esse[13] != estatisticas[13]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[14]), estatisticas[0], 10)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
+                            atualizou = 1
+                        if atualizou ==1:
+                            del(jogo[indice])
                     else:
-                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
+                        Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
                                                         int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
                                                         int(estatisticas[9]), int(estatisticas[10]),
                                                         int(estatisticas[11]), float(estatisticas[12]),
-                                                        float(estatisticas[14]), float(estatisticas[13]))
+                                                        float(estatisticas[14]), float(estatisticas[13]),'aberto')
 
             except:
 
@@ -75,40 +86,58 @@ def WebScraping():
                     Banco_de_dados.deletar_jogoAoVivo(estatisticas[0])
                 else:
                     primeiro = True
-                    acao = 'Select * FROM Jogos_AoVivo '
-                    jogo = Banco_de_dados.consultas(acao)
+                    jogo = Banco_de_dados.consultas_jogos('aberto')
                     for i in range(len(jogo)):
                         if jogo[i][0] == estatisticas[0]:
                             esse = jogo[i]
+                            indice = i
                             primeiro = False
                     if primeiro == False:
+                        atualizou = 0
                         if esse[4] != int(estatisticas[6]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[6]), estatisticas[0], 1)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[6]), estatisticas[0], 1)
+                            atualizou = 1
                         if esse[5] != int(estatisticas[7]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[7]), estatisticas[0], 2)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[7]), estatisticas[0], 2)
+                            atualizou = 1
                         if esse[6] != int(estatisticas[5]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[5]), estatisticas[0], 3)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[5]), estatisticas[0], 3)
+                            atualizou = 1
                         if esse[8] != int(estatisticas[8]):
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[8]), estatisticas[0], 4)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[8]), estatisticas[0], 4)
+                            atualizou = 1
                         if esse[9] != estatisticas[9]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[9]), estatisticas[0], 5)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[9]), estatisticas[0], 5)
+                            atualizou = 1
                         if esse[10] != estatisticas[10]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[10]), estatisticas[0], 6)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[10]), estatisticas[0], 6)
+                            atualizou = 1
                         if esse[11] != estatisticas[11]:
-                            Banco_de_dados.atualizar_jogosAoVivo(int(estatisticas[11]), estatisticas[0], 7)
+                            Banco_de_dados.atualizar_jogos(int(estatisticas[11]), estatisticas[0], 7)
+                            atualizou = 1
                         if esse[12] != estatisticas[12]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[12]), estatisticas[0], 8)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[12]), estatisticas[0], 8)
+                            atualizou = 1
                         if esse[13] != estatisticas[13]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[13]), estatisticas[0], 9)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
+                            atualizou = 1
                         if esse[13] != estatisticas[13]:
-                            Banco_de_dados.atualizar_jogosAoVivo(float(estatisticas[14]), estatisticas[0], 10)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
+                            atualizou = 1
+                        if atualizou == 1:
+                            del (jogo[indice])
                     else:
-                        Banco_de_dados.add_jogos_aovivo(estatisticas[4], estatisticas[0], estatisticas[1],
+                        Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                         int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
                                                         int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
                                                         int(estatisticas[9]), int(estatisticas[10]),
                                                         int(estatisticas[11]), float(estatisticas[12]),
-                                                        float(estatisticas[14]), float(estatisticas[13]))
+                                                        float(estatisticas[14]), float(estatisticas[13]),'aberto')
+                        jogo = Banco_de_dados.consultas_jogos('aberto')
+                    tamanho = len(jogo)
+                    if tamanho > 0:
+                        for i in range(len(jogo)):
+                            Banco_de_dados.atualizar_jogos('fechado', jogo[i][0], 11)
 
         estatisticas = []
         estatisticas.append(id)
@@ -210,9 +239,9 @@ def WebScraping():
 
     browser = webdriver.Chrome()
     browser.get('https://www.flashscore.com.br')
-    ao_vivo = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
+    ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
     ao_vivo.click()
-    jogos = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/section/div/div')
+    jogos = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]')
     site_html = jogos.get_attribute('outerHTML')
     soup = BeautifulSoup(site_html, 'html.parser')
     for rodada in soup.find_all('div', attrs={
@@ -226,3 +255,4 @@ def WebScraping():
         id_jogo = rodada['id']
         id_j = id_jogo[4:]
         raspagem_stats(id_j)
+

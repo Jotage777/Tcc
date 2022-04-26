@@ -268,6 +268,7 @@ api.add_resource(Greenzord_realizar_apostas, "/greenzord/apostar")
 api.add_resource(Greenzord_apostas_bot, "/greenzord/apostas/bot/<int:id>/<int:tipo>")
 api.add_resource(Greenzord_relatorio, "/greenzord/relatorio/<int:tipo>/<int:id>")
 create_db = not os.path.isfile('Greenzord.db')
+
 if create_db:
     Banco_de_dados.criar_BD()
 if __name__ == "__main__":
