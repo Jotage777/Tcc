@@ -39,7 +39,7 @@ Na aplicação, vão ser desenvolvidas cinco telas:
 	
 No back-end será usada a linguagem python, junto com uma Rest Api propria. Através destas ferramentas vai ser feita interligação com o front end. 
 Toda a informação criada da nossa aplicação vai ser armazenada em um banco de dados SQL.
-## Ordenação das etapas de execução
+## Cronograma de desenvolvimento
 
 Para o desenvolvimento do nosso projeto vamos utilizar uma estratégia de constante acompanhamento executando vários testes e a implementação de pequenos ajustes no decorrer do desenvolvimento, vamos dividir em 3 partes:
 
