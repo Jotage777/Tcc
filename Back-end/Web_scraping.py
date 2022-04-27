@@ -68,6 +68,7 @@ def WebScraping():
                             for i in range(len(jogos_ao_vivo_momento)):
                                 if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
                                     del (jogos_ao_vivo_momento[i])
+                                    break
                     else:
                         Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                  int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
@@ -128,6 +129,8 @@ def WebScraping():
                             for i in range(len(jogos_ao_vivo_momento)):
                                 if jogos_ao_vivo_momento[i][0] == estatisticas[0]:
                                     del (jogos_ao_vivo_momento[i])
+                                    break
+
                     else:
                         Banco_de_dados.add_jogos(estatisticas[4], estatisticas[0], estatisticas[1],
                                                  int(estatisticas[6]), estatisticas[2], int(estatisticas[7]),
