@@ -180,6 +180,7 @@ class Greenzord_jogos(Resource):
     def get(self):
         Web_scraping.WebScraping()
 
+
 class Greenzord_bots(Resource):
     def post(bots: bots_modelo):
         Banco_de_dados.add_bots(request.json['nome'], float(request.json['responsabilidade']),

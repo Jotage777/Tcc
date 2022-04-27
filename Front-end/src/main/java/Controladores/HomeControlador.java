@@ -7,19 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeControlador {
 
     @RequestMapping("/login")
-    public String login(){
-        return "login" ;
+    public String login() {
+        return "login";
     }
+
     @RequestMapping("/")
-    public String index(){
+    public String index() {
         return "index";
     }
+
     @RequestMapping("/criar_bot")
-    public String criar_bot(){
+    public String criar_bot() {
         return "criar_bot";
     }
+
     @RequestMapping("/relatorio")
-    public String relatorio(){
+    public String relatorio() {
         return "relatorio";
     }
 }

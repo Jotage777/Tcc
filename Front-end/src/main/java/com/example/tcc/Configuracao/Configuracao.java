@@ -13,16 +13,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Configuracao extends WebSecurityConfigurerAdapter {
 
     @Bean
-    public static BCryptPasswordEncoder passwordEncoder(){
+    public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll();
     }
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("user")
                 .password(passwordEncoder().encode("password")).authorities("USER");
     }
