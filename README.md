@@ -5,8 +5,8 @@
 
 | Nome                                              | GitHub                                           | Ativo | Atribuições                   |
 | ------------------------------------------------- | -------------------------------------------      | ----- | ----------------------------- |
-| João Gabriel                                      | [João Gabriel](https://github.com/Jotage777)     | 🔥    | Manager, BackEnd              |
-| João Messias                                      | [João Messias](https://github.com/Messias443/)   | 🔥    | Manager, FrontEnd             |
+| João Gabriel                                      | [João Gabriel](https://github.com/Jotage777)     | 🔥    | Manager, FullStack            |
+| João Messias                                      | [João Messias](https://github.com/Messias443/)   | 🔥    | Manager, Fullstack            |
 
 ## ⚓ Links
 
