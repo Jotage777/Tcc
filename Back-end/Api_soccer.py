@@ -1,7 +1,7 @@
 import os
 
-from flask import Flask, request, jsonify
-from flask_restful import Resource, Api, abort, reqparse
+from flask import Flask, request
+from flask_restful import Resource, Api
 import Banco_de_dados
 import Web_scraping
 import Apostar
