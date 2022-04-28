@@ -1,14 +1,11 @@
 import Web_scraping
 import Apostar
-import subprocess
+import Banco_de_dados
 
-count = 0
-if count == 0:
-    # exec(open("Api_soccer.py").read())
-    # exec(open("teste_add.py").read())
-    # subprocess.call("Api_soccer.py", shell=True)
-    # subprocess.call("teste_add.py", shell=True)
-    count = 1
+exec(open("Api_soccer.py").read())
+exec(open("teste_add.py").read())
 
-Web_scraping.WebScraping()
+# Web_scraping.WebScraping()
 # Apostar.analise()
+
+# Banco_de_dados.atualizar_jogos('fechado', '(id_jogo)', 11)
