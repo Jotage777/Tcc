@@ -154,7 +154,13 @@ $saldo_usuario = json_decode(file_get_contents($saldo));
             echo "<td>" . $bot[5] . " ~ " . $bot[6] . "</td>"; //intervalo jogo
             echo "<td>" . $bot[7] . " ~ " . $bot[8] . "</td>"; //finalizações
             echo "<td>" . $bot[9] . " ~ " . $bot[10] . "</td>"; //posse de bola
-            echo "<td>" . $bot[11] . "</td>"; //ativado
+            if($bot[11]=="1"){
+                echo "<td>" . "Sim" . "</td>"; //ativado
+            }
+            elseif ($bot[11]=="0"){
+                echo "<td>" . "Não" . "</td>"; //ativado
+            }
+
             echo "<td>
                             <a class='btn btn-primary btn-sm' href='relabot.php?id=$bot[0]?$bot[1]'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-clipboard-data' viewBox='0 0 16 16'>
