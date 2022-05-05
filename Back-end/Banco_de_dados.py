@@ -106,8 +106,8 @@ def consultar_jogos(id: str) -> int:
 
 
 def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: str, resultado_fora: int,
-              tempo: int, data: str, posse_casa: int, posse_fora: int, finalizacao_casa: int,
-              finalizacao_fora: int, odd_casa: float, odd_empate: float, odd_fora: float, situacao: str) -> int:
+                     tempo: int, data: str, posse_casa: int, posse_fora: int, finalizacao_casa: int,
+                     finalizacao_fora: int, odd_casa: float, odd_empate: float, odd_fora: float,situacao:str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
             cursor.execute('PRAGMA foreign_keys = ON;')
@@ -119,16 +119,15 @@ def add_jogos(campeonato: str, id: str, casa: str, resultado_casa: int, fora: st
                 odd_casa, odd_empate, odd_fora,situacao)
                 VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (
                     id, casa, campeonato, fora, resultado_casa, resultado_fora, tempo, data, posse_casa, posse_fora,
-                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate, odd_fora, situacao))
+                    finalizacao_casa, finalizacao_fora, odd_casa, odd_empate,odd_fora,situacao))
                 conn.commit()
             else:
                 conn.commit()
 
-
 def consultas_jogos(valor):
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
-            cursor.execute('''Select * FROM Jogos WHERE situacao = ?''', (valor,))
+            cursor.execute('''Select * FROM Jogos WHERE situacao = ?''',(valor,))
             tudo = cursor.fetchall()
             return tudo
             conn.commit()
