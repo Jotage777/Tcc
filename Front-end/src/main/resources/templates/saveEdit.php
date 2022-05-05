@@ -29,7 +29,7 @@ if (isset($_POST['update'])) {
 
     $json = json_encode($dados);
 
-    $url = "http://127.0.0.1:5000/greenzord/bots/editar/" . $id;
+    $url = "http://127.0.0.1:5000/greenzord/bots/editar/1/" . $id;
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
