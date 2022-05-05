@@ -1,75 +1,15 @@
 import os
 
-from flask import Flask, request, jsonify
-from flask_restful import Resource, Api, abort, reqparse
+from flask import Flask, request
+from flask_restful import Resource, Api
 import Banco_de_dados
 import Web_scraping
 import Apostar
-from pydantic import BaseModel
+
 
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Greenzord.db'
-
-
-class greenzord_login(BaseModel):
-    username: str
-    senha: str
-
-
-class jogos_modelo(BaseModel):
-    campeonato: str
-    id: str
-    time_casa: str
-    resultado_casa: str
-    time_fora: str
-    resultado_fora: str
-    date: str
-    odd_casa: str
-    odd_fora: str
-    odd_empate: str
-
-
-class usuario_modelo(BaseModel):
-    username: str
-    nome: str
-    email: str
-    data_nascimento: str
-    saldo: str
-    senha: str
-
-
-class bots_modelo(BaseModel):
-    nome: str
-    responsabilidade: str
-    odd_minima: str
-    odd_maxima: str
-    tempo_jogo_maximo: str
-    tempo_jogo_minimo: str
-    finalizacao_min: str
-    finalizacao_max: str
-    posse_bola_min: str
-    posse_bola_max: str
-    ativado: str
-    apostar: str
-    analisar: str
-    username: str
-
-
-class apostas_modelo(BaseModel):
-    mercado: str
-    valor_apostado: str
-    odd_aposta: str
-    id_bot: str
-    id_jogo: str
-
-
-class relatorio_modelo(BaseModel):
-    greens: str
-    reds: str
-    lucro: str
-    total_apostas: str
-    id_bot: str
 
 
 class Greenzord(Resource):
@@ -182,7 +122,7 @@ class Greenzord_jogos(Resource):
 
 
 class Greenzord_bots(Resource):
-    def post(bots: bots_modelo):
+    def post(self):
         Banco_de_dados.add_bots(request.json['nome'], float(request.json['responsabilidade']),
                                 float(request.json['odd_minima']), float(request.json['odd_maxima']),
                                 int(request.json['tempo_jogo_minimo']), int(request.json['tempo_jogo_maximo']),
@@ -197,7 +137,7 @@ class Greenzord_bots(Resource):
 
 
 class Greenzord_bots_editar(Resource):
-    def post(bots: bots_modelo, id):
+    def post(self, id):
         Banco_de_dados.atulizar_bots(request.json['nome'], id, 1)
         Banco_de_dados.atulizar_bots(float(request.json['responsabilidade']), id, 2)
         Banco_de_dados.atulizar_bots(float(request.json['odd_minima']), id, 3)
@@ -215,18 +155,18 @@ class Greenzord_bots_editar(Resource):
 
 
 class Greenzord_apagar_bots(Resource):
-    def get(Self, id):
+    def get(self, id):
         Banco_de_dados.deletar_bot(id)
         return 200
 
 
 class Greenzord_Login_Cadastro(Resource):
-    def get(login: greenzord_login):
+    def get(self):
         validar = Banco_de_dados.consultar_login(request.json['username'], request.json['password'])
 
         return validar
 
-    def post(usuario: usuario_modelo):
+    def post(self):
         Banco_de_dados.add_usuario(request.json['username'], request.json['nome'], request.json['email'],
                                    request.json['data_nascimento'],
                                    float(request.json['saldo']), request.json['senha'])
