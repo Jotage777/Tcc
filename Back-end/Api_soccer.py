@@ -154,7 +154,7 @@ class Greenzord_bots_editar(Resource):
             Banco_de_dados.atulizar_bots(request.json['analisar'], id, 13)
             return 200
         if tipo ==2:
-            print('entrou')
+
             if request.json['ativado'] == '1':
                 Banco_de_dados.atulizar_bots(1, id, 11)
             if request.json['ativado'] =='0':
