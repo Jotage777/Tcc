@@ -81,32 +81,32 @@ def analise():
                                 if jogo[12] <= jogo[13]:  # casa é o favorito
                                     if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                                         apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7],
-                                                jogo[0], bot[1])
+                                                jogo[0], bot[1],1)
                                 else:  # fora é o favorito
                                     if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                                         apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7],
-                                                jogo[0], bot[1])
+                                                jogo[0], bot[1],2)
                             elif bot[12] == 'zebraapo':  # apostar na zebra
                                 if jogo[12] > jogo[13]:  # casa é a zebra
                                     if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                                         apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7],
-                                                jogo[0], bot[1])
+                                                jogo[0], bot[1],1)
                                 else:  # fora é a zebra
                                     if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                                         apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7],
-                                                jogo[0], bot[1])
+                                                jogo[0], bot[1],2)
                             elif bot[12] == 'casaapo':  # apostar no time da casa
                                 if bot[4] >= jogo[12] >= bot[3]:  # analisar odd casa
                                     apostar(bot[0], bot[14], bot[2], bot[12], jogo[12], jogo[1], jogo[3], jogo[7], jogo[0],
-                                            bot[1])
+                                            bot[1],1)
                             elif bot[12] == 'foraapo':  # apostar no time fora
                                 if bot[4] >= jogo[13] >= bot[3]:  # analisar odd fora
                                     apostar(bot[0], bot[14], bot[2], bot[12], jogo[13], jogo[1], jogo[3], jogo[7], jogo[0],
-                                            bot[1])
+                                            bot[1],2)
     concluir_aposta()
 
 
-def apostar(id_bot, id_usuario, responsabilidade, apostar, odd, casa, fora, data, id_jogo, nome_bot):
+def apostar(id_bot, id_usuario, responsabilidade, apostar, odd, casa, fora, data, id_jogo, nome_bot, casa_fora):
     relatorio = Banco_de_dados.consultar_relatorio(id_bot)
     Banco_de_dados.atualizar_relatorio(4, id_bot, (relatorio[4] + 1))
     Banco_de_dados.atualizar_relatorio(5, id_bot, (relatorio[5] + 1))
@@ -114,4 +114,4 @@ def apostar(id_bot, id_usuario, responsabilidade, apostar, odd, casa, fora, data
     novo_saldo = saldo - float(responsabilidade)
     Banco_de_dados.atulizar_usuario(novo_saldo, id_usuario, 5)
     Banco_de_dados.add_apostas(apostar, float(responsabilidade), float(odd), float(responsabilidade * odd), 'aberto',
-                               casa, fora, data, id_bot, id_jogo, 1, id_usuario, nome_bot)
+                               casa, fora, data, id_bot, id_jogo, casa_fora, id_usuario, nome_bot)
