@@ -61,7 +61,7 @@ def WebScraping():
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
 
-                        if esse[13] != estatisticas[13]:
+                        if esse[14] != estatisticas[14]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
 
                         if atualizou == 1:
@@ -122,7 +122,7 @@ def WebScraping():
                         if esse[13] != estatisticas[13]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
 
-                        if esse[13] != estatisticas[13]:
+                        if esse[14] != estatisticas[14]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
 
                         if atualizou == 1:
