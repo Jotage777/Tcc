@@ -97,7 +97,7 @@ Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '15', '4', 'Super Favorito')
 #                                 '20.04.2022 16:00', 37, 63, 8, 18, 3.95, 1.9, 4.75, 'aberto')
 # Banco_de_dados.add_jogos('ITALIA: Campeonato Italiano ', 'pok690j', 'Juventus', 0, 'Inter', 0, 45,
 #                                 '20.04.2022 16:00', 39, 61, 2, 8, 3.2, 2.1, 3.5, 'aberto')
-Banco_de_dados.add_jogos('Alemanha: Campeonato Alemão ', '22re89b', 'Leipzig', 0, 'Frankfurt', 0, 15,
-                         '22.04.2022 14:00', 62, 38, 2, 0, 1.45, 3.8, 6.0, 'aberto')
-Banco_de_dados.add_jogos('EUROPA: Liga dos Campeões ', 'dad265w', 'Real Madrid', 0, 'Leverkusen', 0, 5,
-                         '22.04.2022 16:00', 65, 35, 3, 0, 1.3, 4.1, 8.3, 'aberto')
+# Banco_de_dados.add_jogos('Alemanha: Campeonato Alemão ', '22re89b', 'Leipzig', 0, 'Frankfurt', 0, 15,
+#                          '22.04.2022 14:00', 62, 38, 2, 0, 1.45, 3.8, 6.0, 'aberto')
+# Banco_de_dados.add_jogos('EUROPA: Liga dos Campeões ', 'dad265w', 'Real Madrid', 0, 'Leverkusen', 0, 5,
+#                          '22.04.2022 16:00', 65, 35, 3, 0, 1.3, 4.1, 8.3, 'aberto')
