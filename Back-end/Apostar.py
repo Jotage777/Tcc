@@ -111,17 +111,20 @@ def analise():
                 # Se o jogo estiver empate
                 if resultado_casa == resultado_fora:
                     if responsabilidade <= Banco_de_dados.consultar_usuario_saldo(id_usuario):
-                        # verificar se já foi feita a aposta
                         verificar = Banco_de_dados.verificar_apostas(id_jogo, id_bot)
-                        # verificar se o tempo de jogo esta no intervalo do bot
-                        if tempo_jogo_maximo >= tempo >= tempo_jogo_minimo and (analisar == 'casaesta' or (analisar == 'favesta' and odd_casa <= odd_fora) or (analisar == 'zebraesta' and odd_casa > odd_fora)):
-                            if finalizacao_max >= finalizacao_casa >= finalizacao_min and posse_bola_max >= posse_bola_casa >= posse_bola_min and odd_maxima >= odd_casa >= odd_minima:
-                                if verificar == False:
-                                    fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_casa, time_casa, time_fora, data, id_jogo, nome, 1)
-                        elif tempo_jogo_maximo >= tempo >= tempo_jogo_minimo and (analisar == 'foraesta' or (analisar == 'favesta' and odd_casa > odd_fora) or (analisar == 'zebraesta' and odd_casa <= odd_fora)):
-                            if finalizacao_max >= finalizacao_fora >= finalizacao_min and posse_bola_max >= posse_bola_fora >= posse_bola_min and odd_maxima >= odd_fora >= odd_minima:
-                                if verificar == False:
-                                    fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_fora, time_casa, time_fora, data, id_jogo, nome, 2)
+                        if tempo_jogo_maximo >= tempo >= tempo_jogo_minimo and verificar == False:
+                            if analisar == 'casaesta' or (analisar == 'favesta' and odd_casa <= odd_fora) or (analisar == 'zebraesta' and odd_casa > odd_fora):
+                                if finalizacao_max >= finalizacao_casa >= finalizacao_min and posse_bola_max >= posse_bola_casa >= posse_bola_min:
+                                    if apostar == 'casaapo' or (apostar == 'favapo' and odd_casa <= odd_fora) or (apostar == 'zebraapo' and odd_casa > odd_fora) and odd_maxima >= odd_casa >= odd_minima:
+                                        fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_casa, time_casa, time_fora, data, id_jogo, nome, 1)
+                                    elif apostar == 'foraapo' or (apostar == 'favapo' and odd_casa > odd_fora) or (apostar == 'zebraapo' and odd_casa <= odd_fora) and odd_maxima >= odd_fora >= odd_minima:
+                                        fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_fora, time_casa, time_fora, data, id_jogo, nome, 2)
+                            elif analisar == 'foraesta' or (analisar == 'favesta' and odd_casa > odd_fora) or (analisar == 'zebraesta' and odd_casa <= odd_fora):
+                                if finalizacao_max >= finalizacao_fora >= finalizacao_min and posse_bola_max >= posse_bola_fora >= posse_bola_min:
+                                    if apostar == 'casaapo' or (apostar == 'favapo' and odd_casa <= odd_fora) or (apostar == 'zebraapo' and odd_casa > odd_fora) and odd_maxima >= odd_casa >= odd_minima:
+                                        fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_casa, time_casa, time_fora, data, id_jogo, nome, 1)
+                                    elif apostar == 'foraapo' or (apostar == 'favapo' and odd_casa > odd_fora) or (apostar == 'zebraapo' and odd_casa <= odd_fora) and odd_maxima >= odd_fora >= odd_minima:
+                                        fazer_aposta(id_bot, id_usuario, responsabilidade, apostar, odd_fora, time_casa, time_fora, data, id_jogo, nome, 2)
     concluir_aposta()
 
 

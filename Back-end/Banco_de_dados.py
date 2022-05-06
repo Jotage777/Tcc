@@ -222,7 +222,6 @@ def add_usuario(username: str, nome: str, email: str, data_Nascimento: str, sald
                 VALUES(?,?,?,?,?,?)''', (username, nome, email, data_Nascimento, saldo, senha))
                 conn.commit()
             else:
-
                 conn.commit()
 
 
@@ -261,21 +260,21 @@ def add_bots(nome: str, responsabilidade: float, odd_minima: float, odd_maxima: 
              posse_de_bola_max: int, ativado: bool, apostar: str, analisar: str, username: str) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
         with closing(conn.cursor()) as cursor:
-            cursor.execute('PRAGMA foreign_keys = ON;')
-            cursor.execute('''SELECT id_bot FROM Bots WHERE nome = ?''', (nome,))
-            result = cursor.fetchone()
-            if result is None:
-                fk_id_usuario = consultar_usuario(username)
-                cursor.execute('''INSERT INTO Bots (nome, responsabilidade, odd_minima, odd_maxima, tempo_jogo_minimo,
-                tempo_jogo_maximo, finalizacao_min, finalizacao_max, posse_bola_min, posse_bola_max,
-                ativado, apostar, analisar, fk_id_usuario)
-                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (nome, responsabilidade, odd_minima, odd_maxima,
-                                                         tempo_jogo_minimo, tempo_de_jogo_maximo, finalizacao_min,
-                                                         finalizacao_max, posse_bola_min, posse_de_bola_max, ativado,
-                                                         apostar, analisar, fk_id_usuario))
-                conn.commit()
-            else:
-                conn.commit()
+            # cursor.execute('PRAGMA foreign_keys = ON;')
+            # cursor.execute('''SELECT id_bot FROM Bots WHERE nome = ?''', (nome,))
+            # result = cursor.fetchone()
+            # if result is None:
+            fk_id_usuario = consultar_usuario(username)
+            cursor.execute('''INSERT INTO Bots (nome, responsabilidade, odd_minima, odd_maxima, tempo_jogo_minimo,
+            tempo_jogo_maximo, finalizacao_min, finalizacao_max, posse_bola_min, posse_bola_max,
+            ativado, apostar, analisar, fk_id_usuario)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)''', (nome, responsabilidade, odd_minima, odd_maxima, tempo_jogo_minimo,
+                                                     tempo_de_jogo_maximo, finalizacao_min, finalizacao_max,
+                                                     posse_bola_min, posse_de_bola_max, ativado, apostar, analisar,
+                                                     fk_id_usuario))
+            conn.commit()
+            # else:
+            #     conn.commit()
 
 
 def atulizar_bots(valor, id_bot, tipo):
