@@ -1,8 +1,7 @@
 import Banco_de_dados
 
 # Usuários
-Banco_de_dados.add_usuario('Gabriel', 'Joao Gabriel', 'gabrieloliveira_pb@hotmail.com', '24/05/1999', '500.00',
-                           'gabriel')
+Banco_de_dados.add_usuario('Gabriel', 'Joao Gabriel', 'gabrieloliveira_pb@hotmail.com', '24/05/1999', '500.00', 'gabriel')
 Banco_de_dados.add_usuario('Messias', 'Joao Messias', 'joaomessias00@hotmail.com', '27/05/1999', '250.00', 'messias123')
 Banco_de_dados.add_usuario('Igor', 'Igor barbosa', 'igor@ifpb.com', '04/04/2000', '1000.00', '1234')
 Banco_de_dados.add_usuario('Lucas', 'Lucas', 'lucas@gmail.com', '15/02/1998', '500.00', 'luc321')
@@ -32,6 +31,12 @@ Banco_de_dados.add_bots('Sempre Favorito', '5', '1.35', '2.8', '0', '10', '1', '
                         'favesta', 'Lucas')
 Banco_de_dados.add_bots('Sempre Zebra', '2.5', '2.85', '4.8', '0', '10', '1', '99', '55', '99', '1', 'zebraapo',
                         'zebraesta', 'Lucas')
+Banco_de_dados.add_bots('Começo Bom do Favorito', '5', '1', '1.99', '0', '20', '4', '99', '65', '99', '1', 'favapo',
+                        'favesta', 'Gabriel')
+Banco_de_dados.add_bots('Zebra Iniciou Melhor', '2.5', '2', '3.5', '0', '20', '6', '99', '65', '99', '1', 'zebraapo',
+                        'zebraesta', 'Gabriel')
+Banco_de_dados.add_bots('Super Favorito', '10', '1', '1.5', '0', '20', '0', '1', '0', '40', '1', 'favapo',
+                        'zebraesta', 'Lucas')
 
 # Relatorio dos Bots
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1', '1', 'Super Favorito')
@@ -46,7 +51,10 @@ Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '9', '2', 'Casa Mal')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '10', '3', 'Zebra Melhor')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '11', '4', 'Sempre Favorito')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '12', '4', 'Sempre Zebra')
-#
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '13', '1', 'Começo Bom do Favorito')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '14', '1', 'Zebra Jogando Melhor')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '15', '4', 'Super Favorito')
+
 # Jogos Ao Vivo
 # Banco_de_dados.add_jogos('BRASIL: Campeonato Brasileiro ', 'nion4234', 'Atlético-MG', 0, 'Cuiabá', 0, 5,
 #                                 '24.04.2022 19:30', 70, 30, 2, 0, 1.3, 3.9, 8.0,'aberto')
