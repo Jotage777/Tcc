@@ -46,9 +46,9 @@ def salvar_green(id_usuario, id_bot, retorno, apostado, id_aposta):
     lucro_rel = relatorio[3]
     apostas_abertas = relatorio[5]
     Banco_de_dados.atualizar_relatorio(1, id_bot, (greens + 1))
-    Banco_de_dados.atualizar_relatorio(5, id_bot, (lucro_rel - 1))
+    Banco_de_dados.atualizar_relatorio(5, id_bot, (apostas_abertas - 1))
     lucro = retorno - apostado
-    Banco_de_dados.atualizar_relatorio(3, id_bot, (apostas_abertas + lucro))
+    Banco_de_dados.atualizar_relatorio(3, id_bot, (lucro_rel + lucro))
     saldo = Banco_de_dados.consultar_usuario_saldo(id_usuario)
     novo_saldo = saldo + (float(retorno))
     Banco_de_dados.atulizar_usuario(novo_saldo, id_usuario, 5)
