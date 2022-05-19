@@ -38,6 +38,8 @@ Banco_de_dados.add_bots('Zebra Iniciou Melhor', '2.5', '2', '3.5', '0', '20', '6
                         'zebraesta', 'Gabriel')
 Banco_de_dados.add_bots('Super Favorito', '10', '1.0', '1.5', '0', '20', '0', '1', '0', '40', '1', 'favapo',
                         'zebraesta', 'Lucas')
+Banco_de_dados.add_bots('Aposta Casa', '10', '1.0', '999.0', '0', '99', '0', '99', '0', '100', '1', 'casaapo',
+                        'casaesta', 'Gabriel')
 
 # Relatorio dos Bots
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '1', '1', 'Super Favorito')
@@ -55,6 +57,7 @@ Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '12', '4', 'Sempre Zebra')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '13', '1', 'Começo Bom do Favorito')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '14', '1', 'Zebra Jogando Melhor')
 Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '15', '4', 'Super Favorito')
+Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, '16', '1', 'Aposta Casa')
 
 # Jogos Ao Vivo
 # Banco_de_dados.add_jogos('BRASIL: Campeonato Brasileiro ', 'nion4234', 'Atlético-MG', 0, 'Cuiabá', 0, 5,
