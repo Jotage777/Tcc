@@ -130,7 +130,7 @@ class Greenzord_bots(Resource):
                                 int(request.json['posse_bola_min']), int(request.json['posse_bola_max']),
                                 bool(request.json['ativado']), request.json['apostar'], request.json['analisar'],
                                 request.json['username'])
-        id_bot = Banco_de_dados.consultar_bots(request.json['nome'])
+        id_bot = Banco_de_dados.consultar_ultimo_bot()
         id_usuario = Banco_de_dados.consultar_usuario(request.json['username'])
         Banco_de_dados.add_relatorio(0, 0, 0.0, 0, 0, id_bot, id_usuario, request.json['nome'])
         return 200

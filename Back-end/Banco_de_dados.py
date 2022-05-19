@@ -239,6 +239,20 @@ def consultar_bots(nome: str) -> int:
                 return id_bot
                 conn.commit()
 
+def consultar_ultimo_bot() -> int:
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Bots ''',)
+            result = cursor.fetchall()
+            bot = result[[-1][0]]
+            id_bot = bot[0]
+            if id_bot is None:
+                print("Não existe esse bot na base de dados")
+                conn.commit()
+            else:
+                return id_bot
+                conn.commit()
 
 def consultar_usuario_bots(id_bot) -> int:
     with sqlite3.connect('Greenzord.db') as conn:
