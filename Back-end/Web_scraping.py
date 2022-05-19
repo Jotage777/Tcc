@@ -167,6 +167,8 @@ def WebScraping():
             estatisticas.append('45')
         elif tempo == 'Encerrado':
             estatisticas.append(tempo)
+        elif tempo[:11] == 'Prorrogação':
+            estatisticas.append('Encerrado')
         else:
             tempo_2 = tempo[11:]
             if len(tempo_2) > 2:
@@ -192,7 +194,7 @@ def WebScraping():
                         estatisticas.append(tempo_2[0])
 
         # Nome de casa estatistica
-        if tempo == 'Encerrado':
+        if tempo == 'Encerrado' or tempo[:11]== 'Prorrogação' :
             resultado = soup_jogo.find('div', class_='detailScore__matchInfo').get_text()
             resul = list(resultado)
             estatisticas.append(resul[0])
