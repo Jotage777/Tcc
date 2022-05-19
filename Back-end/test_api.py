@@ -7,7 +7,7 @@ headers = {
     'X-RapidAPI-Key': "25e38c4f71msh2272423f9de8a61p188799jsnfb0af1f3357d"
     }
 
-conn.request("GET", "/v3/fixtures/events?fixture=215662", headers=headers)
+conn.request("GET", "/v3/fixtures/statistics?fixture=793505", headers=headers)
 
 res = conn.getresponse()
 data = res.read()
