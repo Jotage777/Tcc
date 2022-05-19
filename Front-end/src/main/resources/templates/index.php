@@ -188,7 +188,12 @@ $saldo_usuario = json_decode(file_get_contents($saldo));
                 echo "<td>" . $aposta[2] . "</td>"; //Aposta
                 echo "<td>" . $aposta[3] . "</td>"; //ODD
                 echo "<td>" . $aposta[4] . "</td>"; //Retorno
-                echo "<td>" . $aposta[11] . "</td>"; //Time Apostado
+                if($aposta[11]=="1"){
+                    echo "<td>" . $aposta[6] . "</td>";
+                }
+                elseif ($aposta[11]=="2"){
+                    echo "<td>" . $aposta[7] . "</td>";
+                }
                 echo "<tr>";
             }
             ?>
