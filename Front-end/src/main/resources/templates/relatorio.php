@@ -10,11 +10,19 @@ $logado = $_SESSION['username'];
 $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
 $resultado_id = json_decode(file_get_contents($urlid));
 
+if(!empty($_GET['search']))
+{
+    $data = $_GET['search'];
+    $relatorio = "http://127.0.0.1:5000/greenzord/nomes/" . $resultado_id . "/1/" . $data;
+    $relatorio_bot = json_decode(file_get_contents($relatorio));
+}
+else{
+    $relatorio = "http://127.0.0.1:5000/greenzord/relatorio/2/" . $resultado_id;
+    $relatorio_bot = json_decode(file_get_contents($relatorio));
+}
+
 $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
 $saldo_usuario = json_decode(file_get_contents($saldo));
-
-$relatorio = "http://127.0.0.1:5000/greenzord/relatorio/2/" . $resultado_id;
-$relatorio_bot = json_decode(file_get_contents($relatorio));
 ?>
 
 <!doctype html>
@@ -191,9 +199,9 @@ $relatorio_bot = json_decode(file_get_contents($relatorio));
     </table>
 </div>
 <br>
-<center>
+<div style="text-align: center;">
     <div id="columnchart_values"></div>
-</center>
+</div>
 </body>
 <script>
     var search = document.getElementById('pesquisar');
