@@ -6,7 +6,6 @@ import Banco_de_dados
 import Web_scraping
 import Apostar
 
-
 app = Flask(__name__)
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Greenzord.db'
@@ -137,8 +136,8 @@ class Greenzord_bots(Resource):
 
 
 class Greenzord_bots_editar(Resource):
-    def post(self, tipo,id):
-        if tipo ==1:
+    def post(self, tipo, id):
+        if tipo == 1:
             Banco_de_dados.atulizar_bots(request.json['nome'], id, 1)
             Banco_de_dados.atulizar_bots(float(request.json['responsabilidade']), id, 2)
             Banco_de_dados.atulizar_bots(float(request.json['odd_minima']), id, 3)
@@ -153,11 +152,11 @@ class Greenzord_bots_editar(Resource):
             Banco_de_dados.atulizar_bots(request.json['apostar'], id, 12)
             Banco_de_dados.atulizar_bots(request.json['analisar'], id, 13)
             return 200
-        if tipo ==2:
+        if tipo == 2:
 
             if request.json['ativado'] == '1':
                 Banco_de_dados.atulizar_bots(1, id, 11)
-            if request.json['ativado'] =='0':
+            if request.json['ativado'] == '0':
                 Banco_de_dados.atulizar_bots(0, id, 11)
 
 
@@ -204,14 +203,17 @@ class Greenzord_relatorio(Resource):
         elif tipo == 2:
             relatorio = Banco_de_dados.consultar_relatorio_usuario(id)
             return relatorio
+
+
 class Greenzord_nomes_relatorio_bot(Resource):
-    def get(self, id, tipo,nome):
+    def get(self, id, tipo, nome):
         if tipo == 1:
-            relatorio = Banco_de_dados.consultar_nome_relatorio_usuario(id,nome)
+            relatorio = Banco_de_dados.consultar_nome_relatorio_usuario(id, nome)
             return relatorio
         elif tipo == 2:
-            lista_bots = Banco_de_dados.consultar_nome_bots_usuario(id,nome)
+            lista_bots = Banco_de_dados.consultar_nome_bots_usuario(id, nome)
             return lista_bots
+
 
 api.add_resource(Greenzord, "/greenzord/<int:tipo>/<int:tipo2>/<string:nome>")
 api.add_resource(Greenzord_jogos, "/greenzord/jogos")
@@ -222,7 +224,7 @@ api.add_resource(Greenzord_Login_Cadastro, "/greenzord/login_cadastro")
 api.add_resource(Greenzord_realizar_apostas, "/greenzord/apostar")
 api.add_resource(Greenzord_apostas_bot, "/greenzord/apostas/bot/<int:id>/<int:tipo>")
 api.add_resource(Greenzord_relatorio, "/greenzord/relatorio/<int:tipo>/<int:id>")
-api.add_resource(Greenzord_nomes_relatorio_bot, "/greenzord/nomes/<int:id>/<int:id>/<string:nome>")
+api.add_resource(Greenzord_nomes_relatorio_bot, "/greenzord/nomes/<int:id>/<int:tipo>/<string:nome>")
 create_db = not os.path.isfile('Greenzord.db')
 
 if create_db:
