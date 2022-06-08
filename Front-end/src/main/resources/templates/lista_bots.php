@@ -10,8 +10,16 @@ $logado = $_SESSION['username'];
 $urlid = "http://127.0.0.1:5000/greenzord/4/2/" . $logado;
 $resultado_id = json_decode(file_get_contents($urlid));
 
-$urlbots = "http://127.0.0.1:5000/greenzord/5/1/" . $resultado_id;
-$resultado_bots = json_decode(file_get_contents($urlbots));
+if(!empty($_GET['search']))
+{
+    $data = $_GET['search'];
+    $urlbots = "http://127.0.0.1:5000/greenzord/nomes/" . $resultado_id . "/2/" . $data;
+    $resultado_bots = json_decode(file_get_contents($urlbots));
+}
+else{
+    $urlbots = "http://127.0.0.1:5000/greenzord/5/1/" . $resultado_id;
+    $resultado_bots = json_decode(file_get_contents($urlbots));
+}
 
 $saldo = "http://127.0.0.1:5000/greenzord/4/3/" . $resultado_id;
 $saldo_usuario = json_decode(file_get_contents($saldo));
@@ -201,7 +209,7 @@ $saldo_usuario = json_decode(file_get_contents($saldo));
 </div>
 </body>
 <script>
-    var search = document.getElementById("pesquisar');
+    var search = document.getElementById('pesquisar');
 
     search.addEventListener("keydown", function (event) {
         if (event.key == "Enter") {
