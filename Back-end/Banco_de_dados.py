@@ -492,6 +492,37 @@ def consultar_relatorio_usuario(id: int):
             return relatorios
             conn.commit()
 
+def consultar_nome_relatorio_usuario(id: int, nome:str):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Relatorio WHERE  fk_id_usuario =?''', (id,))
+            relatorios = cursor.fetchall()
+            filtro = []
+            for i in range(len(relatorios)):
+                relatorio_nome = relatorios[i][-1]
+                nome = nome.upper()
+                relatorio_nome=relatorio_nome.upper()
+                if nome in relatorio_nome:
+                    filtro.append(relatorios[i])
+            return filtro
+            conn.commit()
+
+def consultar_nome_bots_usuario(id: int, nome:str):
+    with sqlite3.connect('Greenzord.db') as conn:
+        with closing(conn.cursor()) as cursor:
+            cursor.execute('PRAGMA foreign_keys = ON;')
+            cursor.execute('''SELECT * FROM Bots WHERE fk_id_usuario = ?''', (id,))
+            bots = cursor.fetchall()
+            filtro = []
+            for i in range(len(bots)):
+                bots_nome = bots[i][1]
+                nome = nome.upper()
+                bots_nome=bots_nome.upper()
+                if nome in bots_nome:
+                    filtro.append(bots[i])
+            return filtro
+            conn.commit()
 
 def consultas(acao):
     with sqlite3.connect('Greenzord.db') as conn:
