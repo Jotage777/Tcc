@@ -195,7 +195,18 @@ $relatorio_bot = json_decode(file_get_contents($relatorio));
             echo "<td>" . $aposta[6] . "</td>";
             echo "<td>x</td>";
             echo "<td>" . $aposta[7] . "</td>";
-            echo "<td>" . $aposta[1] . "</td>";
+            if ($aposta[1] == "casaapo") {
+                echo "<td>Casa</td>";
+            }
+            elseif ($aposta[1] == "foraapo") {
+                echo "<td>Fora</td>";
+            }
+            elseif ($aposta[1] == "favapo") {
+                echo "<td>Favorito</td>";
+            }
+            elseif ($aposta[1] == "zebraapo") {
+                echo "<td>Zebra</td>";
+            }
             echo "<td>" . $aposta[3] . "</td>";
             echo "<td>" . $aposta[2] . "</td>";
             echo "<td>" . $aposta[4] . "</td>";

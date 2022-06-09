@@ -47,6 +47,8 @@ if (isset($_POST['submit'])) {
     );
 
     $jsonRet = json_decode(curl_exec($ch));
+
+    header('Location: lista_bots.php');
 }
 ?>
 
