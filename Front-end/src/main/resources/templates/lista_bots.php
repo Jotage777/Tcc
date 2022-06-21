@@ -155,8 +155,30 @@ $saldo_usuario = json_decode(file_get_contents($saldo));
             echo "<tr>";
             echo "<td>1</td>";
             echo "<td>" . $bot[1] . "</td>"; //nome
-            echo "<td>" . $bot[12] . "</td>"; //aposta
-            echo "<td>" . $bot[13] . "</td>"; //analisar
+            if ($bot[12] == "casaapo") {
+                echo "<td>Casa</td>";
+            }
+            elseif ($bot[12] == "foraapo") {
+                echo "<td>Fora</td>";
+            }
+            elseif ($bot[12] == "favapo") {
+                echo "<td>Favorito</td>";
+            }
+            elseif ($bot[12] == "zebraapo") {
+                echo "<td>Zebra</td>";
+            }
+            if ($bot[13] == "casaesta") {
+                echo "<td>Casa</td>";
+            }
+            elseif ($bot[13] == "foraesta") {
+                echo "<td>Fora</td>";
+            }
+            elseif ($bot[13] == "favesta") {
+                echo "<td>Favorito</td>";
+            }
+            elseif ($bot[13] == "zebraesta") {
+                echo "<td>Zebra</td>";
+            }
             echo "<td>" . $bot[2] . "</td>"; //responsabilidade
             echo "<td>" . $bot[3] . " ~ " . $bot[4] . "</td>"; //intervalo odd
             echo "<td>" . $bot[5] . " ~ " . $bot[6] . "</td>"; //intervalo jogo

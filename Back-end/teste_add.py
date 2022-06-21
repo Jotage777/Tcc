@@ -13,7 +13,7 @@ Banco_de_dados.add_bots('Super Favorito', '5', '1.0', '2.3', '0', '10', '2', '99
 Banco_de_dados.add_bots('Zebra Bem', '5', '2.1', '4.0', '5', '15', '4', '99', '53', '99', '1', 'zebraapo', 'zebraesta',
                         'Messias')
 Banco_de_dados.add_bots('Favorito Amassando', '10', '1.8', '5.0', '45', '70', '15', '99', '65', '99', '1', 'favapo',
-                        'favapo', 'Gabriel')
+                        'favesta', 'Gabriel')
 Banco_de_dados.add_bots('Zebra Mal', '10', '1.4', '2.7', '35', '55', '0', '2', '0', '40', '1', 'favapo', 'zebraesta',
                         'Messias')
 Banco_de_dados.add_bots('Casa com Muita Chance', '10', '1.0', '2.5', '0', '45', '10', '99', '60', '99', '1', 'casaapo',
