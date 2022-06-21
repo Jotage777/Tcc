@@ -10,14 +10,19 @@ jogos_ao_vivo_momento = 0
 def WebScraping():
     def raspagem_stats(id):
         def raspagem_odd(id):
-            browser.get(
-                'https://www.flashscore.com.br/jogo/' + id + '/#/comparacao-de-odds/1x2-odds/tempo-regulamentar')
+            browser.get('https://www.flashscore.com.br/jogo/'+id+'/#/comparacao-de-odds/1x2-odds/tempo-regulamentar')
             time.sleep(1)
             try:
-                odds = browser.find_element_by_xpath('/html/body/div[2]/div/div[6]/div[3]/div/div[2]/div[1]')
-                odds_html = odds.get_attribute('outerHTML')
-                soup_odds = BeautifulSoup(odds_html, 'html.parser')
-                odd = soup_odds.find_all('a', class_='oddsCell__odd')
+                try:
+                    odds = browser.find_element_by_xpath('/html/body/div[1]/div/div[7]/div[3]/div/div[2]')
+                    odds_html = odds.get_attribute('outerHTML')
+                    soup_odds = BeautifulSoup(odds_html, 'html.parser')
+                    odd = soup_odds.find_all('a', class_='oddsCell__odd')
+                except:
+                    odds = browser.find_element_by_xpath('/html/body/div[1]/div/div[6]/div[3]/div/div[2]')
+                    odds_html = odds.get_attribute('outerHTML')
+                    soup_odds = BeautifulSoup(odds_html, 'html.parser')
+                    odd = soup_odds.find_all('a', class_='oddsCell__odd')
                 estatisticas.append(odd[0].getText())
                 estatisticas.append(odd[1].getText())
                 estatisticas.append(odd[2].getText())
@@ -143,7 +148,7 @@ def WebScraping():
         estatisticas.append(id)
         browser.get(' https://www.flashscore.com.br/jogo/' + id + '/#/resumo-de-jogo/estatisticas-de-jogo/0')
         time.sleep(1)
-        jogo = browser.find_element_by_xpath('/html/body/div[2]/div')
+        jogo = browser.find_element_by_xpath('/html/body/div[1]/div')
         jogo_html = jogo.get_attribute('outerHTML')
         soup_jogo = BeautifulSoup(jogo_html, 'html.parser')
         times = soup_jogo.find_all('div', class_='participant__participantName participant__overflow')
@@ -246,17 +251,25 @@ def WebScraping():
         ao_vivo = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
         ao_vivo.click()
     except:
-        ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1] /div[2] /div[2]')
-        ao_vivo.click()
+        try:
+            ao_vivo = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1] /div[2] /div[2]')
+            ao_vivo.click()
+        except:
+            ao_vivo = browser.find_element_by_xpath('/html/body/div[5]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/div[1]/div[1]/div[2]')
+            ao_vivo.click()
     try:
         jogos = browser.find_element_by_xpath('/html/body/div[7]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/section/div/div')
         site_html = jogos.get_attribute('outerHTML')
         soup = BeautifulSoup(site_html, 'html.parser')
     except:
-        jogos = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div')
-        site_html = jogos.get_attribute('outerHTML')
-        soup = BeautifulSoup(site_html, 'html.parser')
-
+        try:
+            jogos = browser.find_element_by_xpath('/html/body/div[6]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div')
+            site_html = jogos.get_attribute('outerHTML')
+            soup = BeautifulSoup(site_html, 'html.parser')
+        except:
+            jogos = browser.find_element_by_xpath('/html/body/div[5]/div[1]/div/div[1]/div[2]/div[4]/div[2]/div/section/div/div')
+            site_html = jogos.get_attribute('outerHTML')
+            soup = BeautifulSoup(site_html, 'html.parser')
 
     for rodada in soup.find_all('div', attrs={
         "class": "event__match event__match--live event__match--last event__match--twoLine"}):
