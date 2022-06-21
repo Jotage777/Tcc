@@ -107,7 +107,7 @@ def analise():
                 finalizacao_casa = jogo[10]
                 finalizacao_fora = jogo[11]
                 odd_casa = jogo[12]
-                odd_fora = jogo[13]
+                odd_fora = jogo[14]
                 # Se o jogo estiver empate
                 if resultado_casa == resultado_fora:
                     verificar = Banco_de_dados.verificar_apostas(id_jogo, id_bot)
