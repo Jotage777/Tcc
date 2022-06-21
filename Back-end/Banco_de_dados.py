@@ -22,8 +22,8 @@ def criar_BD() -> None:
                     finalizacao_casa INTEGER NOT NULL ,
                     finalizacao_fora INTEGER NOT NULL ,
                     odd_casa FLOAT NOT NUll,
-                    odd_fora FLOAT NOT NUll,
-                    odd_empate FLOAT NOT NULL,
+                    odd_empate FLOAT NOT NUll,
+                    odd_fora FLOAT NOT NULL,
                     situacao VARCHAR (10) NOT NULL 
                     )''')
             cursor.execute('''
