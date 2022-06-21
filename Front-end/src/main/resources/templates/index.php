@@ -150,8 +150,8 @@ $saldo_usuario = json_decode(file_get_contents($saldo));
                 echo "<td>" . $bot[8] . "% x " . $bot[9] . "%</td>"; //posse
                 echo "<td>" . $bot[10] . " x " . $bot[11] . "</td>"; //finalização
                 echo "<td>" . $bot[12] . "</td>"; //odd_casa
-                echo "<td>" . $bot[14] . "</td>"; //odd_fora
                 echo "<td>" . $bot[13] . "</td>"; //odd_empate
+                echo "<td>" . $bot[14] . "</td>"; //odd_fora
                 echo "<tr>";
             }
             ?>
