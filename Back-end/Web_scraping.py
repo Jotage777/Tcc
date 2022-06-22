@@ -119,7 +119,7 @@ def WebScraping():
                             Banco_de_dados.atualizar_jogos(int(estatisticas[10]), estatisticas[0], 6)
 
                         if esse[11] != estatisticas[11]:
-                            Banco_de_dados.atualizar_jogos(int(estatisticas[11]), estatisticas[0], 7)
+                            Banco_de_dados.atualizar_jogos(float(estatisticas[11]), estatisticas[0], 7)
 
                         if esse[12] != estatisticas[12]:
                             Banco_de_dados.atualizar_jogos(float(estatisticas[12]), estatisticas[0], 8)
@@ -128,7 +128,7 @@ def WebScraping():
                             Banco_de_dados.atualizar_jogos(float(estatisticas[13]), estatisticas[0], 9)
 
                         if esse[14] != estatisticas[14]:
-                            Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
+                                Banco_de_dados.atualizar_jogos(float(estatisticas[14]), estatisticas[0], 10)
 
                         if atualizou == 1:
                             for i in range(len(jogos_ao_vivo_momento)):
@@ -174,8 +174,10 @@ def WebScraping():
             estatisticas.append('-1')
         elif tempo == 'Encerrado':
             estatisticas.append(tempo)
-        elif tempo[:11] == 'Prorrogação':
+        elif tempo[:11] == 'Prorrogação' :
             estatisticas.append('Encerrado')
+        elif tempo[:11] =="PÊNALTIS":
+            estatisticas.append('EncerradoP')
         else:
             tempo_2 = tempo[11:]
             if len(tempo_2) > 2:
@@ -206,6 +208,10 @@ def WebScraping():
             resul = list(resultado)
             estatisticas.append(resul[0])
             estatisticas.append(resul[2])
+        elif  tempo[:11]=="PÊNALTIS":
+            resultado = Banco_de_dados.consultas_jogos(id)
+            estatisticas.append(resultado[5])
+            estatisticas.append(resultado[6])
         else:
             resultado = soup_jogo.find('div', class_='detailScore__wrapper detailScore__live').get_text()
             resul = list(resultado)
