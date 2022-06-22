@@ -80,7 +80,7 @@ def WebScraping():
                                                  int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
                                                  int(estatisticas[9]), int(estatisticas[10]),
                                                  int(estatisticas[11]), float(estatisticas[12]),
-                                                 float(estatisticas[14]), float(estatisticas[13]), 'aberto')
+                                                 float(estatisticas[13]), float(estatisticas[14]), 'aberto')
 
             except:
 
@@ -142,7 +142,7 @@ def WebScraping():
                                                  int(estatisticas[5]), estatisticas[3], int(estatisticas[8]),
                                                  int(estatisticas[9]), int(estatisticas[10]),
                                                  int(estatisticas[11]), float(estatisticas[12]),
-                                                 float(estatisticas[14]), float(estatisticas[13]), 'aberto')
+                                                 float(estatisticas[13]), float(estatisticas[14]), 'aberto')
 
         estatisticas = []
         estatisticas.append(id)
