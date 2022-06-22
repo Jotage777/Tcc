@@ -168,8 +168,10 @@ def WebScraping():
             estatisticas.append(campeonato)
         tempo = soup_jogo.find('div', class_='detailScore__status').get_text()
 
-        if tempo == "Intervalo":
+        if tempo == "Intervalo" or tempo == "Ao Vivo":
             estatisticas.append('45')
+        elif tempo == "Aguardando Atualização":
+            estatisticas.append('-1')
         elif tempo == 'Encerrado':
             estatisticas.append(tempo)
         elif tempo[:11] == 'Prorrogação':
