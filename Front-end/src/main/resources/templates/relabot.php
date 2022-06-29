@@ -163,8 +163,14 @@ $relatorio_bot = json_decode(file_get_contents($relatorio));
         </tbody>
     </table>
 </div>
+
 <center>
-    <div id="piechart" style="width: 450px; height: 250px;"></div>
+    <?php
+    if($relatorio_bot[4]>0){
+        echo "<div id='piechart' style ='width: 450px; height: 250px;' ></div>";
+    }
+    ?>
+
 </center>
 <br>
 <h1>Lista de Apostas do Bot
