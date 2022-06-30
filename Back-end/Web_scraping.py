@@ -102,7 +102,8 @@ def WebScraping():
                         atualizou = 1
                         if esse[4] != int(estatisticas[6]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[6]), estatisticas[0], 1)
-
+                        print((estatisticas[7]))
+                        print(esse[5])
                         if esse[5] != int(estatisticas[7]):
                             Banco_de_dados.atualizar_jogos(int(estatisticas[7]), estatisticas[0], 2)
 
