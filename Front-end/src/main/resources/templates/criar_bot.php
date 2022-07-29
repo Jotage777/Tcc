@@ -241,6 +241,7 @@ if (isset($_POST['submit'])) {
             <input type="radio" id="foraapo" name="timapo" value="foraapo" required>
             <label for="ambos">Fora</label>
             <br>
+            <br>
             <!-- Times a serem analisados -->
             <p>Times (Para Estatísticas):</p>
             <input type="radio" id="favesta" name="timesta" value="favesta" required>
@@ -255,8 +256,10 @@ if (isset($_POST['submit'])) {
             <input type="radio" id="foraesta" name="timesta" value="foraesta" required>
             <label for="fora">Fora</label>
             <br>
+            <br>
             <!-- Tempo de jogo a ser apostado -->
             <p>Tempo de Jogo(0 a 90):</p>
+
             <div class="inputBox">
                 <label for="tempomin">de:</label>
                 <input type="number" name="tempomin" id="tempomin" class="inputBotIntervalo" value="0" min="0" max="99"
@@ -265,6 +268,7 @@ if (isset($_POST['submit'])) {
                 <input type="number" name="tempomax" id="tempomax" class="inputBotIntervalo" value="99" min="0" max="99"
                        required>
             </div>
+            <br>
             <!-- Finalizações do time ou ambos no jogo todo -->
             <p>Finalizações:</p>
             <div class="inputBox">
@@ -275,6 +279,7 @@ if (isset($_POST['submit'])) {
                 <input type="number" name="finamax" id="finamax" class="inputBotIntervalo" value="99" min="0" max="99"
                        required>
             </div>
+            <br>
             <!-- Adicionar posse de bola minima e maxima -->
             <p>Posse de Bola:</p>
             <div class="inputBox">
